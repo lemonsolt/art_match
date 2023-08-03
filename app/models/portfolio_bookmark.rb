@@ -1,0 +1,2 @@
+class PortfolioBookmark < ApplicationRecord
+end

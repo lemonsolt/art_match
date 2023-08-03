@@ -1,0 +1,2 @@
+class AtogFollow < ApplicationRecord
+end

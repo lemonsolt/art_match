@@ -1,0 +1,2 @@
+class GtoaFollow < ApplicationRecord
+end

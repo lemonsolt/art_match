@@ -1,0 +1,2 @@
+class GallaryEvent < ApplicationRecord
+end

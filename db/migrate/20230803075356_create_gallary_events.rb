@@ -4,8 +4,8 @@ class CreateGallaryEvents < ActiveRecord::Migration[6.1]
 
       t.integer :gallary_id
       t.string :title
-      t.date :start_at
-      t.date :end_at
+      t.datetime :start_at
+      t.datetime :end_at
       t.text :introduction
       t.integer :recruit
       t.timestamps

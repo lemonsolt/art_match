@@ -1,0 +1,2 @@
+module Gallary::GallariesHelper
+end

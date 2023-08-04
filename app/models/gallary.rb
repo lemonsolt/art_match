@@ -3,4 +3,13 @@ class Gallary < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |gallary|
+      gallary.password = SecureRandom.urlsafe_base64
+      gallary.password_confirmation = gallary.password
+      gallary.name = "ゲストギャラリー"
+    end
+  end
+
 end

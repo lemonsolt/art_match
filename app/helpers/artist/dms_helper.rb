@@ -1,0 +1,2 @@
+module Artist::DmsHelper
+end

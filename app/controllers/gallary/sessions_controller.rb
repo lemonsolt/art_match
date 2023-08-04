@@ -3,6 +3,12 @@
 class Gallary::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  def guest_sign_in
+    gallary = Gallary.guest
+    sign_in gallary
+    redirect_to root_path, notice: 'ゲストギャラリーとしてログインしました'
+  end
+
   # GET /resource/sign_in
   # def new
   #   super

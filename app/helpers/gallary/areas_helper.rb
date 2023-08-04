@@ -1,0 +1,2 @@
+module Gallary::AreasHelper
+end

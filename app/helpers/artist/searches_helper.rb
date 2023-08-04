@@ -1,0 +1,2 @@
+module Artist::SearchesHelper
+end

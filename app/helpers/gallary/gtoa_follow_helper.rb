@@ -1,0 +1,2 @@
+module Gallary::GtoaFollowHelper
+end

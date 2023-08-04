@@ -1,6 +1,8 @@
 ja:
   enums:
-
+    gallary:
+      area_name:
+        
   activerecord:
     errors:
       messages:

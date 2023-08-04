@@ -34,8 +34,10 @@ class DeviseCreateGallaries < ActiveRecord::Migration[6.1]
 
       t.integer :area_id
       t.string :name
+      t.text :introduction
       t.string :post_code
       t.text :address
+      t.integer :area_name, default: 0,null: false
       t.boolean :is_cold, default: false, null: false
       t.timestamps null: false
     end

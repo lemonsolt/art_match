@@ -1,2 +1,0 @@
-module Gallary::AreasHelper
-end

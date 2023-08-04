@@ -1,29 +1,58 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "gallary/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<%= render "gallary/shared/error_messages", resource: resource %>
+<div class="container">
+  <div class="row ">
+    <div class="col-12 mt-5 text-center">
+      <h2>新規登録</h2>
+    </div>
   </div>
+  <div class="row d-flex">
+    <div class="col-5 card mx-auto mt-4">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+        <div class="field mt-4 ml-5">
+          <%= f.label :name, "ギャラリー名" %><br />
+          <%= f.text_field :name, size: "40", placeholder: "〇〇ギャラリー" %>
+        </div>
+
+        <div class="field ml-5">
+          <%= f.label :introduction, "紹介文" %><br />
+          <%= f.text_area :introduction, size: "43x5", placeholder: "特に力を入れている点など" %>
+        </div>
+
+        <div class="field ml-5">
+          <%= f.label :post_code, "郵便番号(ハイフンなし)" %><br />
+          <%= f.text_field :post_code, size: "40", placeholder: "0000000" %>
+        </div>
+
+        <div class="field ml-5">
+          <%= f.label :address, "住所" %><br />
+          <%= f.select :area_name, Gallary.area_names.keys, {} %>
+          <%= f.text_area :address, size: "43x1", placeholder: "市町村 番地" %>
+        </div>
+
+        <div class="field ml-5">
+          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "40", placeholder: "example@email.com" %>
+        </div>
+
+        <div class="field ml-5">
+          <%= f.label :password, "パスワード" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", size: "40" %>
+        </div>
+
+        <div class="field ml-5">
+          <%= f.label :password_confirmation, "パスワード確認" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", size: "40" %>
+        </div>
+
+        <div class="actions text-center py-4">
+          <%= f.submit "登録する",class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "gallaries/shared/links" %>

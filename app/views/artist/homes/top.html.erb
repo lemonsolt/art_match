@@ -1,2 +1,24 @@
-<h1>Artist::Homes#top</h1>
-<p>Find me in app/views/artist/homes/top.html.erb</p>
+<nav class="col-12 py-2" style="background-color: rgba(176,196,222,100);">
+  <ul class="col-12 d-flex">  <!--ページ内移動のリンク-->
+    <li class="flex-fill text-center" style="list-style: none;"><a href="#1">セクション１へ</a></li>
+    <li class="flex-fill text-center" style="list-style: none;"><a href="#2">セクション2へ</a></li>
+    <li class="flex-fill text-center" style="list-style: none;"><a href="#3">セクション3へ</a></li>
+    <li class="flex-fill text-center" style="list-style: none;"><a href="#4">セクション4へ</a></li>
+  </ul>
+</nav>
+<div id="1" class="vh-100">
+  <%= link_to "ギャラリー新規登録こちら" , new_gallary_registration_path , class: "btn btn-success"%>
+
+  <%= link_to "アーティスト新規登録はこちら", new_artist_registration_path ,class: "btn btn-info"%>
+
+  <%= link_to "ログアウト",destroy_artist_session_path, method: :delete, class: "btn btn-danger"%>
+</div>
+<div id="2" class="vh-100">
+  <h1>aboutページ</h1>
+</div>
+<div id="3">
+  <h1>ギャラリー新規投稿</h1>
+</div>
+<div id="4">
+  <h1>アーティスト新規投稿</h1>
+</div>

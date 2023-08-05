@@ -4,6 +4,10 @@ class Gallary < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :image
+  has_many_attached :gallary_images
+  has_many :gallary_events, dependent: :destroy
+
   validates :name, presence: true
   validates :post_code, presence: true
   validates :address, presence: true
@@ -31,6 +35,13 @@ class Gallary < ApplicationRecord
     end
   end
 
+  def image_or_empty
+    if self.image.attached? == false
+      return "noimage_human.jpg"
+    else
+      return image
+    end
+  end
 
 
 end

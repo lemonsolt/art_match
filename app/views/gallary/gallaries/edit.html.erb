@@ -1,2 +1,52 @@
-<h1>Gallary::Gallaries#edit</h1>
-<p>Find me in app/views/gallary/gallaries/edit.html.erb</p>
+<div class="container">
+  <div class="row ">
+    <div class="col-12 mt-5 text-center">
+      <h2>登録情報編集</h2>
+    </div>
+  </div>
+  <div class="row d-flex">
+    <div class="col-5 card mx-auto mt-4">
+      <%= form_with model: @gallary,url: gallary_path(@gallary),method: :patch, local: true do |f| %>
+
+        <div class="field mt-4 ml-5 center-block">
+          <p>ギャラリーアイコン画像</p>
+          <%= f.file_field :_image, accept: "image/*" %>
+        </div>
+
+        <div class="field mt-4 ml-5">
+          <%= f.label :name, "ギャラリー名" %><br />
+          <%= f.text_field :name, size: "40", placeholder: "〇〇ギャラリー" %>
+        </div>
+
+        <div class="field ml-5">
+          <%= f.label :introduction, "紹介文" %><br />
+          <%= f.text_area :introduction, size: "43x5", placeholder: "特に力を入れている点など" %>
+        </div>
+
+        <div class="field mt-4 ml-5 center-block">
+          <p>ギャラリー紹介画像(最大4枚)</p>
+          <%= f.file_field :gallary_images, multiple: true, accept: "image/*" %>
+          <%= f.file_field :gallary_images, multiple: true, accept: "image/*" %>
+          <%= f.file_field :gallary_images, multiple: true, accept: "image/*" %>
+          <%= f.file_field :gallary_images, multiple: true, accept: "image/*" %>
+        </div>
+
+        <div class="field ml-5">
+          <%= f.label :post_code, "郵便番号(ハイフンなし)" %><br />
+          <%= f.text_field :post_code, size: "40", placeholder: "0000000" %>
+        </div>
+
+        <div class="field ml-5">
+          <%= f.label :address, "住所" %><br />
+          <%= f.select :area_name, Gallary.area_names.keys, {} %>
+          <%= f.text_area :address, size: "43x1", placeholder: "市町村 番地" %>
+        </div>
+
+        <div class="actions text-center py-4">
+          <%= f.submit "変更する",class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

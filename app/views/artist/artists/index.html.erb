@@ -1,2 +1,19 @@
-<h1>Artist::Artists#index</h1>
-<p>Find me in app/views/artist/artists/index.html.erb</p>
+<div class="container">
+  <div class="row w-100">
+    <div class="col-2">
+      <p>ここに検索関連ががが</p>
+    </div>
+    <div class="col-8 offset-1">
+      <h4>アーティスト一覧</h4>
+      <% @artists.each do |artist| %>
+        <%= link_to artist_path(artist.id),class: "text-secondary" do %>
+          <table class="table card">
+            <td class="flex-fill col-2"><%= image_tag artist.artist_image_or_empty, size: "50x50" %></td>
+            <td class="flex-fill col-3"><%= artist.name %></td>
+            <td class="flex-fill col-7"><%= artist.introduction %></td>
+          </table>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

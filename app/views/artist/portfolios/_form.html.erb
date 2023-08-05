@@ -1,0 +1,30 @@
+<%= form_with model: portfolio ,local: true do |f| %>
+  <div class="my-3">
+
+    <div class="field mt-4 ml-5 center-block">
+      <p>作品画像</p>
+      <%= f.file_field :image, accept: "image/*" %>
+    </div>
+
+    <div class="field mt-4 ml-5 center-block">
+      <%= f.label :title, "タイトル" %><br>
+      <%= f.text_field :title,size: "40" %>
+    </div>
+
+    <div class="field mt-4 ml-5 center-block">
+      <%= f.label :introduction, "詳細文" %><br>
+      <%= f.text_area :introduction,size: "40x5" %>
+    </div>
+
+    <div class="field mt-4 ml-5 center-block">
+      <%= f.label :item, "使用道具" %><br>
+      <%= f.text_field :item,size: "40",placeholder: "鉛筆、透明水彩" %>
+    </div>
+
+
+
+    <div class="form-group text-center my-3">
+        <%= f.submit "投稿する", class: 'btn btn-success px-5' %>
+    </div>
+  </div>
+<% end %>

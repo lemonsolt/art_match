@@ -1,2 +1,32 @@
-<h1>Artist::Artists#show</h1>
-<p>Find me in app/views/artist/artists/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% if artist_signed_in? && @artist.id == current_artist.id %>
+      <h1 class="mt-3">マイページ</h1>
+    <% end %>
+  </div>
+  <div class="row d-flex mx-auto my-4">
+    <div class="col-2">
+      <%= image_tag @artist.artist_image_or_empty, size: "200x200" %>
+    </div>
+    <div class="col-8 offset-1">
+      <div class="row w-100 d-flex">
+        <h4 class="col-3"><%= @artist.name %></h4>
+        <p class="col-3 offset-3">フォローボタン</p>
+        <% if gallary_signed_in? %>
+          <i class="fa-solid fa-envelope" style="color: #4682b4;"></i>
+        <% end %>
+        <% if artist_signed_in? &&  @artist.id == current_artist.id%>
+          <p class="col-3 text-right"><%= link_to "マイページ編集", information_edit_artist_path,class: "btn btn-success" %></p>
+        <% end %>
+      </div>
+      <div class="row">
+        <p><%= @artist.introduction %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-11 mx-auto">
+    <div class="row border-bottom mb-4">
+      <h3>ポートフォリオ</h3>
+    </div>
+  </div>
+</div>

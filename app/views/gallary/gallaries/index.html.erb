@@ -1,1 +1,23 @@
-<h1>ギャラリー一覧</h1>
+<div class="container">
+  <div class="row w-100">
+    <div class="col-2">
+      <p>ここに検索関連ががが</p>
+    </div>
+    <div class="col-8 offset-1">
+      <div class="mt-4"><h4>ギャラリー一覧</h4></div>
+      <% @gallaries.each do |gallary| %>
+        <%= link_to gallary_path(gallary.id),class: "text-secondary" do %>
+          <div class="col-12 border d-flex my-2">
+            <p class="col-2 flex-fill my-auto"><%= image_tag gallary.image_or_empty, size: "100x100" %></p>
+            <div class="col-9 offset-1 flex-fill">
+              <p class=""><%= gallary.name %></p>
+              <p class="">〒 <%= gallary.post_code %></p>
+              <p><%= gallary.area_name %> <%= gallary.address%></p>
+              <p><%= gallary.introduction%></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

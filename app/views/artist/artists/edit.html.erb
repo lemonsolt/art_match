@@ -1,2 +1,33 @@
-<h1>Artist::Artists#edit</h1>
-<p>Find me in app/views/artist/artists/edit.html.erb</p>
+<div class="container">
+  <div class="row ">
+    <div class="col-12 mt-5 text-center">
+      <h2>登録情報編集</h2>
+    </div>
+  </div>
+  <div class="row d-flex">
+    <div class="col-5 card mx-auto mt-4">
+      <%= form_with model: @artist,method: :patch, local: true do |f| %>
+
+        <div class="field mt-4 ml-5 center-block">
+          <p>プロフィール画像</p>
+          <%= f.file_field :image, accept: "image/*" %>
+        </div>
+
+
+        <div class="field mt-4 ml-5 center-block">
+          <%= f.label :name, "アーティスト名" %><br>
+          <%= f.text_field :name,size: "40", placeholder: "マチ" %>
+        </div>
+
+        <div class="field ml-5">
+          <%= f.label :introduction, "紹介文" %><br>
+          <%= f.text_area :introduction,size: "42x5", placeholder: "最大500文字まで入ります。"%>
+        </div>
+
+        <div class="actions text-center py-4">
+          <%= f.submit "変更する" , class: "btn btn-info"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

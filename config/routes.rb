@@ -27,15 +27,16 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get '/following' => 'atog_follow#show' ,as: 'artist_following'
     get '/followers' => 'gtoa_follow#show' ,as: 'artist_follower'
-    resources :artists, only: [ :index, :show, :destroy] do
-      get '/information/edit' => 'artists#edit'
-      patch '/information' => 'artists#update'
+    resources :artists, only: [ :index, :show, :destroy, :edit, :update] do
+      get '/information/edit' => 'artists#edit', on: :member
+      patch '/information' => 'artists#update', on: :member
     end
     resources :portfolios
     resources :genres, only: [ :index, :show, :create, :update]
     resources :dms, only: [ :index, :show, :create, :destroy]
     resources :searches, only: [ :index]
     resources :event_bookmarks, only: [ :show, :create, :destroy]
+    
   end
 
 
@@ -43,10 +44,7 @@ Rails.application.routes.draw do
     # follow関連はurlの表示をartist側と逆になるようこちらでも用意
     get '/following' => 'gtoa_follow#show' ,as: 'following'
     get '/followers' => 'atog_follow#show' ,as: 'follower'
-    resources :gallaries, only: [ :index, :show, :destroy] do
-      get '/information/edit' => 'gallaries#edit'
-      patch '/information' => 'gallaries#update'
-    end
+    
     resources :areas, only: [ :index, :show, :create, :update]
     resources :searches, only: [ :index]
     resources :portfolio_bookmarks, only: [ :show, :create, :destroy]
@@ -54,6 +52,13 @@ Rails.application.routes.draw do
       get '/before_index' => 'events#before_index', on: :collection
       get '/now_index' => 'events#now_index', on: :collection
       get '/after_index' => 'events#after_index', on: :collection
+    end
+  end
+  # gallary/gallaried/~となるのでmoduleで
+  scope module: :gallary do
+    resources :gallaries, only: [ :index, :show, :destroy, :update] do
+      get '/information/edit' => 'gallaries#edit', on: :member
+      # patch '/information' => 'gallaries#update', on: :member
     end
   end
 

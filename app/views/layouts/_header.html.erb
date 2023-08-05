@@ -5,7 +5,7 @@
         <div class="col-12 d-flex">
           <% if admin_signed_in? %>
             <%= render "layouts/headers/admin"%>
-          <% elsif artist_signed_in?%>
+          <% elsif artist_signed_in? %>
             <%= render "layouts/headers/artist"%>
           <% elsif gallary_signed_in? %>
             <%= render "layouts/headers/gallary"%>

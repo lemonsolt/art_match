@@ -1,2 +1,67 @@
-<h1>Gallary::Gallaries#show</h1>
-<p>Find me in app/views/gallary/gallaries/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% if gallary_signed_in? && @gallary.id == current_gallary.id %>
+      <h1 class="mt-3">マイページ</h1>
+    <% end %>
+  </div>
+  <div class="row d-flex mx-auto my-4">
+    <div class="col-2">
+      <%= image_tag @gallary.image_or_empty, size: "200x200" %>
+    </div>
+    <div class="col-8 offset-1">
+      <div class="row w-100 d-flex">
+        <h4 class="col-4"><%= @gallary.name %></h4>
+        <% if gallary_signed_in? %>
+          <div>
+            <i class="fa-solid fa-envelope fa-xl" style="color: #4682b4;"></i>
+          </div>
+        <% end %>
+        <p class="col-3">フォローボタン</p>
+        <% if gallary_signed_in? && @gallary.id == current_gallary.id%>
+          <p class="col-3"><%= link_to "編集する", information_edit_gallary_path ,class: "btn btn-success" %></p>
+        <% end %>
+      </div>
+      <div class="row">
+        <p>〒 <%= @gallary.post_code %></p>
+      </div>
+      <div class="row d-flex">
+        <p><%= @gallary.area_name %></p>
+        <p><%= @gallary.address %></p>
+      </div>
+      <div class="row">
+        <p><%= @gallary.introduction %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-11 mx-auto">
+    <div class="row border-bottom mb-4">
+      <h3>参考写真</h3>
+    </div>
+    <div class="row">
+      <div class="col-8 mb-3 mx-auto">
+        <% if @gallary.gallary_images.attached?  %>
+          <% @gallary.gallary_images.each do |gallary_image| %>
+            <%= image_tag gallary_image, size: "500x281"%>
+          <% end %>
+        <% else %>
+          <%= image_tag "noimage_gallary.jpg", size: "500x281"%>
+        <% end %>
+      </div>
+    </div>
+    <div class="row border-bottom mb-4">
+      <h3>イベント一覧</h3>
+    </div>
+    <div class="row d-flex flex-wrap">
+      <%= @events.each do |event| %>
+        <div class="col-12">
+          <div class="col-3">
+
+          </div>
+          <%= image_tag event.event_image_or_empdy, size: "50x50" %>
+          <%= event.name %>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

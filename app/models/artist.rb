@@ -4,9 +4,14 @@ class Artist < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :image
+  has_many :portfolios, dependent: :destroy
+
   validates :name, presence: true
-  validates :introduction, length: {in: 1..300}
+  validates :introduction, length: {in: 1..500}
   validates :is_cold, inclusion: {in: [true, false]}
+
+
 
   # ゲストにあてるアドレスとパスワードの設定
   def self.guest
@@ -16,5 +21,14 @@ class Artist < ApplicationRecord
       artist.name = "ゲストアーティスト"
     end
   end
+
+  def artist_image_or_empty
+    if self.image.attached? == false
+      return "noimage_human.jpg"
+    else
+      return image
+    end
+  end
+
 
 end

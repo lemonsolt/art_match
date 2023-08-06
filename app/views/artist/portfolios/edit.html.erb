@@ -1,2 +1,10 @@
-<h1>Artist::Portfolios#edit</h1>
-<p>Find me in app/views/artist/portfolios/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center my-4"><h4>投稿編集フォーム</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-6 mx-auto border">
+      <%= render 'form', portfolio: @portfolio %>
+    </div>
+  </div>
+</div>

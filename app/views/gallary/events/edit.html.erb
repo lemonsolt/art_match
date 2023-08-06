@@ -1,2 +1,10 @@
-<h1>Gallary::Events#edit</h1>
-<p>Find me in app/views/gallary/events/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center my-4"><h4>投稿変更フォーム</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-6 mx-auto border">
+      <%= render 'form', event: @event %>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,8 @@
-<h1>Gallary::Events#now_index</h1>
-<p>Find me in app/views/gallary/events/now_index.html.erb</p>
+<div class="container">
+  <div class="row py-3">
+    <h4>開催中の展示一覧</h4>
+  </div>
+  <div class="row">
+    <%= render 'index', events: @events %>
+  </div>
+</div>

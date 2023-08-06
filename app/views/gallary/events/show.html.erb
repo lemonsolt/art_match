@@ -1,2 +1,38 @@
-<h1>Gallary::Events#show</h1>
-<p>Find me in app/views/gallary/events/show.html.erb</p>
+<div class="container">
+  <div class="row py-3">
+    <h4>イベント詳細</h4>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto border ">
+      <div class="row mt-3">
+        <div class="col-12 d-flex">
+          <div class="col-4">
+            <%= image_tag @event.image_or_empty ,size: '200x200'%>
+          </div>
+          <div class="col-6 my-auto">
+            <h3><%= @event.title%></h3>
+            <h4><%= @event.gallary.name %></h4>
+            <h4><%= @event.start_at %> ~ <%= @event.end_at %></h4>
+            <h4><%= @event.recruit%></h4>
+          </div>
+          <div class="col-2">
+            <% if gallary_signed_in? && @event.gallary_id == current_gallary.id %>
+              <div>
+                <%= link_to "編集する", edit_gallary_event_path(@event.id), class: "btn btn-success" %>
+              </div>
+              <div>
+                <%= link_to "削除する", gallary_event_path(@event.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"%>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row　w-100">
+        <div class="col-10 mx-auto">
+          <h5 class="py-3">イベント詳細</h5>
+          <%= @event.introduction %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

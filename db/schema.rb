@@ -119,10 +119,10 @@ ActiveRecord::Schema.define(version: 2023_08_03_075901) do
   create_table "gallary_events", force: :cascade do |t|
     t.integer "gallary_id"
     t.string "title"
-    t.datetime "start_at"
-    t.datetime "end_at"
+    t.date "start_at"
+    t.date "end_at"
     t.text "introduction"
-    t.integer "recruit"
+    t.integer "recruit", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

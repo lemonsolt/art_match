@@ -1,4 +1,6 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @genres = Genre.order(name: :DESC).page(params[:page])
     @genre = Genre.new

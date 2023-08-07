@@ -1,4 +1,6 @@
 class Gallary::GallariesController < ApplicationController
+  before_action :authenticate_gallary!,{only: [:edit, :update, :destroy]}
+
   def index
     @gallaries = Gallary.order("created_at DESC").page(params[:page])
   end
@@ -25,9 +27,9 @@ class Gallary::GallariesController < ApplicationController
   def destroy
 
   end
-  
+
   protected
-  
+
   def gallary_params
     params.require(:gallary).permit( :name, :area_id, :introduction,
     :post_code, :address, :area_name, :image, :is_cold, gallary_images: [])

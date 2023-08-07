@@ -2,30 +2,5 @@
   <div class="row">
     <h4>投稿一覧</h4>
   </div>
-  <div class="row">
-    <div class="col-10 mx-auto">
-      <% @portfolios.each do |portfolio| %>
-        <%= link_to portfolio_path(portfolio.id),class: "text-secondary" do %>
-          <div class="col-6 d-flex border p-3 my-3">
-            <div class="col-11">
-              <%= image_tag portfolio.image_or_empty, size: "200x200" %>
-            </div>
-            <div class="row">
-              <h5>
-                <%= portfolio.title %>
-              </h5>
-            </div>
-            <div class="row">
-              <h6>
-                <%= portfolio.artist.name %>
-              </h6>
-            </div>
-            <div>
-              <%= portfolio.introduction %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+  <%= render 'index',portfolios: @portfolios %>
 </div>

@@ -1,11 +1,13 @@
 class Artist::ArtistsController < ApplicationController
+  before_action :authenticate_artist!,{only:[:edit, :update, :destroy]}
+
   def index
     @artists = Artist.order(name: :DESC).page(params[:page])
   end
 
   def show
     @artist = Artist.find(params[:id])
-    @portfolios_page = @artist.portfolios.page(params[:page])
+    @portfolios = @artist.portfolios.order(create_at: :DESC).page(params[:page]).per(10)
   end
 
   def edit

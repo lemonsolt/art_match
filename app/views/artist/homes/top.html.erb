@@ -1,24 +1,94 @@
 <nav class="col-12 py-2" style="background-color: rgba(176,196,222,100);">
   <ul class="col-12 d-flex">  <!--ページ内移動のリンク-->
-    <li class="flex-fill text-center" style="list-style: none;"><a href="#1">セクション１へ</a></li>
-    <li class="flex-fill text-center" style="list-style: none;"><a href="#2">セクション2へ</a></li>
-    <li class="flex-fill text-center" style="list-style: none;"><a href="#3">セクション3へ</a></li>
-    <li class="flex-fill text-center" style="list-style: none;"><a href="#4">セクション4へ</a></li>
+    <li id="one" class="flex-fill text-center" style="list-style: none;"><a href="#1">TOP</a></li>
+    <li id="two" class="flex-fill text-center" style="list-style: none;"><a href="#2">About</a></li>
+    <li id="three" class="flex-fill text-center" style="list-style: none;"><a href="#3">ギャラリー新規投稿</a></li>
+    <li id="fore" class="flex-fill text-center" style="list-style: none;"><a href="#4">アーティスト新規投稿</a></li>
   </ul>
 </nav>
-<div id="1" class="vh-100">
-  <%= link_to "ギャラリー新規登録こちら" , new_gallary_registration_path , class: "btn btn-success"%>
-
-  <%= link_to "アーティスト新規登録はこちら", new_artist_registration_path ,class: "btn btn-info"%>
-
-  <%= link_to "ログアウト",destroy_artist_session_path, method: :delete, class: "btn btn-danger"%>
+<div id="1" class="row py-5" style= "background-color: #d4d9df;">
+  <div class="row w-100 py-5 justify-content-center">
+    <h4>art match へようこそ！</h4>
+  </div>
+  <div class="row w-100">
+    <div class="col-6 d-flex mx-auto mb-5">
+      <% unless gallary_signed_in? || artist_signed_in? %>
+        <div class="col-6 py-5 mr-4 border text-center" style= "background-color: rgba(0,0,0,0.3);">
+          <h5>ギャラリー</h5>
+          <%= link_to "新規登録" , new_gallary_registration_path , class: "btn btn-success mt-4"%><br>
+          <%= link_to "ゲストログイン", gallary_guest_sign_in_path , class: "btn btn-info mt-4"%>
+        </div>
+        <div class="col-6 py-5 border text-center" style= "background-color: rgba(0,0,0,0.3);">
+          <h5>アーティスト</h5>
+          <%= link_to "新規登録", new_artist_registration_path ,class: "btn btn-success mt-4"%><br>
+          <%= link_to "ゲストログイン", artist_guest_sign_in_path , class: "btn btn-info mt-4"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<div id="2" class="vh-100">
-  <h1>aboutページ</h1>
+<div id="2" style= "background-color: #d4dcd3;">
+  <div class="row w-100 py-5">
+    <div class="row w-100 pb-5">
+      <div class="col-10 mx-auto text-center">
+        <h1 class="text-center">About</h1>
+      </div>
+    </div>
+    <div class="row w-100">
+      <div class="col-10 mx-auto text-center py-5">
+        <h4 class="text-center">
+          当サイトは『アーティストとギャラリーを繋ぐ』をテーマに制作したサイトです。<br><br>
+          アーティストは自分の作品の投稿ができ、展示を頼みたいギャラリーにDMでの営業が可能です。<br>
+          ギャラリーは今後行う展示の告知ができ、同時に募集も行う事ができます。<br>
+          また、同じくDMが可能ですので、オファーなどにもお役立てください。<br><br>
+
+          そして、当サイトはログインしなくても情報の閲覧が可能です。<br>
+          アーティストの投稿作品やギャラリーの情報を見ることが出来ます。<br>
+          新たなアーティストやギャラリーを見つけたい方も是非ご利用ください！<br><br>
+        </h4>
+        <h5>※投稿機能などの確認をしたい方は一部機能をご利用可能なゲストログインがございますのでご活用ください！</h5>
+      </div>
+    </div>
+  </div>
 </div>
 <div id="3">
-  <h1>ギャラリー新規投稿</h1>
+  <div class="row w-100 py-5">
+    <div class="row w-100 pb-5">
+      <div class="col-10 mx-auto text-center">
+        <h1 class="text-center">展示情報一覧</h1>
+      </div>
+    </div>
+    <div class="row w-100">
+      <%= render 'gallary/events/index', events: @events %>
+    </div>
+    <div class="row w-100 text-right">
+      <div class="col-3 offset-8">
+        <%= link_to "もっと見る>", gallary_events_path %>
+      </div>
+    </div>
+  </div>
 </div>
 <div id="4">
-  <h1>アーティスト新規投稿</h1>
+  <div class="row w-100 py-5">
+    <div class="row w-100 pb-5">
+      <div class="col-10 mx-auto text-center">
+        <h1 class="text-center">作品投稿一覧</h1>
+      </div>
+    </div>
+    <div class="row w-100 mx-auto">
+      <div class="col-9 mx-auto">
+        <%= render 'artist/portfolios/index', portfolios: @portfolios %>
+      </div>
+    </div>
+    <div class="row w-100 text-right">
+      <div class="col-3 offset-8">
+        <%= link_to "もっと見る>",portfolios_path %>
+      </div>
+    </div>
+  </div>
 </div>
+<span id="back">
+  <a href = "#">
+    <i class="fa-solid fa-circle-chevron-up fa-2xl" style="color: #778899;"></i>
+  </a>
+</span>

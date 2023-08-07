@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_03_075901) do
+ActiveRecord::Schema.define(version: 2023_08_07_013037) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -127,13 +127,6 @@ ActiveRecord::Schema.define(version: 2023_08_03_075901) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "genre_relationships", force: :cascade do |t|
-    t.integer "genre_id"
-    t.integer "portfolio_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -154,9 +147,18 @@ ActiveRecord::Schema.define(version: 2023_08_03_075901) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "portfolio_genres", force: :cascade do |t|
+    t.integer "portfolio_id"
+    t.integer "genre_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_portfolio_genres_on_genre_id"
+    t.index ["portfolio_id", "genre_id"], name: "index_portfolio_genres_on_portfolio_id_and_genre_id", unique: true
+    t.index ["portfolio_id"], name: "index_portfolio_genres_on_portfolio_id"
+  end
+
   create_table "portfolios", force: :cascade do |t|
     t.integer "artist_id"
-    t.integer "genre_id"
     t.string "title"
     t.text "item"
     t.text "introduction"
@@ -166,4 +168,6 @@ ActiveRecord::Schema.define(version: 2023_08_03_075901) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "portfolio_genres", "genres"
+  add_foreign_key "portfolio_genres", "portfolios"
 end

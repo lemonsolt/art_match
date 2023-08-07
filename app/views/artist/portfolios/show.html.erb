@@ -1,2 +1,40 @@
-<h1>Artist::Portfolios#show</h1>
-<p>Find me in app/views/artist/portfolios/show.html.erb</p>
+<div class="container">
+  <div class="row my-4">
+    <h4>作品詳細</h4>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto border">
+      <div class="row justify-content-center">
+        <%= image_tag @portfolio.image_or_empty.variant( resize: "300" ) %>
+      </div>
+      <div class="row">
+        <div class="col-10 mx-auto">
+          <h4>作品名 : <%= @portfolio.title %></h4>
+          <h6>作者名 : <%= @portfolio.artist.name %></h6>
+          <p>使用道具 : <%= @portfolio.item %> , ジャンルタグ : 
+            <% @portfolio_genres.each do |portfolio_genre| %>
+              <%= link_to genre_path(portfolio_genre.genre.id) do %>
+                <%= portfolio_genre.genre.name %>
+              <% end %>
+            <% end %>
+          </p>
+          <p>詳細文<br>
+          <%= @portfolio.introduction %>
+          </p>
+          
+          
+          <% if artist_signed_in? && @portfolio.artist_id == current_artist.id %>
+            <div class="d-flex">
+              <div>
+                <%= link_to "編集する", edit_portfolio_path(@portfolio.id), class: "btn btn-success mr-4" %>
+              </div>
+              <div>
+                <%= link_to "削除する", portfolio_path(@portfolio.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

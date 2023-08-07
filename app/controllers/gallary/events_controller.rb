@@ -1,4 +1,6 @@
 class Gallary::EventsController < ApplicationController
+  before_action :authenticate_gallary!,{only: [:new, :create, :edit, :update, :destroy]}
+
   def index
     @events = GallaryEvent.order(create_at: :DESC).page(params[:page])
   end

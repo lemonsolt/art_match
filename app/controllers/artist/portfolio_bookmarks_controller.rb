@@ -1,7 +1,8 @@
 class Artist::PortfolioBookmarksController < ApplicationController
 
-  def index
-    @portfolio_bookmarks = current_gallary.portfolio_bookmarks.all
+  def show
+    @gallary = current_gallary
+    @bookmarks= PortfolioBookmark.where(gallary_id: @gallary.id)
   end
 
   def create

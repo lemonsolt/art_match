@@ -1,6 +1,7 @@
 class Gallary::EventBookmarksController < ApplicationController
-  def bookmark_index
-    @event_bookmarks = current_artist.event_bookmarks.all
+  def show
+    @artist = current_artist
+    @bookmarks= EventBookmark.where(artist_id: @artist.id)
   end
 
   def create

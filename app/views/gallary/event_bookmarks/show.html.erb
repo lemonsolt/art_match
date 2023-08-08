@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row text-center">
+    <h4>ブックマーク一覧</h4>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <% @bookmarks.each do |bookmark| %>
+        <% event = GallaryEvent.find_by(id: bookmark.gallary_event_id) %>
+        <%= link_to gallary_event_path(event.id),class: "text-secondary" do %>
+          <div class="col-12 d-flex border p-3 my-3">
+            <div class="col-2">
+              <%= image_tag event.image_or_empty, size: "100x100" %>
+            </div>
+            <div class="col-8">
+              <div class="row">
+                <h5>
+                  <%= event.title %>
+                </h5>
+              </div>
+              <div class="row">
+                <h6>
+                  <%= event.gallary.name %>
+                </h6>
+              </div>
+              <div>
+                <%= event.start_at %> ~ <%= event.end_at%>
+              </div>
+              <div class="text-right">
+                <%= event.recruit %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

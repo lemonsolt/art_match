@@ -27,17 +27,18 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get '/following' => 'atog_follow#show' ,as: 'artist_following'
     get '/followers' => 'gtoa_follow#show' ,as: 'artist_follower'
-    get '/bookmarks' => 'portfolio_bookmarks#index'
     resources :artists, only: [ :index, :show, :destroy, :edit, :update] do
       get '/information/edit' => 'artists#edit', on: :member
       patch '/information' => 'artists#update', on: :member
     end
     resources :portfolios do
-      resource :portfolio_bookmarks, only: [ :create, :destroy]
+      resource :portfolio_bookmarks, only: [ :create, :destroy] do
+        get :show, on: :member
+      end
     end
     resources :genres, only: [ :index, :show, :create, :update]
     resources :dms, only: [ :index, :show, :create, :destroy]
-    resources :searches, only: [ :index]
+    resources :searches, only: [ :index], on: :member
   end
 
 
@@ -45,7 +46,6 @@ Rails.application.routes.draw do
     # follow関連はurlの表示をartist側と逆になるようこちらでも用意
     get '/following' => 'gtoa_follow#show' ,as: 'following'
     get '/followers' => 'atog_follow#show' ,as: 'follower'
-    get '/bookmarks' => 'event_bookmarks#bookmark_index'
 
     resources :areas, only: [ :index, :show, :create, :update]
     resources :searches, only: [ :index]
@@ -53,7 +53,9 @@ Rails.application.routes.draw do
       get '/before_index' => 'events#before_index', on: :collection
       get '/now_index' => 'events#now_index', on: :collection
       get '/after_index' => 'events#after_index', on: :collection
-      resource :event_bookmarks, only: [ :create, :destroy]
+      resource :event_bookmarks, only: [ :create, :destroy] do
+        get :show, on: :member
+      end
     end
   end
   # gallary/gallaried/~となるのでmoduleで

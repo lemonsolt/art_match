@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row text-center">
+    <h4>ブックマーク一覧</h4>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <% @bookmarks.each do |bookmark| %>
+        <% portfolio = Portfolio.find_by(id: bookmark.portfolio_id) %>
+        <%= link_to portfolio_path(portfolio.id),class: "text-secondary" do%>
+          <div class="col-12 d-flex border p-3 my-3">
+            <div class="col-4">
+              <%= image_tag portfolio.image_or_empty, size: "200x200" %>
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <h5>
+                  <%= portfolio.title %>
+                </h5>
+              </div>
+              <div class="row">
+                <h6>
+                  <%= portfolio.artist.name %>
+                </h6>
+              </div>
+              <div>
+                <i class="fa-solid fa-tag" style="color: #4682b4;"><%= portfolio.genres.map(&:name).join(', ') %></i>
+              </div>
+              <div class="row">
+                <p>
+                  <%= portfolio.introduction %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

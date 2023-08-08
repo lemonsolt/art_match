@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2023_08_07_013037) do
 
   create_table "event_bookmarks", force: :cascade do |t|
     t.integer "artist_id"
-    t.integer "event_id"
+    t.integer "gallary_event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,5 +1,6 @@
 class GallaryEvent < ApplicationRecord
   belongs_to :gallary
+  has_many :event_bookmarks, dependent: :destroy
   has_one_attached :image
 
   validates :title, presence: true
@@ -19,4 +20,5 @@ class GallaryEvent < ApplicationRecord
     end
   end
 
+  
 end

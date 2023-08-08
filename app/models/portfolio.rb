@@ -2,6 +2,7 @@ class Portfolio < ApplicationRecord
   belongs_to :artist
   has_many :portfolio_genres,dependent: :destroy,foreign_key: 'portfolio_id'
   has_many :genres,through: :portfolio_genres
+  has_many :portfolio_bookmarks,dependent: :destroy
   has_one_attached :image
 
 
@@ -12,7 +13,7 @@ class Portfolio < ApplicationRecord
       return image
     end
   end
-  
+
    # ジャンルタグ保存
   def save_genre(sent_genres)
     current_genres = self.genres.pluck(:name) unless self.genres.nil?

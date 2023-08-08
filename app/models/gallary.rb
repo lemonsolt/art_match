@@ -7,6 +7,7 @@ class Gallary < ApplicationRecord
   has_one_attached :image
   has_many_attached :gallary_images
   has_many :gallary_events, dependent: :destroy
+  has_many :portfolio_bookmarks,dependent: :destroy
 
   validates :name, presence: true
   validates :post_code, presence: true
@@ -41,6 +42,10 @@ class Gallary < ApplicationRecord
     else
       return image
     end
+  end
+
+  def already_bookmarked?(portfolio)
+    self.portfolio_bookmarks.exists?(portfolio_id: portfolio.id)
   end
 
 

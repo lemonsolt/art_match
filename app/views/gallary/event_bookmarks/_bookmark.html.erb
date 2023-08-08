@@ -1,0 +1,11 @@
+<% if artist_signed_in? %>
+  <% if current_artist.already_bookmarked?(event)%>
+    <%= link_to gallary_event_event_bookmarks_path(event),method: :delete, remote: true do %>
+      <i class="fa-solid fa-bookmark fa-xl" style="color: #4682b4;"></i>
+    <% end %>
+  <% else %>
+    <%= link_to gallary_event_event_bookmarks_path(event),method: :post, remote: true do %>
+    <i class="fa-regular fa-bookmark fa-xl" style="color: #4682b4;"></i>
+    <% end %>
+  <% end %>
+<% end %>

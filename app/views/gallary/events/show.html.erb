@@ -10,7 +10,15 @@
             <%= image_tag @event.image_or_empty ,size: '200x200'%>
           </div>
           <div class="col-6 my-auto">
-            <h3><%= @event.title%></h3>
+            <div class="row d-flex">
+              <h3>
+                <%= @event.title%>
+              </h3>
+              <p id="event_bookmark_buttons_<%= @event.id %>" class="mt-2 ml-2">
+                <%= render 'gallary/event_bookmarks/bookmark', event: @event %>
+              </p>
+            </div>
+
             <h4><%= @event.gallary.name %></h4>
             <h4><%= @event.start_at %> ~ <%= @event.end_at %></h4>
             <h4><%= @event.recruit%></h4>

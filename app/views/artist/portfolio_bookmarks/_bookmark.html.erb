@@ -1,0 +1,11 @@
+<% if gallary_signed_in? %>
+  <% if current_gallary.already_bookmarked?(portfolio)%>
+    <%= link_to portfolio_portfolio_bookmarks_path(portfolio),method: :delete, remote: true do %>
+      <i class="fa-solid fa-bookmark fa-xl" style="color: #4682b4;"></i>
+    <% end %>
+  <% else %>
+    <%= link_to portfolio_portfolio_bookmarks_path(portfolio),method: :post, remote: true do %>
+    <i class="fa-regular fa-bookmark fa-xl" style="color: #4682b4;"></i>
+    <% end %>
+  <% end %>
+<% end %>

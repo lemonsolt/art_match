@@ -6,6 +6,7 @@ class Artist < ApplicationRecord
 
   has_one_attached :image
   has_many :portfolios, dependent: :destroy
+  has_many :event_bookmarks, dependent: :destroy
 
   validates :name, presence: true
   validates :introduction, length: {in: 1..500}
@@ -29,6 +30,9 @@ class Artist < ApplicationRecord
       return image
     end
   end
-
+  
+  def already_bookmarked?(gallary_event)
+    self.event_bookmarks.exists?(gallary_event_id: gallary_event.id)
+  end
 
 end

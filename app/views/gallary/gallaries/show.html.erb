@@ -16,8 +16,10 @@
             <i class="fa-solid fa-envelope fa-xl" style="color: #4682b4;"></i>
           </div>
         <% end %>
-        <p class="col-3">フォローボタン</p>
-        <% if gallary_signed_in? && @gallary.id == current_gallary.id%>
+        <div id="atog_follow_buttons_<%= @gallary.id %>" class="col-3">
+          <%= render 'gallary/atog_follows/button', gallary: @gallary%>
+        </div>
+        <% if gallary_signed_in? && @gallary.id == current_gallary.id && @gallary.email != "guest@example.com" %>
           <p class="col-3"><%= link_to "編集する", information_edit_gallary_path ,class: "btn btn-success" %></p>
         <% end %>
       </div>
@@ -25,7 +27,6 @@
         <p>〒 <%= @gallary.post_code %></p>
       </div>
       <div class="row d-flex">
-        <p><%= @gallary.area_name %></p>
         <p><%= @gallary.address %></p>
       </div>
       <div class="row">

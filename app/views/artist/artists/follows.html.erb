@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <div class="row w-100 d-flex">
+        <div class="col-6 flex-fill" style= "background-color: #b0c4de;">
+          <h2>フォローしたギャラリー</h2>
+        </div>
+        <%= link_to followers_artist_path(current_artist.id), class: "col-6 flex-fill text-center text-dark" do%>
+          <div>
+            <h2>フォロワーギャラリー</h2>
+          </div>
+        <% end %>
+      </div>
+      <div class="row w-100" style= "background-color: #b0c4de;">
+        <div class="col-10 mx-auto mt-4">
+          <% @follow_gallaries.each do |gallary| %>
+            <%= link_to gallary_path(gallary.id),class: "text-dark row w-100  d-flex" do%>
+              <div class="border d-flex my-2 p-2">
+                <div class="col-2 my-auto">
+                  <%= image_tag gallary.image_or_empty, size: "80x80" %>
+                </div>
+                <div class="col-6 offset-1">
+                  <div class="row"><%= gallary.name %></div>
+                  <div class="row"><%= gallary.introduction%></div>
+                </div>
+                <div class="col-3 jusify-content-end">
+                  <%= render 'gallary/atog_follows/button',gallary: gallary  %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

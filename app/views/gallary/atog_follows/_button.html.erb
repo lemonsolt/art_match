@@ -1,0 +1,11 @@
+<% if artist_signed_in? %>
+  <% if current_artist.already_followed?(gallary)%>
+    <%= link_to gallary_atog_follows_path(gallary),method: :delete,remote: true do %>
+      <p class="btn btn-info">フォロー外す</p>
+    <% end %>
+  <% else %>
+    <%= link_to gallary_atog_follows_path(gallary),method: :post,remote: true do %>
+      <p class="btn btn-info">フォローする</p>
+    <% end %>
+  <% end %>
+<% end %>

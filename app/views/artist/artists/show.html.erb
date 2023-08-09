@@ -11,11 +11,13 @@
     <div class="col-8 offset-1">
       <div class="row w-100 d-flex">
         <h4 class="col-3"><%= @artist.name %></h4>
-        <p class="col-3 offset-3">フォローボタン</p>
+        <div id="gtoa_follow_buttons_<%= @artist.id %>" class="col-3 offset-3">
+          <%= render 'artist/gtoa_follows/button',artist: @artist %>
+        </div>
         <% if gallary_signed_in? %>
           <i class="fa-solid fa-envelope" style="color: #4682b4;"></i>
         <% end %>
-        <% if artist_signed_in? &&  @artist.id == current_artist.id%>
+        <% if artist_signed_in? &&  @artist.id == current_artist.id && @artist.email != "guest@example.com" %>
           <p class="col-3 text-right"><%= link_to "マイページ編集", information_edit_artist_path,class: "btn btn-success" %></p>
         <% end %>
       </div>

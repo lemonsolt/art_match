@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <div class="row w-100 d-flex">
+        <%= link_to follows_gallary_path(current_gallary.id), class: "col-6 flex-fill text-center text-dark" do%>
+        <div>
+          <h2>フォローアーティスト</h2>
+        </div>
+        <% end %>
+        <div class="col-6 flex-fill text-center " style= "background-color: #b0c4de;">
+          <h2>フォロワーアーティスト</h2>
+        </div>
+      </div>
+      <div class="row w-100" style= "background-color: #b0c4de;">
+        <div class="col-10 mx-auto mt-4">
+          <% @follower_artists.each do |artist| %>
+            <%= link_to artist_path(artist.id),class: "text-dark row w-100  d-flex" do%>
+              <div class="border d-flex my-2 p-2">
+                <div class="col-2 my-auto">
+                  <%= image_tag artist.image_or_empty, size: "80x80" %>
+                </div>
+                <div class="col-6 offset-1">
+                  <div class="row"><%= artist.name %></div>
+                  <div class="row"><%= artist.introduction%></div>
+                </div>
+                <div class="col-3 jusify-content-end">
+                  <%= render 'artist/gtoa_follows/button',artist: artist  %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

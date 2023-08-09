@@ -1,33 +1,12 @@
 <nav class="col-12 py-2" style="background-color: rgba(176,196,222,100);">
   <ul class="col-12 d-flex">  <!--ページ内移動のリンク-->
     <li id="one" class="flex-fill text-center" style="list-style: none;"><a href="#1">TOP</a></li>
-    <li id="two" class="flex-fill text-center" style="list-style: none;"><a href="#2">About</a></li>
+    <li id="two" class="flex-fill text-center" style="list-style: none;"><a href="#2">案内板</a></li>
     <li id="three" class="flex-fill text-center" style="list-style: none;"><a href="#3">ギャラリー新規投稿</a></li>
     <li id="fore" class="flex-fill text-center" style="list-style: none;"><a href="#4">アーティスト新規投稿</a></li>
   </ul>
 </nav>
-<div id="1" class="row py-5" style= "background-color: #d4d9df;">
-  <div class="row w-100 py-5 justify-content-center">
-    <h4>art match へようこそ！</h4>
-  </div>
-  <div class="row w-100">
-    <div class="col-6 d-flex mx-auto mb-5">
-      <% unless gallary_signed_in? || artist_signed_in? %>
-        <div class="col-6 py-5 mr-4 border text-center" style= "background-color: rgba(0,0,0,0.3);">
-          <h5>ギャラリー</h5>
-          <%= link_to "新規登録" , new_gallary_registration_path , class: "btn btn-success mt-4"%><br>
-          <%= link_to "ゲストログイン", gallary_guest_sign_in_path , class: "btn btn-info mt-4"%>
-        </div>
-        <div class="col-6 py-5 border text-center" style= "background-color: rgba(0,0,0,0.3);">
-          <h5>アーティスト</h5>
-          <%= link_to "新規登録", new_artist_registration_path ,class: "btn btn-success mt-4"%><br>
-          <%= link_to "ゲストログイン", artist_guest_sign_in_path , class: "btn btn-info mt-4"%>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
-<div id="2" style= "background-color: #d4dcd3;">
+<div id="1" style= "background-color: #d4dcd3;">
   <div class="row w-100 py-5">
     <div class="row w-100 pb-5">
       <div class="col-10 mx-auto text-center">
@@ -49,6 +28,38 @@
         <h5>※投稿機能などの確認をしたい方は一部機能をご利用可能なゲストログインがございますのでご活用ください！</h5>
       </div>
     </div>
+  </div>
+</div>
+<div id="2" class="row py-5" style= "background-color: #d4d9df;">
+  <div class="row w-100 py-5 justify-content-center">
+    <h4>art match へようこそ！</h4>
+  </div>
+  <div class="row w-100">
+    <div class="col-6 d-flex mx-auto mb-5">
+      <% unless gallary_signed_in? || artist_signed_in? %>
+        <div class="col-6 py-5 mr-4 border text-center" style= "background-color: rgba(0,0,0,0.3);">
+          <h5>ギャラリー</h5>
+          <%= link_to "新規登録" , new_gallary_registration_path , class: "btn btn-success mt-4"%><br>
+          <%= link_to "ゲストログイン", gallaries_guest_sign_in_path , class: "btn btn-info mt-4", method: :post %><br>
+        </div>
+        <div class="col-6 py-5 border text-center" style= "background-color: rgba(0,0,0,0.3);">
+          <h5>アーティスト</h5>
+          <%= link_to "新規登録", new_artist_registration_path ,class: "btn btn-success mt-4"%><br>
+          <%= link_to "ゲストログイン", artists_guest_sign_in_path , class: "btn btn-info mt-4", method: :post %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <% if gallary_signed_in? %>
+      <p>ギャラリー側チェック用</p>
+      <%= link_to "フォローアーティスト一覧", follows_gallary_path(current_gallary.id), class: "btn btn-danger mt-4"%><br>
+      <%= link_to "フォロワアーティストー一覧", followers_gallary_path(current_gallary.id), class: "btn btn-danger mt-4"%><br>
+    <% elsif artist_signed_in? %>
+      <p>アーティスト側チェック用</p>
+      <%= link_to "フォローギャラリー一覧", follows_artist_path(current_artist.id), class: "btn btn-danger mt-4"%><br>
+      <%= link_to "フォロワーギャラリー一覧", followers_artist_path(current_artist.id), class: "btn btn-danger mt-4"%><br>
+    <% end %>
   </div>
 </div>
 <div id="3">

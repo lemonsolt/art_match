@@ -9,18 +9,16 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/5f8827088c.js" crossorigin="anonymous"></script>
-    <style>
-      #back{
-        position: fixed;
-        bottom: 40px;
-        right: 40px;
-      }
-    </style>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= render "layouts/header" %>
-    <%= yield %>
-    <%= render "layouts/footer" %>
+    <main>
+      <%= render "layouts/header" %>
+      <%= yield %>
+      <%= render "layouts/footer" %>
+    </main>
+    <script src="js/jquery.min.js"></script>
+    <script src="../javascript/script.js"></script>
   </body>
 </html>

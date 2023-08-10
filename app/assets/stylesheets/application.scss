@@ -13,13 +13,14 @@
  *= require_tree .
  *= require_self
  */
- /*トップへ戻る*/
- #back{
+
+// トップに戻る
+#back {
   position: fixed;
   bottom: 40px;
   right: 40px;
 }
-/* ------ ハンバーガーメニュー------ */
+// ハンバーガーメニュー
 #hm-icon {
   position: fixed;
   right: 20px;
@@ -68,7 +69,7 @@
   background-color: #fff;
 }
 
-/* ------ spメニュー ------ */
+// spメニュー
 #sp-menu {
   position: fixed;
   top: 0;

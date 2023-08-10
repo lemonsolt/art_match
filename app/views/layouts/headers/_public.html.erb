@@ -1,13 +1,15 @@
 <div class="col-3 flex-fill mt-4">
-  <%= link_to "ギャラリーログイン",new_gallary_session_path,class: "btn btn-success" %>
+
 </div>
 <div class="col-5 flex-fill text-center">
   <%= link_to root_path do %>
     <%= image_tag 'logo.png',size: "255x114" %>
   <% end %>
 </div>
-<div class="col-3 flex-fill text-right mt-4">
-  <%= link_to "アーティストログイン",new_artist_session_path,class: "btn btn-info" %>
+<div class="col-1 offset-2 flex-fill text-right mt-4">
+  <%= link_to gallary_searches_path do %>
+  <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #001e43;"></i>
+  <% end %>
 </div>
 <div class="col-1">
   <div id="sp-menu">

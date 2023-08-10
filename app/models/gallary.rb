@@ -12,7 +12,7 @@ class Gallary < ApplicationRecord
   has_many :atog_follows,dependent: :destroy
   # "g"allaryから"a"rtistへのフォロー
   has_many :gtoa_follows,dependent: :destroy
-  
+
 
   validates :name, presence: true
   validates :post_code, presence: true
@@ -48,5 +48,21 @@ class Gallary < ApplicationRecord
     self.gtoa_follows.exists?(artist_id: artist.id)
   end
 
+  # 名前のキーワード検索
+  def self.search(keyword)
+    if keyword.present?
+      where('name LIKE ?', "%#{keyword}%")
+    else
+      all
+    end
+  end
+  # 地域名（住所）のキーワード検索
+  def self.search_area(keyword)
+    if keyword.present?
+      where('address LIKE ?', "%#{keyword}%")
+    else
+      all
+    end
+  end
 
 end

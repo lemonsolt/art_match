@@ -37,7 +37,7 @@ class Gallary::EventsController < ApplicationController
   end
     # 開催前のイベント一覧条件
   def before_index
-    @events = GallaryEvent.where("start_at > ?",Date.today).order(start_at: :DESC)
+    @events = GallaryEvent.where("start_at > ?",Date.today).order(:start_at)
   end
     # 開催中のイベント一覧条件
   def now_index
@@ -45,7 +45,7 @@ class Gallary::EventsController < ApplicationController
   end
   # 開催終了日を過ぎたイベント一覧条件
   def after_index
-    @events = GallaryEvent.where("end_at < ?",Date.today).order(end_at: :ASC)
+    @events = GallaryEvent.where("end_at < ?",Date.today).order(end_at: :DESC)
   end
 
   private

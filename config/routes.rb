@@ -37,16 +37,19 @@ Rails.application.routes.draw do
         get :show, on: :member
       end
     end
-    resources :genres, only: [ :index, :show, :create, :update]
+    resources :genres, only: [ :show]
     resources :dms, only: [ :index, :show, :create, :destroy]
-    resources :searches, only: [ :index], on: :member
-
+    resources :searches, only: [ :index] do
+      get "result" => "searches#result", on: :collection
+    end
   end
 
 
   namespace :gallary do
     resources :areas, only: [ :index, :show ]
-    resources :searches, only: [ :index]
+    resources :searches, only: [ :index] do
+      get "result" => "searches#result", on: :collection
+    end
     resources :events do
       get '/before_index' => 'events#before_index', on: :collection
       get '/now_index' => 'events#now_index', on: :collection

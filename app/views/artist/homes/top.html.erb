@@ -39,11 +39,13 @@
       <% unless gallary_signed_in? || artist_signed_in? %>
         <div class="col-6 py-5 mr-4 border text-center" style= "background-color: rgba(0,0,0,0.3);">
           <h5>ギャラリー</h5>
+          <%= link_to "ログイン",new_gallary_session_path,class: "btn btn-success mt-4" %><br>
           <%= link_to "新規登録" , new_gallary_registration_path , class: "btn btn-success mt-4"%><br>
           <%= link_to "ゲストログイン", gallaries_guest_sign_in_path , class: "btn btn-info mt-4", method: :post %><br>
         </div>
         <div class="col-6 py-5 border text-center" style= "background-color: rgba(0,0,0,0.3);">
           <h5>アーティスト</h5>
+          <%= link_to "ログイン",new_artist_session_path,class: "btn btn-success mt-4" %><br>
           <%= link_to "新規登録", new_artist_registration_path ,class: "btn btn-success mt-4"%><br>
           <%= link_to "ゲストログイン", artists_guest_sign_in_path , class: "btn btn-info mt-4", method: :post %>
         </div>

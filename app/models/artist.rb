@@ -29,7 +29,7 @@ class Artist < ApplicationRecord
       artist.introduction = "ゲスト用アカウントです。"
     end
   end
-
+# 画像の有無で違う表示に
   def artist_image_or_empty
     if self.image.attached? == false
       return "noimage_human.jpg"
@@ -45,21 +45,22 @@ class Artist < ApplicationRecord
       return image
     end
   end
-
-  def image_or_empty
-    if self.image.attached? == false
-      return "noimage_human.jpg"
-    else
-      return image
-    end
-  end
-
+# 既にブックマークしてるか否か
   def already_bookmarked?(gallary_event)
     self.event_bookmarks.exists?(gallary_event_id: gallary_event.id)
   end
-
+# 既にフォローしてるか否か
   def already_followed?(gallary)
     self.atog_follows.exists?(gallary_id: gallary.id)
+  end
+
+  # 名前のキーワード検索
+  def self.search(keyword)
+    if keyword.present?
+      where('name LIKE ?', "%#{keyword}%")
+    else
+      all
+    end
   end
 
 end

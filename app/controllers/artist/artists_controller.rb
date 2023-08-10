@@ -3,7 +3,7 @@ class Artist::ArtistsController < ApplicationController
   before_action :ensure_guest_artist!,{only: [:edit]}
 
   def index
-    @artists = Artist.order(name: :DESC).page(params[:page])
+    @artists = Artist.order(:name).page(params[:page])
   end
 
   def show
@@ -42,7 +42,7 @@ class Artist::ArtistsController < ApplicationController
     followers = GtoaFollow.where(artist_id: @artist.id).pluck(:gallary_id)
     @follower_gallaries = Gallary.find(followers)
   end
-  
+
   def ensure_guest_artist
     @artist = Artist.find(params[:id])
     if @artist.email == "guest@example.com"
@@ -55,6 +55,6 @@ class Artist::ArtistsController < ApplicationController
   def artist_params
     params.require(:artist).permit( :name, :introduction, :is_cold, :image)
   end
-  
-  
+
+
 end

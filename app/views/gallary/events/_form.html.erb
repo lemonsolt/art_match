@@ -6,14 +6,14 @@
       <%= f.file_field :image, accept: "image/*" %>
     </div>
 
-    <div class="form-group mt-4 ml-5 center-block">
+    <div class="form-group mt-4 mx-5 center-block">
       <%= f.label :title, "タイトル" %><br>
-      <%= f.text_field :title,size: "40" %>
+      <%= f.text_field :title, class: "form-control" %>
     </div>
 
-    <div class="form-group mt-4 ml-5 center-block">
+    <div class="form-group mt-4 mx-5 center-block">
       <%= f.label :introduction, "詳細文" %><br>
-      <%= f.text_area :introduction,size: "40x5" %>
+      <%= f.text_area :introduction, class: "form-control" %>
     </div>
 
     <div class="form-group mt-4 ml-5 center-block">
@@ -26,7 +26,7 @@
       <%= f.date_select :end_at, class: 'form-control' %>
     </div>
 
-    <div class="">
+    <div class="form-group mt-4 mx-5 center-block">
       <%= f.label :recruit, "募集ステータス"%>
       <%= f.select :recruit, GallaryEvent.recruits.keys, {} %>
     </div>

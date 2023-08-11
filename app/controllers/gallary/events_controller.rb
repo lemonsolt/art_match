@@ -2,7 +2,7 @@ class Gallary::EventsController < ApplicationController
   before_action :authenticate_gallary!,{only: [:new, :create, :edit, :update, :destroy]}
 
   def index
-    @events = GallaryEvent.order(create_at: :DESC).page(params[:page])
+    @events = GallaryEvent.joins(:gallary).where(gallaries: { is_cold: false, is_lock: false }).order(created_at: :DESC).page(params[:page]).per(15)
   end
 
   def new
@@ -18,6 +18,7 @@ class Gallary::EventsController < ApplicationController
 
   def show
     @event = GallaryEvent.find(params[:id])
+    @gallary = @event.gallary_id
   end
 
   def edit

@@ -23,6 +23,7 @@ class Artist::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  
 
   # protected
 

@@ -1,2 +1,20 @@
-<h1>Admin::Gallaries#index</h1>
-<p>Find me in app/views/admin/gallaries/index.html.erb</p>
+<div class="container">
+  <div class="row w-100 py-3 my-4">
+    <% @gallaries.each do |gallary| %>
+      <%= link_to admin_gallary_path(gallary), class: "row w-100 text-secondary" do %>
+        <div class="col-10 border d-flex mx-auto my-1 py-1">
+          <div class="col-2">
+            <%= image_tag gallary.image_or_empty, size: "50x50"%>
+          </div>
+          <div class="col-6">
+            ギャラリー名：<%= gallary.name %>
+          </div>
+          <div class="col-4">
+            公開状態：<%= gallary.is_lock ? "非公開" : "公開中" %><br>
+            アカウント状態：<%= gallary.is_cold ? "凍結中" : "正常" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

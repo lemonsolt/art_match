@@ -13,9 +13,14 @@ class Artist < ApplicationRecord
   # "g"allaryから"a"rtistへのフォロー
   has_many :gtoa_follows,dependent: :destroy
 
+  has_many :dm_rooms, dependent: :destroy
+  has_many :gallaries, through: :dm_rooms
+  has_many :dm_messages, dependent: :destroy
+
   validates :name, presence: true
   validates :introduction, length: {in: 1..500}
   validates :is_cold, inclusion: {in: [true, false]}
+  validates :is_lock, inclusion: {in: [true, false]}
 
 
 
@@ -26,7 +31,8 @@ class Artist < ApplicationRecord
       artist.password = SecureRandom.urlsafe_base64
       artist.password_confirmation = artist.password
       artist.name = "ゲストアーティスト"
-      artist.introduction = "ゲスト用アカウントです。"
+      artist.introduction = "ゲスト用アカウントです。
+        このアカウントでは投稿とゲストギャラリーへのみDMが送れます。"
     end
   end
 # 画像の有無で違う表示に

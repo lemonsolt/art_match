@@ -38,8 +38,7 @@
 
         <div class="field ml-5">
           <%= f.label :address, "住所" %><br />
-          <%= f.select :area_name, Gallary.area_names.keys, {} %>
-          <%= f.text_area :address, size: "43x1", placeholder: "市町村 番地" %>
+          <%= f.text_area :address, size: "43x1", placeholder: "都道府県 市町村 番地" %>
         </div>
 
         <div class="actions text-center py-4">

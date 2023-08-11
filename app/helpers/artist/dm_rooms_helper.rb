@@ -1,0 +1,2 @@
+module Artist::DmRoomsHelper
+end

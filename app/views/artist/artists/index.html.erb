@@ -1,9 +1,6 @@
 <div class="container">
   <div class="row w-100">
-    <div class="col-2">
-      <p>ここに検索関連ががが</p>
-    </div>
-    <div class="col-8 offset-1">
+    <div class="col-10 mx-auto">
       <h4>アーティスト一覧</h4>
       <% @artists.each do |artist| %>
         <%= link_to artist_path(artist.id),class: "text-secondary" do %>

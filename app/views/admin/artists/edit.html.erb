@@ -1,2 +1,24 @@
-<h1>Admin::Artists#edit</h1>
-<p>Find me in app/views/admin/artists/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h5>ステータス変更</h5>
+  </div>
+  <div class="row py-3">
+    <div class="col-9 mx-auto d-flex">
+      <div class="col-3">
+        <%= image_tag @artist.artist_image_or_empty, size: "100x100" %>
+      </div>
+      <div class="col-9">
+        <%= @artist.name %><br>
+        <%= @artist.introduction %><br>
+        公開状態：<%= @artist.is_lock ? "非公開" : "公開中" %>,
+        アカウント状態：<%= @artist.is_cold ? "凍結中" : "正常" %>
+        <%= form_with model: @artist,url: admin_artist_path(@artist),class: "pt-4" do |f| %>
+          <p>【会員ステータス】</p>
+          <%= f.select :is_cold, [['正常',0],['凍結する',1]], { include_blank: true, selected: 0 } %>
+          <%= f.submit "変更する"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

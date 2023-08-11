@@ -1,9 +1,9 @@
 class Artist::ArtistsController < ApplicationController
   before_action :authenticate_artist!,{only:[:edit, :follows, :followers]}
-  before_action :ensure_guest_artist!,{only: [:edit]}
+  before_action :ensure_guest_artist,only: [:edit]
 
   def index
-    @artists = Artist.order(:name).page(params[:page])
+    @artists = Artist.where("is_cold == ?",false).order(:name).page(params[:page])
   end
 
   def show
@@ -20,13 +20,13 @@ class Artist::ArtistsController < ApplicationController
     if @artist.update(artist_params)
       redirect_to artist_path(current_artist.id), notice: "変更を保存しました。"
     else
+      flash[:alert] = "データを保存できませんでした。"
       render "edit"
-      flash[:alert]
     end
   end
 
   def destroy
-    @artist = Artsit.find(params[:id])
+    @artist = Artist.find(params[:id])
     @artist.delete
     redirect_to root_path, notice: "アカウントを削除しました。"
   end
@@ -43,17 +43,19 @@ class Artist::ArtistsController < ApplicationController
     @follower_gallaries = Gallary.find(followers)
   end
 
+  
+
+  protected
+
+  def artist_params
+    params.require(:artist).permit( :name, :introduction, :is_cold, :is_lock , :image)
+  end
+  
   def ensure_guest_artist
     @artist = Artist.find(params[:id])
     if @artist.email == "guest@example.com"
       redirect_to artist_path(current_artist), alert: "ゲストアーティストはプロフィール編集画面へ遷移できません。"
     end
-  end
-
-  protected
-
-  def artist_params
-    params.require(:artist).permit( :name, :introduction, :is_cold, :image)
   end
 
 

@@ -13,7 +13,32 @@
  *= require_tree .
  *= require_self
  */
+// フラッシュメッセージ設定
+#flash-notifications{
+  text-align: center;
 
+  .notice {
+    background-color: #b0c4de;
+    padding: 6px 20px;
+  }
+
+  .alert {
+    padding: 5px 20px;
+    background-color: #f19ca7;
+  }
+}
+
+// 新規登録時のエラーメッセージ表示
+#error_explanation{
+  color: white;
+  background-color: #fa8072;
+  padding: 5px 20px;
+}
+
+.swiper{
+  width: 500px;
+  height: auto;
+}
 // トップに戻る
 #back {
   position: fixed;

@@ -38,6 +38,7 @@ class DeviseCreateGallaries < ActiveRecord::Migration[6.1]
       t.string :post_code
       t.text :address
       t.boolean :is_cold, default: false, null: false
+      t.boolean :is_lock, default: false, null: false
       t.timestamps null: false
     end
 

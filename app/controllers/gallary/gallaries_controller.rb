@@ -1,6 +1,6 @@
 class Gallary::GallariesController < ApplicationController
   before_action :authenticate_gallary!,{only: [:edit, :follows, :followers]}
-  before_action :ensure_guest_gallary!,{only: [:edit]}
+  before_action :ensure_guest_gallary,{only: [:edit]}
 
   def index
     @gallaries = Gallary.order(created_at: :DESC).page(params[:page])
@@ -42,7 +42,7 @@ class Gallary::GallariesController < ApplicationController
     followers = AtogFollow.where(gallary_id: @gallary.id).pluck(:artist_id)
     @follower_artists = Artist.find(followers)
   end
-  
+
   def ensure_guest_gallary
     @gallary = Gallary.find(params[:id])
     if @gallary.email == "guest@example.com"
@@ -54,8 +54,8 @@ class Gallary::GallariesController < ApplicationController
 
   def gallary_params
     params.require(:gallary).permit( :name, :area_id, :introduction,
-    :post_code, :address, :area_name, :image, :is_cold, gallary_images: [])
+    :post_code, :address, :area_name, :image, :is_cold, :is_lock, gallary_images: [])
   end
 
-  
+
 end

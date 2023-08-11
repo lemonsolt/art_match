@@ -18,6 +18,8 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
+import "script.js";
+import 'swiper-init.js';
 
 Rails.start()
 Turbolinks.start()

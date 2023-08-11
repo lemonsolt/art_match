@@ -13,6 +13,10 @@ class Gallary < ApplicationRecord
   # "g"allaryから"a"rtistへのフォロー
   has_many :gtoa_follows,dependent: :destroy
 
+  has_many :dm_rooms, dependent: :destroy
+  has_many :artists, through: :dm_rooms
+  has_many :dm_messages, dependent: :destroy
+
 
   validates :name, presence: true
   validates :post_code, presence: true

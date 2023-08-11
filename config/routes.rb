@@ -38,7 +38,8 @@ Rails.application.routes.draw do
       end
     end
     resources :genres, only: [ :show]
-    resources :dms, only: [ :index, :show, :create, :destroy]
+    resources :dms, only: [ :show, :create, :destroy]
+    resources :dm_rooms, only:[:show]
     resources :searches, only: [ :index] do
       get "result" => "searches#result", on: :collection
     end

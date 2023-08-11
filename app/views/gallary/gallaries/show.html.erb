@@ -1,76 +1,107 @@
 <div class="container">
-  <div class="row">
-    <% if gallary_signed_in? && @gallary.id == current_gallary.id %>
-      <h1 class="mt-3">マイページ</h1>
-    <% end %>
-  </div>
-  <div class="row d-flex mx-auto my-4">
-    <div class="col-2">
-      <%= image_tag @gallary.image_or_empty, size: "200x200" %>
-    </div>
-    <div class="col-8 offset-1">
-      <div class="row w-100 d-flex">
-        <h4 class="col-4"><%= @gallary.name %></h4>
-        <% if gallary_signed_in? %>
-          <div>
-            <i class="fa-solid fa-envelope fa-xl" style="color: #4682b4;"></i>
-          </div>
-        <% end %>
-        <div id="atog_follow_buttons_<%= @gallary.id %>" class="col-3">
-          <%= render 'gallary/atog_follows/button', gallary: @gallary%>
-        </div>
-        <% if gallary_signed_in? && @gallary.id == current_gallary.id && @gallary.email != "guest@example.com" %>
-          <p class="col-3"><%= link_to "編集する", information_edit_gallary_path ,class: "btn btn-success" %></p>
-        <% end %>
-      </div>
-      <div class="row">
-        <p>〒 <%= @gallary.post_code %></p>
-      </div>
-      <div class="row d-flex">
-        <p><%= @gallary.address %></p>
-      </div>
-      <div class="row">
-        <p><%= @gallary.introduction %></p>
+  <% if @gallary.is_cold %>
+    <div class="row py-auto">
+      <div class="col-6 mx-auto">
+        <h4>このアカウントは凍結されています。</h4>
       </div>
     </div>
-  </div>
-  <div class="col-11 mx-auto">
-    <div class="row border-bottom mb-4">
-      <h3>参考写真</h3>
-    </div>
+  <% else %>
     <div class="row">
-      <div class="col-8 mb-3 mx-auto">
-        <% if @gallary.gallary_images.attached?  %>
-          <% @gallary.gallary_images.each do |gallary_image| %>
-            <%= image_tag gallary_image, size: "500x281"%>
-          <% end %>
-        <% else %>
-          <%= image_tag "noimage_gallary.jpg", size: "500x281"%>
-        <% end %>
+      <% if gallary_signed_in? && @gallary.id == current_gallary.id %>
+        <h1 class="mt-3">マイページ</h1>
+      <% end %>
+    </div>
+    <div class="row d-flex mx-auto my-4">
+      <div class="col-2">
+        <%= image_tag @gallary.image_or_empty, size: "200x200" %>
       </div>
-    </div>
-    <div class="row border-bottom mb-4">
-      <h3>イベント一覧</h3>
-    </div>
-    <div class="row w-100">
-      <div class="col-10 mx-auto">
-        <% @events.each do |event| %>
-          <%= link_to gallary_event_path(event.id),class: "text-secondary" do %>
-            <div class="col-12 d-flex border p-3 my-3">
-              <div class="col-4">
-                <%= image_tag event.image_or_empty, size: "200x200"%>
-              </div>
-              <div class="col-7 my-auto">
-                <h4><%= event.title %></h4>
-                <h5><%= event.start_at %> ~ <%= event.end_at %></h5>
-                <div class="text-right">
-                  <h5><%= event.recruit %></h5>
-                </div>
-              </div>
+      <div class="col-8 offset-1">
+        <div class="row w-100 d-flex">
+          <h4 class="col-4"><%= @gallary.name %></h4>
+          <% if artist_signed_in? %>
+            <div>
+              <%= link_to dm_path(@gallary) do%>
+                <i class="fa-solid fa-envelope fa-xl" style="color: #4682b4;"></i>
+              <% end %>
             </div>
           <% end %>
-        <% end %>
+          <div id="atog_follow_buttons_<%= @gallary.id %>" class="col-3">
+            <%= render 'gallary/atog_follows/button', gallary: @gallary%>
+          </div>
+          <% if gallary_signed_in? && @gallary.id == current_gallary.id && @gallary.email != "guest@example.com" %>
+            <p class="col-3"><%= link_to "編集する", information_edit_gallary_path ,class: "btn btn-success" %></p>
+          <% end %>
+        </div>
+        <div class="row">
+          <p>〒 <%= @gallary.post_code %></p>
+        </div>
+        <div class="row d-flex">
+          <p><%= @gallary.address %></p>
+        </div>
+        <div class="row">
+          <p><%= @gallary.introduction %></p>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="col-11 mx-auto">
+      <div class="row border-bottom mb-4">
+        <h3>参考写真</h3>
+      </div>
+      <div class="row">
+        <div class="col-8 mb-3 mx-auto">
+          <% if @gallary.gallary_images.attached?  %>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <% @gallary.gallary_images.each do |gallary_image| %>
+                  <div class="swiper-slide">
+                    <%= image_tag gallary_image, size: "500x281"%>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          <% else %>
+            <%= image_tag "noimage_gallary.jpg", size: "500x281"%>
+          <% end %>
+        </div>
+      </div>
+      <div class="row border-bottom mb-4">
+        <h3>イベント一覧</h3>
+      </div>
+      <div class="row w-100">
+        <div class="col-10 mx-auto">
+          <% @events.each do |event| %>
+            <%= link_to gallary_event_path(event.id),class: "text-secondary" do %>
+              <div class="col-12 d-flex border p-3 my-3">
+                <div class="col-4">
+                  <%= image_tag event.image_or_empty, size: "200x200"%>
+                </div>
+                <div class="col-7 my-auto">
+                  <h4><%= event.title %></h4>
+                  <h5><%= event.start_at %> ~ <%= event.end_at %></h5>
+                  <div class="text-right">
+                    <h5><%= event.recruit %></h5>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
+<script>
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>

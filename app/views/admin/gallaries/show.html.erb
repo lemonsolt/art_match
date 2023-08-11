@@ -1,2 +1,47 @@
-<h1>Admin::Gallaries#show</h1>
-<p>Find me in app/views/admin/gallaries/show.html.erb</p>
+<div class="container">
+  <div class="row w-100 py-3">
+    <div class="col-8 mx-auto text-right">
+      <%= link_to "ステータス変更", edit_admin_gallary_path(@gallary),class: "btn btn-info" %>
+    </div>
+  </div>
+  <div class="row w-100 py-3 my-4">
+    <div class="col-9 mx-auto d-flex">
+      <div class="col-3">
+        <%= image_tag @gallary.image_or_empty, size: "100x100" %>
+      </div>
+      <div class="col-9">
+        <%= @gallary.name %><br>
+        <%= @gallary.introduction %><br>
+        公開状態：<%= @gallary.is_lock ? "非公開" : "公開中" %>,
+        アカウント状態：<%= @gallary.is_cold ? "凍結中" : "正常" %>
+      </div>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-9 mx-auto">
+      <div class="row border-bottom mb-4">
+        <h3>イベント一覧</h3>
+      </div>
+      <div class="row w-100">
+        <div class="col-10 mx-auto">
+          <% @events.each do |event| %>
+            <%= link_to gallary_event_path(event.id),class: "text-secondary" do %>
+              <div class="col-12 d-flex border p-3 my-3">
+                <div class="col-4">
+                  <%= image_tag event.image_or_empty, size: "200x200"%>
+                </div>
+                <div class="col-7 my-auto">
+                  <h4><%= event.title %></h4>
+                  <h5><%= event.start_at %> ~ <%= event.end_at %></h5>
+                  <div class="text-right">
+                    <h5><%= event.recruit %></h5>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

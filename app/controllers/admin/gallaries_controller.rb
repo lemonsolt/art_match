@@ -2,11 +2,12 @@ class Admin::GallariesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @gallaries = Gallary.page(params[:page])
+    @gallaries = Gallary.order(create_at: :DESC).page(params[:page])
   end
 
   def show
     @gallary = Gallary.find(params[:id])
+    @events = @gallary.gallary_events.order(created_at: :DESC).page(params[:page])
   end
 
   def edit

@@ -1,7 +1,7 @@
 class Artist::PortfoliosController < ApplicationController
   before_action :authenticate_artist!,{only: [ :new, :create, :edit, :update, :destroy]}
   def index
-     @portfolios = Portfolio.order(create_at: :DESC).page(params[:page])
+    @portfolios = Portfolio.joins(:artist).where(artists: { is_cold: false, is_lock: false }).order(created_at: :DESC).page(params[:page]).per(20)
   end
 
   def new

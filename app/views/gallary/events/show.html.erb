@@ -18,8 +18,9 @@
                 <%= render 'gallary/event_bookmarks/bookmark', event: @event %>
               </p>
             </div>
-
-            <h4><%= @event.gallary.name %></h4>
+            <%= link_to gallary_path(@gallary),class: "text-secondary" do %>
+              <h4><%= @event.gallary.name %></h4>
+            <% end %>
             <h4><%= @event.start_at %> ~ <%= @event.end_at %></h4>
             <h4><%= @event.recruit%></h4>
           </div>

@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2023_08_07_013037) do
     t.string "name"
     t.text "introduction"
     t.boolean "is_cold", default: false, null: false
+    t.boolean "is_lock", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_artists_on_email", unique: true
@@ -108,8 +109,8 @@ ActiveRecord::Schema.define(version: 2023_08_07_013037) do
     t.text "introduction"
     t.string "post_code"
     t.text "address"
-    t.integer "area_name", default: 0, null: false
     t.boolean "is_cold", default: false, null: false
+    t.boolean "is_lock", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_gallaries_on_email", unique: true

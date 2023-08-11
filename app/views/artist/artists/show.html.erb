@@ -1,60 +1,70 @@
 <div class="container">
-  <div class="row">
-    <% if artist_signed_in? && @artist.id == current_artist.id %>
-      <h1 class="mt-3">マイページ</h1>
-    <% end %>
-  </div>
-  <div class="row d-flex mx-auto my-4">
-    <div class="col-2">
-      <%= image_tag @artist.artist_image_or_empty, size: "200x200" %>
-    </div>
-    <div class="col-8 offset-1">
-      <div class="row w-100 d-flex">
-        <h4 class="col-3"><%= @artist.name %></h4>
-        <div id="gtoa_follow_buttons_<%= @artist.id %>" class="col-3 offset-3">
-          <%= render 'artist/gtoa_follows/button',artist: @artist %>
-        </div>
-        <% if gallary_signed_in? %>
-          <i class="fa-solid fa-envelope" style="color: #4682b4;"></i>
-        <% end %>
-        <% if artist_signed_in? &&  @artist.id == current_artist.id && @artist.email != "guest@example.com" %>
-          <p class="col-3 text-right"><%= link_to "マイページ編集", information_edit_artist_path,class: "btn btn-success" %></p>
-        <% end %>
-      </div>
-      <div class="row">
-        <p><%= @artist.introduction %></p>
+  <% if @artist.is_cold %>
+    <div class="row py-auto">
+      <div class="col-6 mx-auto">
+        <h4>このアカウントは凍結されています。</h4>
       </div>
     </div>
-  </div>
-  <div class="col-11 mx-auto">
-    <div class="row border-bottom mb-4">
-      <h3>ポートフォリオ</h3>
-    </div>
-    <div class="row d-flex flex-wrap">
-      <% @portfolios.each do |portfolio| %>
-        <div class="col-3 d-flex">
-          <%= link_to portfolio_path(portfolio.id),class: "text-secondary" do %>
-            <div class="col-12 border px-4 py-3 my-2">
-              <div class="row">
-                <%= image_tag portfolio.image_or_empty, size: "200x200" %>
-              </div>
-              <div class="row">
-                <h5>
-                  <%= portfolio.title %>
-                </h5>
-              </div>
-              <div class="row">
-                <h6>
-                  <%= portfolio.artist.name %>
-                </h6>
-              </div>
-              <div>
-                <i class="fa-solid fa-tag" style="color: #4682b4;"><%= portfolio.genres.map(&:name).join(', ') %></i>
-              </div>
-            </div>
-          <% end %>
-        </div>
+  <% else %>
+    <div class="row">
+      <% if artist_signed_in? && @artist.id == current_artist.id %>
+        <h1 class="mt-3">マイページ</h1>
       <% end %>
     </div>
-  </div>
+    <div class="row d-flex mx-auto my-4">
+      <div class="col-2">
+        <%= image_tag @artist.artist_image_or_empty, size: "200x200" %>
+      </div>
+      <div class="col-8 offset-1">
+        <div class="row w-100 d-flex">
+          <h4 class="col-3"><%= @artist.name %></h4>
+          <div id="gtoa_follow_buttons_<%= @artist.id %>" class="col-3 offset-3">
+            <%= render 'artist/gtoa_follows/button',artist: @artist %>
+          </div>
+          <% if gallary_signed_in? %>
+            <%= link_to dm_path(@aratist) do%>
+              <i class="fa-solid fa-envelope" style="color: #4682b4;"></i>
+            <% end %>
+          <% end %>
+          <% if artist_signed_in? &&  @artist.id == current_artist.id && @artist.email != "guest@example.com" %>
+            <p class="col-3 text-right"><%= link_to "マイページ編集", information_edit_artist_path,class: "btn btn-success" %></p>
+          <% end %>
+        </div>
+        <div class="row">
+          <p><%= @artist.introduction %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-11 mx-auto">
+      <div class="row border-bottom mb-4">
+        <h3>ポートフォリオ</h3>
+      </div>
+      <div class="row d-flex flex-wrap">
+        <% @portfolios.each do |portfolio| %>
+          <div class="col-3 d-flex">
+            <%= link_to portfolio_path(portfolio.id),class: "text-secondary" do %>
+              <div class="col-12 border px-4 py-3 my-2">
+                <div class="row">
+                  <%= image_tag portfolio.image_or_empty, size: "200x200" %>
+                </div>
+                <div class="row">
+                  <h5>
+                    <%= portfolio.title %>
+                  </h5>
+                </div>
+                <div class="row">
+                  <h6>
+                    <%= portfolio.artist.name %>
+                  </h6>
+                </div>
+                <div>
+                  <i class="fa-solid fa-tag" style="color: #4682b4;"><%= portfolio.genres.map(&:name).join(', ') %></i>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>

@@ -35,6 +35,7 @@ class DeviseCreateArtists < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :introduction
       t.boolean :is_cold, default: false,null: false
+      t.boolean :is_lock, default: false,null: false
       t.timestamps null: false
     end
 

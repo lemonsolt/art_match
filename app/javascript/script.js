@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 // トップへのスクロール
 $(function() {
   $('#back a').on('click',function(event){
@@ -15,13 +17,14 @@ $(function(){
 });
 
 // ハンバーガーメニュー
-$(".openbtn1").on('click',function () {//ボタンがクリックされたら
-  $(this).toggleClass('active');//ボタン自身に activeクラスを付与し
-    $("#g-nav_list").fadeToggle();
-    event.preventDefault();
+$(".openbtn1").on('click', function (event) {
+  $(this).toggleClass('active');
+  $("#g-nav_list").fadeToggle();
+  event.preventDefault(); // ここでpreventDefaultを呼び出す
 });
 
 $("#g-nav a").on('click',function () {//ナビゲーションのリンクがクリックされたら
     $(".openbtn1").removeClass('active');//ボタンの activeクラスを除去し
     $("#g-nav").removeClass('panelactive');//ナビゲーションのpanelactiveクラスも除去
 });
+

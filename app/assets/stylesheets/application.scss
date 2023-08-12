@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+// *{
+//   border : solid 2px red ;
+// }
 // フラッシュメッセージ設定
 #flash-notifications{
   text-align: center;
@@ -45,73 +48,186 @@
   bottom: 40px;
   right: 40px;
 }
-// ハンバーガーメニュー
-#hm-icon {
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  z-index: 10;
-}
-.menu-trigger,
-.menu-trigger span {
-  display: inline-block;
-  transition: all .4s;
-  box-sizing: border-box;
-}
-.menu-trigger {
-  position: relative;
-  width: 50px;
-  height: 44px;
-}
-.menu-trigger span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background-color: #000;
-  border-radius: 4px;
-}
-.menu-trigger span:nth-child(1) {
-  top: 0;
-}
-.menu-trigger span:nth-child(2) {
-  top: 20px;
-}
-.menu-trigger span:nth-child(3) {
-  bottom: 0;
-}
-.menu-trigger.active span:nth-child(1) {
-  -webkit-transform: translateY(20px) rotate(-45deg);
-  transform: translateY(20px) rotate(-45deg);
-  background-color: #fff;
-}
-.menu-trigger.active span:nth-child(2) {
-  opacity: 0;
-}
-.menu-trigger.active span:nth-child(3) {
-  -webkit-transform: translateY(-20px) rotate(45deg);
-  transform: translateY(-20px) rotate(45deg);
-  background-color: #fff;
+/*========= ナビゲーションのためのCSS ===============*/
+
+#g-nav{
+    /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+    position:fixed;
+    z-index: 999;
+    /*ナビのスタート位置と形状*/
+  top:0;
+    right: -50%;
+  width:30%;
+    height: 100vh;/*ナビの高さ*/
+  background:#a4c1d7;
+    /*動き*/
+  transition: all 0.6s;
 }
 
-// spメニュー
-#sp-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #000;
-  color: #fff;
-  width: 100%;
-  min-height: 100%;
-  display: none;
-  z-index: 9;
+/*アクティブクラスがついたら位置を0に*/
+#g-nav.panelactive{
+    right: 0;
 }
-#sp-menu li {
-  text-align: center;
-  margin-bottom: 30px;
+
+/*ナビゲーションの縦スクロール*/
+#g-nav.panelactive #g-nav-list{
+    /*ナビの数が増えた場合縦スクロール*/
+    position: fixed;
+    z-index: 999;
+    width: 30%;
+    height: 100vh;/*表示する高さ*/
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
-#sp-menu a {
-  color: #fff;
+
+/*ナビゲーション*/
+#g-nav ul {
+    /*ナビゲーション天地中央揃え*/
+    position: absolute;
+    z-index: 999;
+    top:50%;
+    left:30%;
+    transform: translate(-50%,-50%);
+}
+
+/*リストのレイアウト設定*/
+
+#g-nav li{
+  list-style: none;
+    text-align: center;
+}
+
+#g-nav li a{
+  color: #333;
   text-decoration: none;
+  padding:10px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.category{
   font-weight: bold;
+}
+
+/*========= ボタンのためのCSS ===============*/
+.openbtn1{
+  position:fixed;
+    z-index: 9999;/*ボタンを最前面に*/
+  top:10px;
+  right: 10px;
+  cursor: pointer;
+    width: 50px;
+    height:50px;
+}
+
+/*×に変化*/
+.openbtn1 span{
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+  background-color: #666;
+    width: 45%;
+  }
+
+.openbtn1 span:nth-of-type(1) {
+  top:15px;
+}
+
+.openbtn1 span:nth-of-type(2) {
+  top:23px;
+}
+
+.openbtn1 span:nth-of-type(3) {
+  top:31px;
+}
+
+.openbtn1.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+}
+
+.openbtn1.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.openbtn1.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+}
+
+
+/* タブレット縦置きサイズ（768px）以下 */
+@media screen and (max-width:768px) {
+      #g-nav{
+          /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+          position:fixed;
+          z-index: 999;
+          /*ナビのスタート位置と形状*/
+        top:0;
+          right: -120%;
+        width:100%;
+          height: 100vh;/*ナビの高さ*/
+        background:#a4c1d7;
+          /*動き*/
+        transition: all 0.6s;
+      }
+
+      /*アクティブクラスがついたら位置を0に*/
+      #g-nav.panelactive{
+          right: 0;
+      }
+
+      /*ナビゲーションの縦スクロール*/
+      #g-nav.panelactive #g-nav-list{
+          /*ナビの数が増えた場合縦スクロール*/
+          position: fixed;
+          z-index: 999;
+          width: 100%;
+          height: 100vh;/*表示する高さ*/
+          overflow: auto;
+          -webkit-overflow-scrolling: touch;
+      }
+
+      /*ナビゲーション*/
+      #g-nav ul {
+          /*ナビゲーション天地中央揃え*/
+          position: absolute;
+          z-index: 999;
+          top:50%;
+          left:50%;
+          transform: translate(-50%,-50%);
+      }
+
+      /*リストのレイアウト設定*/
+
+      #g-nav li{
+        list-style: none;
+          text-align: center;
+      }
+
+      #g-nav li a{
+        color: #333;
+        text-decoration: none;
+        padding:10px;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .category{
+        font-weight: bold;
+      }
+
+}
+
+
+/* スマートフォンサイズ（576px）以下 */
+@media screen and (max-width:576px) {
+
 }

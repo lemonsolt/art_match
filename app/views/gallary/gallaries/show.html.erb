@@ -17,17 +17,22 @@
       </div>
       <div class="col-8 offset-1">
         <div class="row w-100 d-flex">
-          <h4 class="col-4"><%= @gallary.name %></h4>
+          <h4 class="col-4">
+            <%= @gallary.name %>
+            <% if @gallary.is_lock %>
+              <i class="fa-solid fa-lock fa-sm mt-2" style="color: #4682b4;"></i>
+            <% end %>
+          </h4>
           <% if artist_signed_in? %>
-            <div>
+            <div class="col-1 offset-2">
               <%= link_to dm_path(@gallary) do%>
                 <i class="fa-solid fa-envelope fa-xl" style="color: #4682b4;"></i>
               <% end %>
             </div>
+            <div id="atog_follow_buttons_<%= @gallary.id %>" class="col-3">
+              <%= render 'gallary/atog_follows/button', gallary: @gallary%>
+            </div>
           <% end %>
-          <div id="atog_follow_buttons_<%= @gallary.id %>" class="col-3">
-            <%= render 'gallary/atog_follows/button', gallary: @gallary%>
-          </div>
           <% if gallary_signed_in? && @gallary.id == current_gallary.id && @gallary.email != "guest@example.com" %>
             <p class="col-3"><%= link_to "編集する", information_edit_gallary_path ,class: "btn btn-success" %></p>
           <% end %>
@@ -70,26 +75,32 @@
       <div class="row border-bottom mb-4">
         <h3>イベント一覧</h3>
       </div>
-      <div class="row w-100">
-        <div class="col-10 mx-auto">
-          <% @events.each do |event| %>
-            <%= link_to gallary_event_path(event.id),class: "text-secondary" do %>
-              <div class="col-12 d-flex border p-3 my-3">
-                <div class="col-4">
-                  <%= image_tag event.image_or_empty, size: "200x200"%>
-                </div>
-                <div class="col-7 my-auto">
-                  <h4><%= event.title %></h4>
-                  <h5><%= event.start_at %> ~ <%= event.end_at %></h5>
-                  <div class="text-right">
-                    <h5><%= event.recruit %></h5>
+      <% if (@gallary.is_lock && @gallary.id != current_gallary&.id) || (@gallary.is_lock && artist_signed_in?) %>
+        <div class="row justify-content-center">
+          <h4>イベント投稿が非公開設定です。</h4>
+        </div>
+      <% else %>
+        <div class="row w-100">
+          <div class="col-10 mx-auto">
+            <% @events.each do |event| %>
+              <%= link_to gallary_event_path(event.id),class: "text-secondary" do %>
+                <div class="col-12 d-flex border p-3 my-3">
+                  <div class="col-4">
+                    <%= image_tag event.image_or_empty, size: "200x200"%>
+                  </div>
+                  <div class="col-7 my-auto">
+                    <h4><%= event.title %></h4>
+                    <h5><%= event.start_at %> ~ <%= event.end_at %></h5>
+                    <div class="text-right">
+                      <h5><%= event.recruit %></h5>
+                    </div>
                   </div>
                 </div>
-              </div>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   <% end %>
 </div>

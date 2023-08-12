@@ -60,7 +60,7 @@
             <div class="search_form text-right">
               <%= form_with url: result_gallary_searches_path, local: true, method: :get do |f| %>
                 <%= f.text_field :keyword , class: "form-control" %>
-                <%= f.select :range, options_for_select([['地域'], ['ギャラリー名']]) %>
+                <%= f.select :range, options_for_select([['住所'], ['ギャラリー名']]) %>
                 <%= f.submit "検索", class: "btn btn-primary mt-2" %>
               <% end %>
             </div>

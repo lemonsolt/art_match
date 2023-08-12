@@ -4,7 +4,7 @@ class CreateDmMessages < ActiveRecord::Migration[6.1]
 
       t.integer :artist_id
       t.integer :gallary_id
-      t.integer :room_id
+      t.integer :dm_room_id
       t.text :message
       t.timestamps
     end

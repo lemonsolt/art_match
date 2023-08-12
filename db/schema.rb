@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2023_08_07_013037) do
   create_table "dm_messages", force: :cascade do |t|
     t.integer "artist_id"
     t.integer "gallary_id"
-    t.integer "room_id"
+    t.integer "dm_room_id"
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

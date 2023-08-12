@@ -17,14 +17,15 @@ $(function(){
 });
 
 // ハンバーガーメニュー
-$(".openbtn1").on('click', function (event) {
-  $(this).toggleClass('active');
-  $("#g-nav_list").fadeToggle();
-  event.preventDefault(); // ここでpreventDefaultを呼び出す
+
+$(document).ready(function() {
+  $(".openbtn1").on('click',function() {
+    $(this).toggleClass("active");
+    $("#g-nav").toggleClass("panelactive");
+  });
 });
 
 $("#g-nav a").on('click',function () {//ナビゲーションのリンクがクリックされたら
     $(".openbtn1").removeClass('active');//ボタンの activeクラスを除去し
     $("#g-nav").removeClass('panelactive');//ナビゲーションのpanelactiveクラスも除去
 });
-

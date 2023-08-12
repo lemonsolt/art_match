@@ -17,7 +17,11 @@
               <%= render "artist/portfolio_bookmarks/bookmark",portfolio: @portfolio  %>
             </p>
           </div>
-          <h6>作者名 : <%= @portfolio.artist.name %></h6>
+          <h6>
+            <%= link_to artist_path(@portfolio.artist.id),class: "text-secondary" do %>
+              作者名 : <%= @portfolio.artist.name %>
+            <% end %>
+          </h6>
           <p>使用道具 : <%= @portfolio.item %> , ジャンルタグ :
             <% @portfolio_genres.each do |portfolio_genre| %>
               <%= link_to genre_path(portfolio_genre.genre.id) do %>

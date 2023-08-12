@@ -1,6 +1,6 @@
 <% if @range == "ギャラリー名" %>
   <%= render 'artist/searches/search', keyword: @keyword,all_gallary: @gallary_name_all,page: @gallary_name_page%>
-<% elsif @range == "地域" %>
+<% elsif @range == "住所" %>
   <%= render 'artist/searches/search', keyword: @keyword,all_gallary: @gallary_areas_all,page: @gallary_area_page%>
 <% else %>
   <div class="container pt-5">
@@ -15,7 +15,12 @@
           <%= link_to gallary_path(gallary.id),class: "text-secondary my-1" do%>
             <div class="col-12">
               <p><%= image_tag gallary.image_or_empty, size: '100x100' %></p>
-              <p><%= gallary.name %></p>
+              <p>
+                <%= gallary.name %>
+                <% if gallary.is_lock %>
+                  <i class="fa-solid fa-lock fa-sm" style="color: #4682b4;"></i>
+                <% end %>
+              </p>
               <p>〒 <%= gallary.post_code %></p>
               <p><%= gallary.address %></p>
             </div>

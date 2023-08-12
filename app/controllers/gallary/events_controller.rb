@@ -36,17 +36,23 @@ class Gallary::EventsController < ApplicationController
     @event.destroy
     redirect_to gallary_events_path
   end
-    # 開催前のイベント一覧条件
+    # 開催前のイベント一覧条件（凍結や非公開の投稿ははじかれる）
   def before_index
-    @events = GallaryEvent.where("start_at > ?",Date.today).order(:start_at)
+    @events = GallaryEvent.joins(:gallary).where("start_at > ?", Date.today)
+            .where(gallaries: { is_cold: false, is_lock: false })
+            .order(:start_at).page(params[:page]).per(15)
   end
     # 開催中のイベント一覧条件
   def now_index
-    @events = GallaryEvent.where("start_at <= ?",Date.today).and(GallaryEvent.where("end_at >= ?",Date.today)).order(start_at: :DESC)
+    @events = GallaryEvent.joins(:gallary).where("start_at <= ?",Date.today).and(GallaryEvent.where("end_at >= ?",Date.today))
+            .where(gallaries: { is_cold: false, is_lock: false })
+            .order(start_at: :DESC).page(params[:page]).per(15)
   end
   # 開催終了日を過ぎたイベント一覧条件
   def after_index
-    @events = GallaryEvent.where("end_at < ?",Date.today).order(end_at: :DESC)
+    @events = GallaryEvent.joins(:gallary).where("end_at < ?",Date.today)
+            .where(gallaries: { is_cold: false, is_lock: false })
+            .order(end_at: :DESC).page(params[:page]).per(15)
   end
 
   private

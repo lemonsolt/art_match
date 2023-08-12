@@ -3,7 +3,7 @@ class Gallary::SearchesController < ApplicationController
   end
 
   def result
-    @gallaries = Gallary.all
+    @gallaries = Gallary.where("is_cold == ?",false).order(:name).page(params[:page]).per(15)
     @keyword = search_params[:keyword]
     @range = params[:range]
 
@@ -11,7 +11,7 @@ class Gallary::SearchesController < ApplicationController
       @names = Gallary.search(search_params[:keyword])
       @gallary_name_all = @names.all
       @gallary_name_page = @names.order(:name).page(params[:page]).per(15)
-    elsif @range == "地域"
+    elsif @range == "住所"
       @areas = Gallary.search_area(search_params[:keyword])
       @gallary_areas_all = @areas.all
       @gallary_area_page = @areas.order(:name).page(params[:page]).per(15)

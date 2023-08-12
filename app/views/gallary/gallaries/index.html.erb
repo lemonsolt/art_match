@@ -6,8 +6,13 @@
         <%= link_to gallary_path(gallary.id),class: "text-secondary" do %>
           <div class="col-12 border d-flex my-2">
             <p class="col-2 flex-fill my-auto"><%= image_tag gallary.image_or_empty, size: "100x100" %></p>
-            <div class="col-9 offset-1 flex-fill">
-              <p class=""><%= gallary.name %></p>
+            <div class="col-9 offset-1 flex-fill pt-1">
+              <p class="">
+                <%= gallary.name %>
+                <% if gallary.is_lock %>
+                  <i class="fa-solid fa-lock fa-sm" style="color: #4682b4;"></i>
+                <% end %>
+              </p>
               <p class="">〒 <%= gallary.post_code %></p>
               <p><%= gallary.address%></p>
               <p><%= gallary.introduction%></p>

@@ -8,28 +8,29 @@
     <div class="col-5 card mx-auto mt-4">
       <%= form_with model: @artist,method: :patch, local: true do |f| %>
 
-        <div class="field mt-4 ml-5 center-block">
+        <div class="field mt-4 center-block">
           <p>プロフィール画像</p>
           <%= f.file_field :image, accept: "image/*" %>
         </div>
 
-
-        <div class="field mt-4 ml-5 center-block">
+        <div class="field mt-4 center-block">
           <%= f.label :name, "アーティスト名" %><br>
-          <%= f.text_field :name,size: "40", placeholder: "マチ" %>
+          <%= f.text_field :name, placeholder: "マチ", class: "form-control" %>
         </div>
 
-        <div class="field ml-5">
+        <div class="field">
           <%= f.label :introduction, "紹介文" %><br>
-          <%= f.text_area :introduction,size: "42x5", placeholder: "最大500文字まで入ります。"%>
+          <%= f.text_area :introduction, placeholder: "最大500文字まで入ります。", class: "form-control" %>
         </div>
-        
-        <div class="field ml-5">
-          <p>【会員ステータス】現在：<%= @artist.is_lock ? "公開中": "非公開"%></p>
+
+        <div class="field">
+          <p>【投稿ステータス】現在：<%= @artist.is_lock ? "非公開": "公開中"%></p>
           <div class="pull-right">
             <%= f.select :is_lock, [['公開',0],['非公開',1]], { include_blank: true, selected: 0 } %>
           </div>
+          <p>※フォロワーも見ることが出来ない完全非公開となります。</p>
         </div>
+
         <div class="actions text-center py-4">
           <%= f.submit "変更する" , class: "btn btn-info"%>
         </div>

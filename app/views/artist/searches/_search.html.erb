@@ -12,10 +12,14 @@
             <p><%= image_tag gallary.image_or_empty, size: '100x100' %></p>
           </div>
           <div class="col-10">
-            <p><%= gallary.name %></p>
+            <p>
+              <%= gallary.name %>
+              <% if gallary.is_lock %>
+                <i class="fa-solid fa-lock fa-sm" style="color: #4682b4;"></i>
+              <% end %>
+            </p>
             <p>〒 <%= gallary.post_code %></p>
             <p><%= gallary.address %></p>
-          </div>
           </div>
         <% end %>
       <% end %>

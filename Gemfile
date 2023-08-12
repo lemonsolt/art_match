@@ -59,3 +59,4 @@ gem 'kaminari','~> 1.2.1'
 gem 'devise'
 gem "enum_help"
 gem 'jquery-rails'
+gem 'rmagick'

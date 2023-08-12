@@ -12,7 +12,12 @@
             <p><%= image_tag artist.artist_image_or_empty, size: '100x100' %></p>
           </div>
           <div class="col-10">
-            <p><%= artist.name %></p>
+            <p>
+              <%= artist.name %>
+              <% if artist.is_lock %>
+                <i class="fa-solid fa-lock fa-sm" style="color: #4682b4;"></i>
+              <% end %>
+            </p>
           </div>
         <% end %>
       <% end %>

@@ -8,22 +8,22 @@
     <div class="col-5 card mx-auto mt-4">
       <%= form_with model: @gallary,url: gallary_path(@gallary),method: :patch, local: true do |f| %>
 
-        <div class="field mt-4 ml-5 center-block">
+        <div class="field mt-4 center-block">
           <p>ギャラリーアイコン画像</p>
           <%= f.file_field :_image, accept: "image/*" %>
         </div>
 
-        <div class="field mt-4 ml-5">
+        <div class="field mt-4 ">
           <%= f.label :name, "ギャラリー名" %><br />
-          <%= f.text_field :name, size: "40", placeholder: "〇〇ギャラリー" %>
+          <%= f.text_field :name, placeholder: "〇〇ギャラリー", class: "form-control" %>
         </div>
 
-        <div class="field ml-5">
+        <div class="field ">
           <%= f.label :introduction, "紹介文" %><br />
-          <%= f.text_area :introduction, size: "43x5", placeholder: "特に力を入れている点など" %>
+          <%= f.text_area :introduction, placeholder: "特に力を入れている点など", class: "form-control" %>
         </div>
 
-        <div class="field mt-4 ml-5 center-block">
+        <div class="field mt-4 center-block">
           <p>ギャラリー紹介画像(最大4枚)</p>
           <%= f.file_field :gallary_images, multiple: true, accept: "image/*" %>
           <%= f.file_field :gallary_images, multiple: true, accept: "image/*" %>
@@ -31,14 +31,22 @@
           <%= f.file_field :gallary_images, multiple: true, accept: "image/*" %>
         </div>
 
-        <div class="field ml-5">
+        <div class="field">
           <%= f.label :post_code, "郵便番号(ハイフンなし)" %><br />
-          <%= f.text_field :post_code, size: "40", placeholder: "0000000" %>
+          <%= f.text_field :post_code, placeholder: "0000000", class: "form-control" %>
         </div>
 
-        <div class="field ml-5">
+        <div class="field">
           <%= f.label :address, "住所" %><br />
-          <%= f.text_area :address, size: "43x1", placeholder: "都道府県 市町村 番地" %>
+          <%= f.text_area :address, placeholder: "都道府県 市町村 番地", class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <p>【公開ステータス】現在：<%= @gallary.is_lock ? "非公開": "公開中"%></p>
+          <div class="pull-right">
+            <%= f.select :is_lock, [['公開',0],['非公開',1]], { include_blank: true, selected: 0 } %>
+          </div>
+          <p>※フォロワーも見ることが出来ない完全非公開となります。</p>
         </div>
 
         <div class="actions text-center py-4">

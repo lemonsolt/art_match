@@ -2,16 +2,16 @@
 
 </div>
 <div class="col-5 flex-fill text-center">
-  <%= link_to admin_root_path do %>
+  <%= link_to admin_root_path,data:{"turbolinks" =>false} do %>
     <%= image_tag 'logo.png',size: "255x114" %>
   <% end %>
 </div>
 <div class="col-3 flex-fill text-right mt-4 d-flex">
-  <%= link_to gallary_searches_path ,class: "flex-fill" do %>
+  <%= link_to gallary_searches_path,data:{"turbolinks" =>false} ,class: "flex-fill" do %>
     <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #001e43;"></i>
   <% end %>
   <p class="ml-2 flex-fill">
-    <%= link_to "ログアウト",destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>
+    <%= link_to "ログアウト",destroy_admin_session_path, method: :delete,data:{"turbolinks" =>false}, class: "btn btn-dark" %>
   </p>
 </div>
 <div class="col-1">

@@ -1,51 +1,57 @@
-<div class="container">
-  <div class="row my-4">
-    <h4>作品詳細</h4>
-  </div>
-  <div class="row">
-    <div class="col-10 mx-auto border">
-      <div class="row justify-content-center">
-        <%= image_tag @portfolio.image_or_empty.variant( resize: "300" ) %>
-      </div>
-      <div class="row">
-        <div class="col-10 mx-auto">
-          <div class="row d-flex">
-            <h4>
-              作品名 : <%= @portfolio.title %>
-            </h4>
-            <p  id="portfolio_bookmark_buttons_<%= @portfolio.id %>" class="mt-1 ml-3">
-              <%= render "artist/portfolio_bookmarks/bookmark",portfolio: @portfolio  %>
-            </p>
-          </div>
-          <h6>
-            <%= link_to artist_path(@portfolio.artist.id),class: "text-secondary" do %>
-              作者名 : <%= @portfolio.artist.name %>
-            <% end %>
-          </h6>
-          <p>使用道具 : <%= @portfolio.item %> , ジャンルタグ :
-            <% @portfolio_genres.each do |portfolio_genre| %>
-              <%= link_to genre_path(portfolio_genre.genre.id) do %>
-                <%= portfolio_genre.genre.name %>
-              <% end %>
-            <% end %>
-          </p>
-          <p>詳細文<br>
-          <%= @portfolio.introduction %>
-          </p>
-
-
-          <% if artist_signed_in? && @portfolio.artist_id == current_artist.id %>
-            <div class="d-flex">
-              <div>
-                <%= link_to "編集する", edit_portfolio_path(@portfolio.id), class: "btn btn-success mr-4" %>
-              </div>
-              <div>
-                <%= link_to "削除する", portfolio_path(@portfolio.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"%>
-              </div>
+<div class="container p-3">
+  <% if (@portfolio.artist.is_lock && @portfolio.artist.id != current_artist&.id) || (@portfolio.artist.is_lock && gallary_signed_in?) %>
+    <div class="row justify-content-center">
+      <h4>投稿非公開設定です。</h4>
+    </div>
+  <% else %>
+    <div class="row my-4">
+      <h4>作品詳細</h4>
+    </div>
+    <div class="row">
+      <div class="col-10 mx-auto border py-3 mb-4">
+        <div class="row justify-content-center">
+          <%= image_tag @portfolio.image_or_empty,class: "portfolio_image" %>
+        </div>
+        <div class="row">
+          <div class="col-10 mx-auto">
+            <div class="row d-flex">
+              <h4>
+                作品名 : <%= @portfolio.title %>
+              </h4>
+              <p  id="portfolio_bookmark_buttons_<%= @portfolio.id %>" class="mt-1 ml-3">
+                <%= render "artist/portfolio_bookmarks/bookmark",portfolio: @portfolio  %>
+              </p>
             </div>
-          <% end %>
+            <h6>
+              <%= link_to artist_path(@portfolio.artist.id),class: "text-secondary" do %>
+                作者名 : <%= @portfolio.artist.name %>
+              <% end %>
+            </h6>
+            <p>使用道具 : <%= @portfolio.item %> , ジャンルタグ :
+              <% @portfolio_genres.each do |portfolio_genre| %>
+                <%= link_to genre_path(portfolio_genre.genre.id) do %>
+                  <%= portfolio_genre.genre.name %>
+                <% end %>
+              <% end %>
+            </p>
+            <p>詳細文<br>
+            <%= @portfolio.introduction %>
+            </p>
+  
+  
+            <% if artist_signed_in? && @portfolio.artist_id == current_artist.id %>
+              <div class="d-flex">
+                <div>
+                  <%= link_to "編集する", edit_portfolio_path(@portfolio.id), class: "btn btn-success mr-4" %>
+                </div>
+                <div>
+                  <%= link_to "削除する", portfolio_path(@portfolio.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"%>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>

@@ -8,7 +8,7 @@ class Artist::ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find(params[:id])
-    @portfolios = @artist.portfolios.order(create_at: :DESC).page(params[:page]).per(20)
+    @portfolios = @artist.portfolios.order(created_at: :DESC).page(params[:page]).per(20)
   end
 
   def edit

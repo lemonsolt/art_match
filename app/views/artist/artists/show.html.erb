@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-lg">
   <% if @artist.is_cold %>
     <div class="row py-auto">
       <div class="col-6 mx-auto">
@@ -12,31 +12,36 @@
       <% end %>
     </div>
     <div class="row d-flex mx-auto my-4">
-      <div class="col-2 offset-1">
-        <%= image_tag @artist.artist_image_or_empty, size: "200x200" %>
+      <div class="col-lg-2 col-md-2 col-12 offset-md-1">
+        <%= image_tag @artist.artist_image_or_empty, class: "index_image d-block mx-auto" %>
       </div>
-      <div class="col-8 offset-1">
-        <div class="row w-100 d-flex">
-          <h4 class="col-6">
-            <%= @artist.name %>
-            <% if @artist.is_lock %>
-              <i class="fa-solid fa-lock fa-sm" style="color: #4682b4;"></i>
+      <div class="col-lg-8 col-md-7 col-10 offset-md-1 offset-1">
+        <div class="row w-100 d-flex mx-auto">
+          <% if gallary_signed_in? && current_gallary.email != "guest@example.com" %>
+            <%= link_to dm_path(@artist),class: "col-md-1 col-2 offset-md-5 offset-md-2 offset-sm-3 offset-1 mt-md-2 mt-3 text-right" do%>
+              <i class="fa-solid fa-envelope fa-2xl" style="color: #4682b4;"></i>
             <% end %>
-          </h4>
-          <% if gallary_signed_in? %>
-            <%= link_to dm_path(@artist) do%>
-              <i class="fa-solid fa-envelope" style="color: #4682b4;"></i>
-            <% end %>
-            <div id="gtoa_follow_buttons_<%= @artist.id %>" class="col-3 offset-3">
+            <div id="gtoa_follow_buttons_<%= @artist.id %>" class="col-lg-4 col-md-5 col-6 mt-md-0 mt-2 text-left">
               <%= render 'artist/gtoa_follows/button',artist: @artist %>
             </div>
-          <% end %>
-          <% if artist_signed_in? &&  @artist.id == current_artist.id && @artist.email != "guest@example.com" %>
-            <p class="col-4 text-right offset-2"><%= link_to "マイページ編集", information_edit_artist_path,class: "btn btn-success" %></p>
+          <% elsif artist_signed_in? &&  @artist.id == current_artist.id && @artist.email != "guest@example.com" %>
+            <p class="col-md-10 col-12 text-md-right mt-md-0 mt-1 text-center offset-md-2 offset-0"><%= link_to "マイページ編集", information_edit_artist_path,class: "btn btn-success" %></p>
           <% end %>
         </div>
+        <div class="row w-100 d-flex flex-wrap">
+          <div class="col-md-12 col-sm-8 col-12 mx-auto">
+            <h4 class="col-md-9 col-12 text-md-left text-center">
+            <%= @artist.name %>
+              <% if @artist.is_lock %>
+                <i class="fa-solid fa-lock fa-sm" style="color: #4682b4;"></i>
+              <% end %>
+            </h4>
+          </div>
+        </div>
         <div class="row">
-          <p><%= @artist.introduction %></p>
+          <div class="col-md-12 col-11 offset-md-0 offset-1">
+            <p><%= @artist.introduction %></p>
+          </div>
         </div>
       </div>
     </div>
@@ -51,11 +56,11 @@
       <% else %>
         <div class="row d-flex flex-wrap">
           <% @portfolios.each do |portfolio| %>
-            <div class="col-3 d-flex">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex">
               <%= link_to portfolio_path(portfolio.id),class: "text-secondary" do %>
                 <div class="col-12 border px-4 py-3 my-2">
                   <div class="row">
-                    <%= image_tag portfolio.image_or_empty, size: "200x200" %>
+                    <%= image_tag portfolio.image_or_empty, class: "index_image" %>
                   </div>
                   <div class="row">
                     <h5>
@@ -74,6 +79,9 @@
               <% end %>
             </div>
           <% end %>
+        </div>
+        <div class="row justify-content-center">
+          <%= paginate @portfolios, outer_window: 3 %>
         </div>
       <% end %>
     </div>

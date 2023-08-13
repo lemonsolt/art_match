@@ -16,6 +16,9 @@
           </table>
         <% end %>
       <% end %>
+      <div class="row justify-content-center">
+        <%= paginate @artists, outer_window: 3 %>
+      </div>
     </div>
   </div>
 </div>

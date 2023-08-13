@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row w-100">
-    <div class="col-8 mx-auto">
+    <div class="col-lg-8  col-md-10 col-12 mx-auto">
       <div class="mt-4"><h4>ギャラリー一覧</h4></div>
       <% @gallaries.each do |gallary| %>
         <%= link_to gallary_path(gallary.id),class: "text-secondary" do %>
-          <div class="col-12 border d-flex my-2">
-            <p class="col-2 flex-fill my-auto"><%= image_tag gallary.image_or_empty, size: "100x100" %></p>
-            <div class="col-9 offset-1 flex-fill pt-1">
+          <div class="col-12 border d-flex flex-wrap my-2">
+            <div class="col-sm-2 col-10 offset-sm-0 offset-2 flex-fill my-auto mx-auto"><%= image_tag gallary.image_or_empty, size: "100x100" %></div>
+            <div class="col-sm-9 col-9 offset-sm-1 offset-3 flex-fill pt-1">
               <p class="">
                 <%= gallary.name %>
                 <% if gallary.is_lock %>
@@ -21,5 +21,8 @@
         <% end %>
       <% end %>
     </div>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @gallaries, outer_window: 3 %>
   </div>
 </div>

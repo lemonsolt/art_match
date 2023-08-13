@@ -3,7 +3,7 @@
     <%= link_to gallary_event_path(event.id),class: "text-secondary mx-auto" do %>
       <div class="col-12 d-flex flex-wrap border p-3 my-3">
         <div class="col-lg-2 col-md-3 col-sm-4 col-12">
-          <%= image_tag event.image_or_empty, size: "100x100" %>
+          <%= image_tag event.image_or_empty, class: "mini_image" %>
         </div>
         <div class="col-sm-8 col-12">
           <div class="row">

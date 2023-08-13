@@ -17,7 +17,7 @@
             <%= link_to gallary_path(gallary.id),class: "text-dark row w-100  d-flex" do%>
               <div class="border d-flex my-2 p-2">
                 <div class="col-2 my-auto">
-                  <%= image_tag gallary.image_or_empty, size: "80x80" %>
+                  <%= image_tag gallary.image_or_empty, class: "follow_image" %>
                 </div>
                 <div class="col-6 offset-1">
                   <div class="row"><%= gallary.name %></div>
@@ -30,6 +30,9 @@
             <% end %>
           <% end %>
         </div>
+      </div>
+      <div class="row justify-content-center">
+        <%= paginate @follow_gallaries, outer_window: 3 %>
       </div>
     </div>
   </div>

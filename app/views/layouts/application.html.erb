@@ -16,12 +16,12 @@
   </head>
 
   <body>
-    <main>
-      <%= render "layouts/header" %>
+    <%= render "layouts/header" %>
+    <div class="main">
       <%= render 'layouts/notification' %>
       <%= yield %>
-      <%= render "layouts/footer" %>
-    </main>
+    </div>
+    <%= render "layouts/footer" %>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   </body>
 </html>

@@ -1,37 +1,43 @@
-<nav class="col-12 py-2" style="background-color: rgba(176,196,222,100);">
+<nav class="col-12 py-2" style="background-color: #a4c1d7;">
   <ul class="col-12 d-flex flex-wrap">  <!--ページ内移動のリンク-->
-    <li id="one" class="col-md-3 col-12 flex-fill text-center" style="list-style: none;"><a href="#1" class="text-dark">ログイン</a></li>
-    <li id="two" class="col-md-3 col-12 flex-fill text-center" style="list-style: none;"><a href="#2" class="text-dark">about</a></li>
-    <li id="three" class="col-md-3 col-12 flex-fill text-center" style="list-style: none;"><a href="#3" class="text-dark">新規展示情報</a></li>
-    <li id="fore" class="col-md-3 col-12 flex-fill text-center" style="list-style: none;"><a href="#4" class="text-dark">新規作品</a></li>
+
+    <%= link_to "TOP",root_path,data:{"turbolinks" =>false} ,class: "col-md-3 col-12 flex-fill text-center"%>
+    <%= link_to "About" , "/#top2", data:{"turbolinks" =>false} ,class: "col-md-3 col-12 flex-fill text-center"%>
+    <%= link_to "新規展示情報" , "/#top3", data:{"turbolinks" =>false} ,class: "col-md-3 col-12 flex-fill text-center"%>
+    <%= link_to "新規作品" , "/#top4", data:{"turbolinks" =>false} ,class: "col-md-3 col-12 flex-fill text-center"%>
   </ul>
 </nav>
-<div id="1" class="row w-100 mx-auto px-0 py-5" style= "background-color: #d4d9df;">
-  <div class="row w-100 py-5">
-    <div class="col-12 text-center flex-wrap">
-      <h4>art match へようこそ！</h4>
+<div class="top_slide">
+  <div class="img03"></div>
+</div>
+<div id="top1" class="row w-100 mx-auto px-0 py-5">
+  <div class="row w-100 mx-auto toumei">
+    <div class="row w-100 py-5">
+      <div class="col-12 text-center flex-wrap">
+        <h4>art match へようこそ！</h4>
+      </div>
     </div>
-  </div>
-  <div class="row w-100 mx-auto">
-    <div class="col-lg-6 col-md-8 col-10 d-flex flex-wrap mx-auto mb-5">
-      <% unless gallary_signed_in? || artist_signed_in? %>
-        <div class="col-md-5 col-sm-10 col-12 py-5 mr-md-4 border text-center flex-fill" style= "background-color: rgba(0,0,0,0.3);">
-          <h5>ギャラリー</h5>
-          <%= link_to "ログイン",new_gallary_session_path,class: "btn btn-success mt-4" %><br>
-          <%= link_to "新規登録" , new_gallary_registration_path , class: "btn btn-success mt-4"%><br>
-          <%= link_to "ゲストログイン", gallaries_guest_sign_in_path , class: "btn btn-info mt-4", method: :post %><br>
-        </div>
-        <div class="col-md-5 col-sm-10 col-12 py-5 border text-center flex-fill" style= "background-color: rgba(0,0,0,0.3);">
-          <h5>アーティスト</h5>
-          <%= link_to "ログイン",new_artist_session_path,class: "btn btn-success mt-4" %><br>
-          <%= link_to "新規登録", new_artist_registration_path ,class: "btn btn-success mt-4"%><br>
-          <%= link_to "ゲストログイン", artists_guest_sign_in_path , class: "btn btn-info mt-4", method: :post %>
-        </div>
-      <% end %>
+    <div class="row w-100 mx-auto">
+      <div class="col-lg-6 col-md-8 col-10 d-flex flex-wrap mx-auto mb-5">
+        <% unless gallary_signed_in? || artist_signed_in? %>
+          <div class="col-md-5 col-sm-10 col-12 py-5 mr-md-4 border text-center flex-fill" style= "background-color: rgba(0,0,0,0.5);">
+            <h5>ギャラリー</h5>
+            <%= link_to "ログイン",new_gallary_session_path,class: "btn in_btn mt-4" %><br>
+            <%= link_to "新規登録" , new_gallary_registration_path , class: "btn in_btn mt-4"%><br>
+            <%= link_to "ゲストログイン", gallaries_guest_sign_in_path , class: "btn guest_btn mt-4", method: :post %><br>
+          </div>
+          <div class="col-md-5 col-sm-10 col-12 py-5 border text-center flex-fill" style= "background-color: rgba(0,0,0,0.5);">
+            <h5>アーティスト</h5>
+            <%= link_to "ログイン",new_artist_session_path,class: "btn in_btn mt-4" %><br>
+            <%= link_to "新規登録", new_artist_registration_path ,class: "btn in_btn mt-4"%><br>
+            <%= link_to "ゲストログイン", artists_guest_sign_in_path , class: "btn guest_btn mt-4", method: :post %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-<div id="2" style= "background-color: #d4dcd3;">
+<div id="top2">
   <div class="row w-100 py-5">
     <div class="row w-100 pb-5">
       <div class="col-10 mx-auto text-center">
@@ -55,7 +61,7 @@
     </div>
   </div>
 </div>
-<div id="3">
+<div id="top3">
   <div class="row w-100 py-5">
     <div class="row w-100 pb-5">
       <div class="col-10 mx-auto text-center">
@@ -72,7 +78,7 @@
     </div>
   </div>
 </div>
-<div id="4">
+<div id="top4">
   <div class="row w-100 py-5">
     <div class="row w-100 pb-5">
       <div class="col-md-10 col-12 mx-auto text-center">
@@ -80,7 +86,7 @@
       </div>
     </div>
     <div class="row w-100 mx-auto">
-      <div class="col-md-9 col-sm-12 col-12 mx-auto">
+      <div class="col-md-11 col-sm-12 col-12 mx-auto">
         <%= render 'artist/portfolios/index', portfolios: @portfolios %>
       </div>
     </div>

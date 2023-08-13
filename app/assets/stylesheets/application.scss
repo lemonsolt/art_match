@@ -16,6 +16,57 @@
 // *{
 //   border : solid 2px red ;
 // }
+/*=============
+base
+==============*/
+html, body {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+// フォント関連
+:root{
+    --font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, "游ゴシック体", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+    font-family: var(--font-family-sans-serif);
+}
+
+// フッターがせりあがらないように
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+
+footer {
+  flex-shrink: 0;
+  background-color: #192f60;
+}
+header {
+  background-image: asset-url("header.jpg");
+}
+
+// topの背景
+#top1{
+  color: white;
+  background-image: asset-url("top1.jpg");
+}
+.toumei{
+  background-color: rgba(0,0,0,0.5);
+}
+#top2{
+  background-color: #d4dcd3;
+}
+
 // フラッシュメッセージ設定
 #flash-notifications{
   text-align: center;
@@ -48,19 +99,16 @@
   bottom: 40px;
   right: 40px;
 }
-/*========= ナビゲーションのためのCSS ===============*/
+/*========= ナビゲーション ===============*/
 
 #g-nav{
-    /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
     position:fixed;
     z-index: 999;
-    /*ナビのスタート位置と形状*/
   top:0;
     right: -50%;
   width:30%;
-    height: 100vh;/*ナビの高さ*/
+    height: 100vh;
   background:#a4c1d7;
-    /*動き*/
   transition: all 0.6s;
 }
 
@@ -109,7 +157,7 @@
   font-weight: bold;
 }
 
-/*========= ボタンのためのCSS ===============*/
+/*========= ハンバーガーメニューボタン ===============*/
 .openbtn1{
   position:fixed;
     z-index: 9999;/*ボタンを最前面に*/
@@ -128,7 +176,7 @@
     left: 14px;
     height: 3px;
     border-radius: 2px;
-  background-color: #666;
+  background-color: #202020;
     width: 45%;
   }
 
@@ -161,6 +209,70 @@
     transform: translateY(-6px) rotate(45deg);
     width: 30%;
 }
+
+// gallaries_showの画像サイズ
+.gallary_image{
+    max-height: 281px;
+    max-width: 500px;
+  }
+  // 作品画像サイズshow
+.portfolio_image{
+  max-width: 800px;
+  max-height: 600px;
+}
+// 作品画像サイズindex
+.portfolio_index_image{
+  max-width: 200px;
+  max-height: 200px;
+}
+.index_image{
+  max-width: 200px;
+  max-height: 200px;
+}
+.mini_image{
+  max-width: 100px;
+  max-height: 100px;
+}
+.follow_image{
+  max-width: 80px;
+  max-height: 80px;
+}
+.index_box{
+  width: 220px;
+}
+// マイページ編集バックカラー
+.edit_back{
+  background-color: #b9b9b9;
+}
+
+// ボタンデザイン
+.in_btn{
+  color: white;
+  background-color: #192f60;
+  border-radius: 4px;
+}
+.in_btn:hover{
+  background-color: #6c9bd2;
+}
+// // 変更ボタン
+// .edit_btn{
+//   color: white;
+//   background-color: #00885a;
+//   border-radius: 4px;
+// }
+// .edit_btn:hover{
+//   background-color: #89c997;
+// }
+// ゲストログインボタン
+.guest_btn{
+  color: white;
+  background-color: #00947a;
+  border-radius: 4px;
+}
+.guest_btn:hover{
+  background-color: #a3d6cc;
+}
+
 
 
 /* タブレット縦置きサイズ（768px）以下 */
@@ -229,5 +341,7 @@
 
 /* スマートフォンサイズ（576px）以下 */
 @media screen and (max-width:576px) {
-
+  .gallary_image{
+    width: 50%;
+  }
 }

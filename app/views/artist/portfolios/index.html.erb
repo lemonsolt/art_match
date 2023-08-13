@@ -1,6 +1,9 @@
 <div class="container">
-  <div class="row">
-    <h4>投稿一覧</h4>
+  <div class="row w-100">
+    <h4 class="text-center mx-auto pt-3">投稿一覧</h4>
   </div>
   <%= render 'index',portfolios: @portfolios %>
+  <div class="row justify-content-center">
+    <%= paginate @portfolios, outer_window: 3 %>
+  </div>
 </div>

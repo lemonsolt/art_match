@@ -1,14 +1,14 @@
 <div class="row d-flex flex-wrap mx-auto">
   <% portfolios.each do |portfolio| %>
-    <div class="col-lg-4 col-md-6 col-sm-6 col-12 d-flex">
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex">
       <%= link_to portfolio_path(portfolio.id),class: "text-secondary" do %>
-        <div class="col-12 border px-4 py-3 my-2">
+        <div class="col-12 border px-4 py-3 my-2 index_box">
           <div class="row">
-            <%= image_tag portfolio.image_or_empty, size: "200x200" %>
+            <%= image_tag portfolio.image_or_empty, class: "mx-auto portfolio_index_image" %>
           </div>
           <div class="row">
             <h5>
-              <%= portfolio.title %>
+              <%= portfolio.title.truncate(12) %>
             </h5>
           </div>
           <div class="row">

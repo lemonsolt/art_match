@@ -18,7 +18,7 @@
                 <%= render 'gallary/event_bookmarks/bookmark', event: @event %>
               </p>
             </div>
-            <%= link_to gallary_path(@gallary),class: "text-secondary" do %>
+            <%= link_to gallary_path(@gallary),data:{"turbolinks" =>false},class: "text-secondary" do %>
               <h4><%= @event.gallary.name %></h4>
             <% end %>
             <h4><%= @event.start_at %> ~ <%= @event.end_at %></h4>
@@ -27,10 +27,10 @@
           <div class="col-md-2 col-12">
             <% if gallary_signed_in? && @event.gallary_id == current_gallary.id %>
               <div>
-                <%= link_to "編集する", edit_gallary_event_path(@event.id), class: "btn btn-success mb-1" %>
+                <%= link_to "編集する", edit_gallary_event_path(@event.id),data:{"turbolinks" =>false}, class: "btn btn-success mb-1" %>
               </div>
               <div>
-                <%= link_to "削除する", gallary_event_path(@event.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"%>
+                <%= link_to "削除する", gallary_event_path(@event.id), method: :delete, "data-confirm" => "本当に削除しますか？",data:{"turbolinks" =>false}, class: "btn btn-danger"%>
               </div>
             <% end %>
           </div>

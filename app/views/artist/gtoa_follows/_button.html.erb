@@ -1,10 +1,10 @@
 <% if gallary_signed_in? %>
   <% if current_gallary.already_followed?(artist)%>
-    <%= link_to artist_gtoa_follows_path(artist),method: :delete,remote: true do %>
+    <%= link_to artist_gtoa_follows_path(artist),method: :delete,remote: true,data:{"turbolinks" =>false} do %>
       <p class="btn btn-info">フォロー外す</p>
     <% end %>
   <% else %>
-    <%= link_to artist_gtoa_follows_path(artist),method: :post,remote: true do %>
+    <%= link_to artist_gtoa_follows_path(artist),method: :post,remote: true,data:{"turbolinks" =>false} do %>
       <p class="btn btn-info">フォローする</p>
     <% end %>
   <% end %>

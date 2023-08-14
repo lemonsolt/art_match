@@ -30,7 +30,8 @@ class Gallary < ApplicationRecord
       gallary.password = SecureRandom.urlsafe_base64
       gallary.password_confirmation = gallary.password
       gallary.name = "ゲストギャラリー"
-      gallary.introduction = "ゲスト用アカウントです。"
+      gallary.introduction = "ゲスト用アカウントです。
+      このアカウントでは投稿、アーティストフォロー機能、作品のブックマーク機能が利用可能です。"
       gallary.post_code = "0000000"
       gallary.address = "地球上のどこか"
     end

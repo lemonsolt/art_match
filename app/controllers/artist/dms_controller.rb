@@ -10,9 +10,9 @@ class Artist::DmsController < ApplicationController
   def show
     if artist_signed_in?
       @user = Gallary.find(params[:id])
-      rooms = current_artist.dm_rooms.pluck(:dm_room_id)
+      rooms = current_artist.dm_rooms.pluck(:id)
       user_rooms = DmRoom.where(gallary_id: @user.id, id: rooms)
-  
+
       if user_rooms.present?
         @room = user_rooms.last
       else
@@ -20,9 +20,9 @@ class Artist::DmsController < ApplicationController
       end
     elsif gallary_signed_in?
       @user = Artist.find(params[:id])
-      rooms = current_gallary.dm_rooms.pluck(:dm_room_id)
+      rooms = current_gallary.dm_rooms.pluck(:id)
       user_rooms = DmRoom.where(artist_id: @user.id, id: rooms)
-  
+
       if user_rooms.present?
         @room = user_rooms.last
       else
@@ -37,13 +37,13 @@ class Artist::DmsController < ApplicationController
     if artist_signed_in?
       @message = current_artist.dm_messages.new(message_params)
       @message.gallary_id = nil
-      
+
     elsif gallary_signed_in?
       @message = current_gallary.dm_messages.new(message_params)
       @message.artist_id = nil
     end
-    
-    
+
+
     if @message.save
       @room = @message.dm_room
       @messages = @room.dm_messages

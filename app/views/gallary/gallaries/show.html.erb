@@ -8,7 +8,7 @@
   <% else %>
     <div class="row">
       <% if gallary_signed_in? && @gallary.id == current_gallary.id %>
-        <h1 class="mt-3 offset-2">マイページ</h1>
+        <h2 class="mt-3 title offset-1">マイページ</h2>
       <% end %>
     </div>
     <div class="row d-flex mx-auto my-4">
@@ -18,10 +18,14 @@
       <div class="col-lg-8 col-md-7 offset-1">
         <div class="row w-100 d-flex mx-auto">
           <% if artist_signed_in? && current_artist.email != "guest@example.com" %>
-            <%= link_to dm_path(@gallary),class: "col-md-1 col-2 offset-md-5 offset-md-2 offset-sm-3 offset-1 mt-md-2 mt-3 text-right" do%>
+            <%= link_to dm_path(@gallary),data:{"turbolinks" =>false},class: "col-md-1 col-2 offset-md-5 offset-md-2 offset-sm-3 offset-1 mt-md-2 mt-3 text-right" do%>
               <i class="fa-solid fa-envelope fa-2xl" style="color: #4682b4;"></i>
             <% end %>
             <div id="atog_follow_buttons_<%= @gallary.id %>" class="col-lg-4 col-md-5 col-6 mt-md-0 mt-2 text-left">
+              <%= render 'gallary/atog_follows/button', gallary: @gallary%>
+            </div>
+          <% elsif artist_signed_in? && current_artist.email == "guest@example.com" %>
+            <div id="atog_follow_buttons_<%= @gallary.id %>" class="col-12 mt-md-0 mt-2 text-md-right text-center">
               <%= render 'gallary/atog_follows/button', gallary: @gallary%>
             </div>
           <% elsif gallary_signed_in? && @gallary.id == current_gallary.id && @gallary.email != "guest@example.com" %>
@@ -29,7 +33,7 @@
           <% end %>
         </div>
         <div class="row w-100 d-flex">
-          <h4 class="col-lg-5 col-md-8 col-12 text-center">
+          <h4 class="col-lg-5 col-md-8 col-12 text-md-left text-center">
             <%= @gallary.name %>
             <% if @gallary.is_lock %>
               <i class="fa-solid fa-lock fa-sm mt-2" style="color: #4682b4;"></i>
@@ -82,7 +86,7 @@
         <div class="row w-100">
           <div class="col-10 mx-auto">
             <% @events.each do |event| %>
-              <%= link_to gallary_event_path(event.id),class: "text-secondary" do %>
+              <%= link_to gallary_event_path(event.id),data:{"turbolinks" =>false},class: "text-secondary" do %>
                 <div class="col-12 d-flex border p-3 my-3">
                   <div class="col-4">
                     <%= image_tag event.image_or_empty, size: "200x200"%>

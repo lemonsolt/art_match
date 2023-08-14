@@ -1,21 +1,23 @@
 <div class="container">
   <div class="row w-100">
+    <h4 class="text-center mx-auto pt-3">ギャラリー一覧</h4>
+  </div>
+  <div class="row w-100">
     <div class="col-lg-8  col-md-10 col-12 mx-auto">
-      <div class="mt-4"><h4>ギャラリー一覧</h4></div>
       <% @gallaries.each do |gallary| %>
-        <%= link_to gallary_path(gallary.id),class: "text-secondary" do %>
-          <div class="col-12 border d-flex flex-wrap my-2">
-            <div class="col-sm-2 col-10 offset-sm-0 offset-2 flex-fill my-auto mx-auto"><%= image_tag gallary.image_or_empty, size: "100x100" %></div>
-            <div class="col-sm-9 col-9 offset-sm-1 offset-3 flex-fill pt-1">
-              <p class="">
+        <%= link_to gallary_path(gallary.id),data:{"turbolinks" =>false},class: "text-secondary" do %>
+          <div class="col-12 border d-flex flex-wrap my-2 py-2">
+            <div class="col-sm-2 col-10 offset-sm-0 offset-2 flex-fill my-auto mx-auto"><%= image_tag gallary.image_or_empty, class: "mini_image d-block mx-auto" %></div>
+            <div class="col-sm-9 col-9 offset-sm-1 offset-0 flex-fill pt-1">
+              <p>
                 <%= gallary.name %>
                 <% if gallary.is_lock %>
                   <i class="fa-solid fa-lock fa-sm" style="color: #4682b4;"></i>
                 <% end %>
               </p>
-              <p class="">〒 <%= gallary.post_code %></p>
+              <p >〒 <%= gallary.post_code %></p>
               <p><%= gallary.address%></p>
-              <p><%= gallary.introduction%></p>
+              <p><%= gallary.introduction.truncate(20) %></p>
             </div>
           </div>
         <% end %>

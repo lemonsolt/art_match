@@ -6,7 +6,7 @@
   </div>
   <div class="row d-flex pb-5">
     <div class="col-xl-4 col-lg-6 col-md-7 col-11 card mx-auto mt-4">
-      <%= form_with model: @artist,method: :patch, local: true do |f| %>
+      <%= form_with model: @artist,method: :patch, local: true,data:{"turbolinks" =>false} do |f| %>
 
         <div class="field mt-4 center-block">
           <p>プロフィール画像</p>

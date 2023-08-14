@@ -32,7 +32,7 @@ class Artist < ApplicationRecord
       artist.password_confirmation = artist.password
       artist.name = "ゲストアーティスト"
       artist.introduction = "ゲスト用アカウントです。
-        このアカウントでは投稿とゲストギャラリーへのみDMが送れます。"
+        このアカウントでは投稿、ギャラリーフォロー機能、展示情報のブックマーク機能が利用可能です。"
     end
   end
 # 画像の有無で違う表示に

@@ -1,17 +1,17 @@
 <div class="container">
-  <div class="row text-center">
-    <h4>ブックマーク一覧</h4>
+  <div class="row w-100">
+    <h4 class="text-center mx-auto pt-3">ブックマーク一覧</h4>
   </div>
   <div class="row">
     <div class="col-10 mx-auto">
       <% @bookmarks.each do |bookmark| %>
         <% portfolio = Portfolio.find_by(id: bookmark.portfolio_id) %>
-        <%= link_to portfolio_path(portfolio.id),class: "text-secondary" do%>
-          <div class="col-12 d-flex border p-3 my-3">
-            <div class="col-4">
+        <%= link_to portfolio_path(portfolio.id),data:{"turbolinks" =>false},class: "text-secondary" do%>
+          <div class="col-12 d-flex flex-wrap border p-3 my-3">
+            <div class="col-lg-4 col-md-5">
               <%= image_tag portfolio.image_or_empty, class: "portfolio_index_image" %>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-md-5">
               <div class="row">
                 <h5>
                   <%= portfolio.title %>

@@ -23,7 +23,7 @@
               </p>
             </div>
             <h6>
-              <%= link_to artist_path(@portfolio.artist.id),class: "text-secondary" do %>
+              <%= link_to artist_path(@portfolio.artist.id),data:{"turbolinks" =>false},class: "text-secondary" do %>
                 作者名 : <%= @portfolio.artist.name %>
               <% end %>
             </h6>
@@ -37,8 +37,8 @@
             <p>詳細文<br>
             <%= @portfolio.introduction %>
             </p>
-  
-  
+
+
             <% if artist_signed_in? && @portfolio.artist_id == current_artist.id %>
               <div class="d-flex">
                 <div>

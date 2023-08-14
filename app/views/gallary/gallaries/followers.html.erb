@@ -1,38 +1,35 @@
 <div class="container">
   <div class="row">
     <div class="col-10 mx-auto">
-      <div class="row w-100 d-flex">
-        <%= link_to follows_gallary_path(current_gallary.id), class: "col-6 flex-fill text-center text-dark" do%>
+      <div class="row w-100 flex-wrap mt-4">
+        <%= link_to follows_gallary_path(current_gallary.id),data:{"turbolinks" =>false}, class: "col-lg-6 col-12 flex-fill text-center text-dark follow" do%>
         <div>
-          <h2>フォローアーティスト</h2>
+          <h3>フォロー<br>アーティスト</h3>
         </div>
         <% end %>
-        <div class="col-6 flex-fill text-center " style= "background-color: #b0c4de;">
-          <h2>フォロワーアーティスト</h2>
+        <div class="col-lg-6 col-12 flex-fill text-center rounded-top pt-1 follow" style= "background-color: #b0c4de;">
+          <h3>フォロワー<br>アーティスト</h3>
         </div>
       </div>
       <div class="row w-100" style= "background-color: #b0c4de;">
         <div class="col-10 mx-auto mt-4">
           <% @follower_artists.each do |artist| %>
-            <%= link_to artist_path(artist.id),class: "text-dark row w-100  d-flex" do%>
-              <div class="border d-flex my-2 p-2">
-                <div class="col-2 my-auto">
+            <div class="border d-flex my-2 p-2">
+              <%= link_to artist_path(artist.id),data:{"turbolinks" =>false},class: "text-dark row w-100  d-flex" do%>
+                <div class="col-md-2 col-12">
                   <%= image_tag artist.image_or_empty, class: "follow_image" %>
                 </div>
-                <div class="col-6 offset-1">
-                  <div class="row"><%= artist.name %></div>
+                <div class="col-md-6 col-12 offset-lg-1 offset-md-2 offset-1">
+                  <div class="row"><%= artist.name.truncate(12) %></div>
                   <div class="row"><%= artist.introduction%></div>
                 </div>
-                <div class="col-3 jusify-content-end">
-                  <%= render 'artist/gtoa_follows/button',artist: artist  %>
-                </div>
+              <% end %>
+              <div class="col-md-3 col-12">
+                <%= render 'artist/gtoa_follows/button',artist: artist  %>
               </div>
-            <% end %>
+            </div>
           <% end %>
         </div>
-      </div>
-      <div class="row justify-content-center">
-        <%= paginate @follower_artists, outer_window: 3 %>
       </div>
     </div>
   </div>

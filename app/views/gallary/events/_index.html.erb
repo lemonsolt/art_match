@@ -1,6 +1,6 @@
 <div class="col-sm-10 col-11 mx-auto offset-sm-0 offset-1">
   <% events.each do |event| %>
-    <%= link_to gallary_event_path(event.id),class: "text-secondary mx-auto" do %>
+    <%= link_to gallary_event_path(event.id),data:{"turbolinks" =>false},class: "text-secondary mx-auto" do %>
       <div class="col-12 d-flex flex-wrap border p-3 my-3">
         <div class="col-lg-2 col-md-3 col-sm-4 col-12">
           <%= image_tag event.image_or_empty, class: "mini_image" %>

@@ -1,65 +1,65 @@
 <div class="container">
   <div class="row py-4">
     <div class="col-10 mx-auto">
-      <div class="row w-100 d-flex">
-        <%= link_to searches_path, class: "col-6 flex-fill text-center text-dark" do %>
+      <div class="row w-100">
+        <%= link_to searches_path,data:{"turbolinks" =>false}, class: "col-6 text-center text-dark follow" do %>
           <div>
-            <h2>アーティストを探す</h2>
+            <h3>アーティストを探す</h3>
           </div>
         <% end %>
-        <div class="col-6 flex-fill text-center" style= "background-color: #b0c4de;">
-          <h2>ギャラリーを探す</h2>
+        <div class="col-6 text-center rounded-top pt-2 follow" style= "background-color: #b0c4de;">
+          <h3>ギャラリーを探す</h3>
         </div>
       </div>
       <div class="row w-100" style= "background-color: #b0c4de;">
         <div class="row w-100">
-          <div class="col-12 offset-2">
-            <h4 class="pl-4  pt-4 pb-4">ギャラリー一覧から探す</h4>
+          <div class="col-12 offset-md-2 offset-0">
+            <h4 class="pl-4  pt-4 pb-4 search-title">ギャラリー一覧から探す</h4>
           </div>
         </div>
-        <div class="row w-100 pb-4 border-bottom">
+        <div class="row w-100 pb-4 border-bottom search_area">
           <div class="col-12 d-flex mx-auto ">
-            <p class="col-6 pr-3 pt-3 offset-2">
-              <%= link_to "ギャラリー一覧はこちら", gallaries_path, class: "btn btn-success" %>
+            <p class="col-md-6 col-12 pr-3 pt-3 offset-md-2 offset-0 text-md-left text-center">
+              <%= link_to "ギャラリー一覧はこちら", gallaries_path,data:{"turbolinks" =>false}, class: "btn btn-success" %>
             </p>
           </div>
         </div>
         <div class="row w-100">
-          <div class="col-6 offset-2">
-            <h4 class="pl-4  pt-4 pb-4">投稿一覧から探す</h4>
+          <div class="col-md-6 col-12 offset-md-2 offset-0">
+            <h4 class="pl-4  pt-4 pb-4 search-title">投稿一覧から探す</h4>
           </div>
         </div>
-        <div class="row w-100 pb-5 border-bottom">
+        <div class="row w-100 pb-5 border-bottom search_area">
           <div class="col-12 d-flex mx-auto ">
-            <p class="col-6 pr-3 pt-3 offset-2">
-              <%= link_to "投稿一覧はこちら", gallary_events_path, class: "btn btn-success" %>
+            <p class="col-md-6 col-12 pr-3 pt-3 offset-md-2 offset-0 text-md-left text-center">
+              <%= link_to "投稿一覧はこちら", gallary_events_path,data:{"turbolinks" =>false}, class: "btn btn-success" %>
             </p>
           </div>
         </div>
         <div class="row w-100">
-          <div class="col-6 offset-2">
-            <h4 class="pl-4 pt-4 pb-4">展示の開催期間から探す</h4>
+          <div class="col-md-6 col-12 offset-md-2 offset-0">
+            <h4 class="pl-4 pt-4 pb-4 search-title">展示の開催期間から探す</h4>
           </div>
         </div>
-        <div class="row w-100 pb-5 border-bottom">
-          <div class="col-12 d-flex mx-auto ">
-            <p class="col-3 pr-3 pt-3 offset-2">
-              <%= link_to "今後開催予定", before_index_gallary_events_path, class: "btn btn-success" %>
+        <div class="row w-100 pb-5 border-bottom search_area">
+          <div class="col-12 d-flex flex-wrap mx-auto ">
+            <p class="col-md-3 col-12 pr-3 pt-3 offset-md-2 offset-0 text-center">
+              <%= link_to "今後開催予定", before_index_gallary_events_path,data:{"turbolinks" =>false}, class: "btn btn-success" %>
             </p>
-            <p class="col-3 pr-3 pt-3">
-              <%= link_to "現在開催中", now_index_gallary_events_path, class: "btn btn-success" %>
+            <p class="col-md-3 col-12 pr-3 pt-3 text-center">
+              <%= link_to "現在開催中", now_index_gallary_events_path,data:{"turbolinks" =>false}, class: "btn btn-success" %>
             </p>
-            <p class="col-3 pr-3 pt-3">
-              <%= link_to "開催終了", after_index_gallary_events_path, class: "btn btn-success" %>
+            <p class="col-md-3 col-12 pr-3 pt-3 text-center">
+              <%= link_to "開催終了", after_index_gallary_events_path,data:{"turbolinks" =>false}, class: "btn btn-success" %>
             </p>
           </div>
         </div>
         <div class="row w-100">
-          <div class="col-8 offset-2 pt-3 pb-5">
-            <h4 class="pl-4  pt-4 pb-4">キーワードから探す</h4>
+          <div class="col-md-8 col-12 offset-md-2 offset-0 pt-3 pb-5">
+            <h4 class="pl-4  pt-4 pb-4 search-title">キーワードから探す</h4>
             <div class="search_form text-right">
-              <%= form_with url: result_gallary_searches_path, local: true, method: :get do |f| %>
-                <%= f.text_field :keyword , class: "form-control" %>
+              <%= form_with url: result_gallary_searches_path, local: true, method: :get,data:{"turbolinks" =>false} do |f| %>
+                <%= f.text_field :keyword , class: "form-control ml-1" %>
                 <%= f.select :range, options_for_select([['住所'], ['ギャラリー名']]) %>
                 <%= f.submit "検索", class: "btn btn-primary mt-2" %>
               <% end %>

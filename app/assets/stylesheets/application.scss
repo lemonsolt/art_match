@@ -45,7 +45,9 @@ body {
 
 .main {
   flex: 1;
+  background-color: #fafafa;
 }
+
 
 footer {
   flex-shrink: 0;
@@ -142,7 +144,6 @@ header {
 
 #g-nav li{
   list-style: none;
-    text-align: center;
 }
 
 #g-nav li a{
@@ -209,7 +210,7 @@ header {
     transform: translateY(-6px) rotate(45deg);
     width: 30%;
 }
-
+/*========== 画像サイズ関連 ==========*/
 // gallaries_showの画像サイズ
 .gallary_image{
     max-height: 281px;
@@ -240,12 +241,14 @@ header {
 .index_box{
   width: 220px;
 }
-// マイページ編集バックカラー
-.edit_back{
-  background-color: #b9b9b9;
+
+// サーチ画面の微調整
+.search_area{
+  margin-left: 2px;
+  margin-right: 1px;
 }
 
-// ボタンデザイン
+/*========== ボタンデザイン全般 =========*/
 .in_btn{
   color: white;
   background-color: #192f60;
@@ -254,15 +257,7 @@ header {
 .in_btn:hover{
   background-color: #6c9bd2;
 }
-// // 変更ボタン
-// .edit_btn{
-//   color: white;
-//   background-color: #00885a;
-//   border-radius: 4px;
-// }
-// .edit_btn:hover{
-//   background-color: #89c997;
-// }
+
 // ゲストログインボタン
 .guest_btn{
   color: white;
@@ -273,75 +268,180 @@ header {
   background-color: #a3d6cc;
 }
 
+/*========== タイトル背景 ==========*/
+// .title{
+//   border-bottom: 4px double #192f60;
+// }
 
+/*========== ダイレクトメール（DM）レイアウト ==========*/
 
-/* タブレット縦置きサイズ（768px）以下 */
+ .chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.chat-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #192f60;
+  color: #fff;
+  height: 50px;
+  padding: 0 20px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: scroll;
+  padding: 20px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.message-sender {
+  margin-bottom: 5px;
+  font-size: 0.8em;
+  color: #666;
+}
+
+.message-body {
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
+.self .message-body {
+  align-self: flex-end;
+  background-color: #007199;
+  color: #fff;
+}
+
+.other .message-body {
+  align-self: flex-start;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.chat-form {
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.chat-form form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-form input[type="text"] {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.chat-form input[type="submit"] {
+  flex: 0 0 auto;
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: #192f60;
+  color: #fff;
+  cursor: pointer;
+}
+
+/*========== タブレット縦置きサイズ（768px）以下 ==========*/
 @media screen and (max-width:768px) {
-      #g-nav{
-          /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
-          position:fixed;
-          z-index: 999;
-          /*ナビのスタート位置と形状*/
-        top:0;
-          right: -120%;
-        width:100%;
-          height: 100vh;/*ナビの高さ*/
-        background:#a4c1d7;
-          /*動き*/
-        transition: all 0.6s;
-      }
+  #g-nav{
+      /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+      position:fixed;
+      z-index: 999;
+      /*ナビのスタート位置と形状*/
+    top:0;
+      right: -120%;
+    width:100%;
+      height: 100vh;/*ナビの高さ*/
+    background:#a4c1d7;
+      /*動き*/
+    transition: all 0.6s;
+  }
 
-      /*アクティブクラスがついたら位置を0に*/
-      #g-nav.panelactive{
-          right: 0;
-      }
+  /*アクティブクラスがついたら位置を0に*/
+  #g-nav.panelactive{
+      right: 0;
+  }
 
-      /*ナビゲーションの縦スクロール*/
-      #g-nav.panelactive #g-nav-list{
-          /*ナビの数が増えた場合縦スクロール*/
-          position: fixed;
-          z-index: 999;
-          width: 100%;
-          height: 100vh;/*表示する高さ*/
-          overflow: auto;
-          -webkit-overflow-scrolling: touch;
-      }
+  /*ナビゲーションの縦スクロール*/
+  #g-nav.panelactive #g-nav-list{
+      /*ナビの数が増えた場合縦スクロール*/
+      position: fixed;
+      z-index: 999;
+      width: 100%;
+      height: 100vh;/*表示する高さ*/
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+  }
 
-      /*ナビゲーション*/
-      #g-nav ul {
-          /*ナビゲーション天地中央揃え*/
-          position: absolute;
-          z-index: 999;
-          top:50%;
-          left:50%;
-          transform: translate(-50%,-50%);
-      }
+  /*ナビゲーション*/
+  #g-nav ul {
+      /*ナビゲーション天地中央揃え*/
+      position: absolute;
+      z-index: 999;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+  }
 
-      /*リストのレイアウト設定*/
+  /*リストのレイアウト設定*/
 
-      #g-nav li{
-        list-style: none;
-          text-align: center;
-      }
+  #g-nav li{
+    list-style: none;
+      text-align: center;
+  }
 
-      #g-nav li a{
-        color: #333;
-        text-decoration: none;
-        padding:10px;
-        display: block;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-      }
-      .category{
-        font-weight: bold;
-      }
+  #g-nav li a{
+    color: #333;
+    text-decoration: none;
+    padding:10px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .category{
+    font-weight: bold;
+  }
+  
+  // フォローページタイトルサイズ
+  .follow h3{
+    font-size: 25px;
+  }
 
 }
 
 
-/* スマートフォンサイズ（576px）以下 */
+/*========== スマートフォンサイズ（576px）以下 ==========*/
 @media screen and (max-width:576px) {
   .gallary_image{
     width: 50%;
+  }
+  // フォローページタイトルサイズ(サーチのタブの文字もこれ)
+  .follow h3{
+    font-size: 20px;
+  }
+  // サーチのサブタイトル部分
+  .search-title{
+    font-size: 18px;
   }
 }

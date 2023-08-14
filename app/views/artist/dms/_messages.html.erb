@@ -1,5 +1,35 @@
-<div class="messages">
+<div class="dm_messages">
   <% messages.each do |dm_message| %>
-    <%= dm_message.message %>
+    <% if artist_signed_in?%>
+      <% if dm_message.artist_id != nil %>
+        <div class="message self">
+          <div class="message-body">
+            <%= dm_message.message %>
+          </div>
+        </div>
+      <% else %>
+        <div class="message other">
+          <div class="message-sender"><%= dm_message.gallary.name %></div>
+          <div class="message-body">
+            <%= dm_message.message %>
+          </div>
+        </div>
+      <% end %>
+    <% elsif gallary_signed_in? %>
+      <% if dm_message.gallary_id != nil %>
+        <div class="message self">
+          <div class="message-body">
+            <%= dm_message.message %>
+          </div>
+        </div>
+      <% else %>
+        <div class="message other">
+          <div class="message-sender"><%= dm_message.artist.name %></div>
+          <div class="message-body">
+            <%= dm_message.message %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </div>

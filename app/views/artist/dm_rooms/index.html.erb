@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row w-100">
+    <h4 class="text-center mx-auto pt-3">DMリスト</h4>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 col-10 mx-auto">
+      <% if artist_signed_in? %>
+        <% @rooms.each do |room| %>
+        <div class="row w-100 border my-1 py-2">
+          <%= link_to dm_path(room.gallary.id),data:{"turbolinks" =>false},class: "row w-100 d-flex flex-wrap text-secondary" do%>
+            <div class="col-sm-2 col-10 offset-sm-0 offset-2 my-auto mx-md-3 mx-auto ">
+              <%= image_tag room.gallary.image_or_empty, class: "mini_image d-block mx-auto" %>
+            </div>
+            <div class="col-sm-7 col-12 my-auto text-sm-left text-center">
+              <h5>
+                <%= room.gallary.name %>
+              </h5>
+            </div>
+            
+          <% end %>
+        </div>
+        <% end %>
+      <% elsif gallary_signed_in? %>
+        <% @rooms.each do |room| %>
+          <%= room.artist.name %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,44 +1,44 @@
 <div class="container">
   <div class="row py-4">
     <div class="col-10 mx-auto">
-      <div class="row w-100 d-flex">
-        <div class="col-6 flex-fill text-center" style= "background-color: #b0c4de;">
-          <h2>アーティストを探す</h2>
+      <div class="row w-100">
+        <div class="col-6 text-center rounded-top pt-2 follow" style= "background-color: #b0c4de;">
+          <h3>アーティストを探す</h3>
         </div>
-        <%= link_to gallary_searches_path, class: "col-6 flex-fill text-center text-dark" do %>
+        <%= link_to gallary_searches_path,data:{"turbolinks" =>false}, class: "col-6 text-center text-dark follow" do %>
           <div>
-            <h2>ギャラリーを探す</h2>
+            <h3>ギャラリーを探す</h3>
           </div>
         <% end %>
       </div>
       <div class="row w-100" style= "background-color: #b0c4de;">
         <div class="row w-100">
-          <div class="col-12 offset-2">
-            <h4 class="pl-4  pt-4 pb-4">アーティスト一覧から探す</h4>
+          <div class="col-12 offset-md-2 offset-0">
+            <h4 class="pl-4  pt-4 pb-4 search-title">アーティスト一覧から探す</h4>
           </div>
         </div>
-        <div class="row w-100 pb-4 border-bottom">
+        <div class="row w-100 pb-4 border-bottom search_area">
           <div class="col-12 d-flex mx-auto ">
-            <p class="col-6 pr-3 pt-3 offset-2">
+            <p class="col-md-6 col-12 pr-3 pt-3 offset-md-2 offset-0 text-md-left text-center">
               <%= link_to "アーティスト一覧はこちら", artists_path, class: "btn btn-success" %>
             </p>
           </div>
         </div>
         <div class="row w-100">
-          <div class="col-6 offset-2">
-            <h4 class="pl-4  pt-4 pb-4">投稿一覧から探す</h4>
+          <div class="col-6 offset-md-2 offset-0">
+            <h4 class="pl-4  pt-4 pb-4 search-title">投稿一覧から探す</h4>
           </div>
         </div>
-        <div class="row w-100 pb-5 border-bottom">
+        <div class="row w-100 pb-5 border-bottom search_area">
           <div class="col-12 d-flex mx-auto ">
-            <p class="col-6 pr-3 pt-3 offset-2">
+            <p class="col-md-6 col-12 pr-3 pt-3 offset-md-2 offset-0 text-md-left text-center">
               <%= link_to "投稿一覧はこちら", portfolios_path, class: "btn btn-success" %>
             </p>
           </div>
         </div>
-        <div class="row w-100 border-bottom">
-          <div class="col-8 offset-2 pt-3 pb-5">
-            <h4 class="pl-4  pt-4 pb-4">アーティスト名をキーワードから探す</h4>
+        <div class="row w-100 border-bottom search_area">
+          <div class="col-8 offset-md-2 offset-0 pt-3 pb-5">
+            <h4 class="pl-4  pt-4 pb-4 search-title">アーティスト名を<br>キーワードから探す</h4>
             <div class="search_form text-right">
               <%= form_with url: result_searches_path, local: true, method: :get do |f| %>
                 <%= f.text_field :keyword , class: "form-control" %>
@@ -48,13 +48,13 @@
           </div>
         </div>
         <div class="row w-100">
-          <div class="col-12 offset-2">
-            <h4 class="pl-4  pt-4 pb-4">ジャンルタグから投稿を探す</h4>
+          <div class="col-12 offset-md-2 offset-0">
+            <h4 class="pl-4  pt-4 pb-4 search-title">ジャンルタグから投稿を探す</h4>
           </div>
         </div>
-        <div class="row w-100 pb-5 border-bottom">
+        <div class="row w-100 pb-5 border-bottom search_area">
           <div class="col-12 d-flex mx-auto ">
-            <p class="col-8 pr-3 pt-3 offset-2">
+            <p class="col-8 pr-3 pt-3 offset-md-2 offset-0">
               <% @genres.each do |genre| %>
                 <%= link_to genre_path(genre.id),class: "mx-3" do %>
                   <%= genre.name%>

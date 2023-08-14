@@ -1,20 +1,27 @@
 <div class="container">
   <div class="row w-100">
-    <div class="col-10 mx-auto">
-      <h4>アーティスト一覧</h4>
+    <h4 class="text-center mx-auto pt-3">アーティスト一覧</h4>
+  </div>
+  <div class="row w-100">
+    <div class="col-lg-8 col-10 mx-auto">
       <% @artists.each do |artist| %>
-        <%= link_to artist_path(artist.id),class: "text-secondary" do %>
-          <table class="table card">
-            <td class="flex-fill col-2"><%= image_tag artist.artist_image_or_empty, size: "50x50" %></td>
-            <td class="flex-fill col-3">
-              <%= artist.name %>
-              <% if artist.is_lock %>
-                <i class="fa-solid fa-lock fa-sm" style="color: #4682b4;"></i>
-              <% end %>
-            </td>
-            <td class="flex-fill col-7"><%= artist.introduction %></td>
-          </table>
+        <div class="row w-100 border my-1 py-2">
+          <%= link_to artist_path(artist.id),data:{"turbolinks" =>false},class: "row w-100 text-secondary d-flex flex-wrap" do %>
+            <div class="col-md-2 col-12 mx-auto"><%= image_tag artist.artist_image_or_empty, class: "mini_image d-block mx-auto" %></div>
+            <div class="col-md-7 col-10 offset-md-2 offset-0 mx-auto">
+              <div class="row w-100">
+                <%= artist.name %>
+                <% if artist.is_lock %>
+                  <i class="fa-solid fa-lock fa-sm" style="color: #4682b4;"></i>
+                <% end %>
+              </div>
+              <div class="row w-100 mx-auto">
+                <%= artist.introduction %>
+              </div>
+            </div>
         <% end %>
+        </div>
+
       <% end %>
       <div class="row justify-content-center">
         <%= paginate @artists, outer_window: 3 %>

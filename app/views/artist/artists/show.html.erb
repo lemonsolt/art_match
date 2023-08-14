@@ -8,7 +8,7 @@
   <% else %>
     <div class="row">
       <% if artist_signed_in? && @artist.id == current_artist.id %>
-        <h1 class="mt-3">マイページ</h1>
+        <h2 class="mt-3 title offset-1">マイページ</h2>
       <% end %>
     </div>
     <div class="row d-flex mx-auto my-4">
@@ -18,10 +18,14 @@
       <div class="col-lg-8 col-md-7 col-10 offset-md-1 offset-1">
         <div class="row w-100 d-flex mx-auto">
           <% if gallary_signed_in? && current_gallary.email != "guest@example.com" %>
-            <%= link_to dm_path(@artist),class: "col-md-1 col-2 offset-md-5 offset-md-2 offset-sm-3 offset-1 mt-md-2 mt-3 text-right" do%>
+            <%= link_to dm_path(@artist),data:{"turbolinks" =>false},class: "col-md-1 col-2 offset-md-5 offset-md-2 offset-sm-3 offset-1 mt-md-2 mt-3 text-right" do%>
               <i class="fa-solid fa-envelope fa-2xl" style="color: #4682b4;"></i>
             <% end %>
             <div id="gtoa_follow_buttons_<%= @artist.id %>" class="col-lg-4 col-md-5 col-6 mt-md-0 mt-2 text-left">
+              <%= render 'artist/gtoa_follows/button',artist: @artist %>
+            </div>
+          <% elsif gallary_signed_in? && current_gallary.email == "guest@example.com" %>
+            <div id="gtoa_follow_buttons_<%= @artist.id %>" class="col-12 mt-md-0 mt-2 text-md-right text-center">
               <%= render 'artist/gtoa_follows/button',artist: @artist %>
             </div>
           <% elsif artist_signed_in? &&  @artist.id == current_artist.id && @artist.email != "guest@example.com" %>
@@ -57,7 +61,7 @@
         <div class="row d-flex flex-wrap">
           <% @portfolios.each do |portfolio| %>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex">
-              <%= link_to portfolio_path(portfolio.id),class: "text-secondary" do %>
+              <%= link_to portfolio_path(portfolio.id),data:{"turbolinks" =>false},class: "text-secondary" do %>
                 <div class="col-12 border px-4 py-3 my-2">
                   <div class="row">
                     <%= image_tag portfolio.image_or_empty, class: "index_image" %>

@@ -6,7 +6,7 @@
   </div>
   <div class="row d-flex">
     <div class="col-5 card mx-auto mt-4">
-      <%= form_with model: @gallary,url: gallary_path(@gallary),method: :patch, local: true do |f| %>
+      <%= form_with model: @gallary,url: gallary_path(@gallary),method: :patch, local: true,data:{"turbolinks" =>false} do |f| %>
 
         <div class="field mt-4 center-block">
           <p>ギャラリーアイコン画像</p>

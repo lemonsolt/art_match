@@ -1,7 +1,7 @@
 class Artist::ArtistsController < ApplicationController
   before_action :authenticate_artist!,{only:[:edit, :follows, :followers]}
   before_action :ensure_guest_artist,only: [:edit]
-  
+
   def index # 凍結されたアカウント以外を表示
     @artists = Artist.where("is_cold == ?",false).order(:name).page(params[:page]).per(15)
   end
@@ -43,14 +43,14 @@ class Artist::ArtistsController < ApplicationController
     @follower_gallaries = Gallary.find(followers)
   end
 
-  
+
 
   protected
 
   def artist_params
     params.require(:artist).permit( :name, :introduction, :is_cold, :is_lock , :image)
   end
-  
+
   def ensure_guest_artist
     @artist = Artist.find(params[:id])
     if @artist.email == "guest@example.com"

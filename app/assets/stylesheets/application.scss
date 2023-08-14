@@ -238,6 +238,10 @@ header {
   max-width: 80px;
   max-height: 80px;
 }
+.admin_image{
+  width: 255px;
+  height: 114px;
+}
 .index_box{
   width: 220px;
 }
@@ -422,7 +426,7 @@ header {
   .category{
     font-weight: bold;
   }
-  
+
   // フォローページタイトルサイズ
   .follow h3{
     font-size: 25px;

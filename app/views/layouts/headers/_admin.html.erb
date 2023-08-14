@@ -1,16 +1,16 @@
-<div class="col-3 flex-fill mt-4">
+<div class="col-3 mt-4">
 
 </div>
-<div class="col-5 flex-fill text-center">
+<div class="col-md-5 col-12 text-center">
   <%= link_to admin_root_path,data:{"turbolinks" =>false} do %>
-    <%= image_tag 'logo.png',size: "255x114" %>
+    <%= image_tag 'logo.png',class: "admin-image" %>
   <% end %>
 </div>
-<div class="col-3 flex-fill text-right mt-4 d-flex">
-  <%= link_to gallary_searches_path,data:{"turbolinks" =>false} ,class: "flex-fill" do %>
+<div class="col-md-3 col-12 text-right mt-4 d-flex justify-content-end">
+  <%= link_to gallary_searches_path,data:{"turbolinks" =>false} do %>
     <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #001e43;"></i>
   <% end %>
-  <p class="ml-2 flex-fill">
+  <p class="ml-2">
     <%= link_to "ログアウト",destroy_admin_session_path, method: :delete,data:{"turbolinks" =>false}, class: "btn btn-dark" %>
   </p>
 </div>

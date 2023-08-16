@@ -11,9 +11,9 @@
           </div>
         <% end %>
       </div>
-      <div class="row w-100" style= "background-color: #b0c4de;">
+      <div class="row w-100 rounded-bottom" style= "background-color: #b0c4de;">
         <div class="col-10 mx-auto mt-4">
-          <% @follow_gallaries.each do |gallary| %>
+          <% @follow_pages.each do |gallary| %>
             <%= link_to gallary_path(gallary.id),data:{"turbolinks" =>false},class: "text-dark row w-100  d-flex" do%>
               <div class="border d-flex my-2 p-2">
                 <div class="col-2 my-auto">
@@ -31,5 +31,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <%= paginate @follow_pages, outer_window: 3 %>
   </div>
 </div>

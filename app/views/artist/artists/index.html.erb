@@ -21,10 +21,9 @@
             </div>
         <% end %>
         </div>
-
       <% end %>
       <div class="row justify-content-center">
-        <%= paginate @artists, outer_window: 3 %>
+        <%= paginate @artists, outer_window: 3,data:{"turbolinks" =>false} %>
       </div>
     </div>
   </div>

@@ -6,6 +6,7 @@ class CreateDmMessages < ActiveRecord::Migration[6.1]
       t.integer :gallary_id
       t.integer :dm_room_id
       t.text :message
+      t.timestamp :to_user_opentime
       t.timestamps
     end
   end

@@ -27,20 +27,22 @@ class Gallary::GallariesController < ApplicationController
 
   def destroy
     @gallary = Gallary.find(params[:id])
-    @gallary.delete
+    @gallary.destroy
     redirect_to root_path, notice: "アカウントを削除しました。"
   end
 
   def follows
     @gallary = current_gallary
     follows = GtoaFollow.where(gallary_id: @gallary.id).pluck(:artist_id)
-    @follow_artists = Artist.find(follows)
+    @follow_artists = Artist.where(id: follows).order(:name)
+    @follow_pages = @follow_artists.page(params[:page]).per(15)
   end
 
   def followers
     @gallary = current_gallary
     followers = AtogFollow.where(gallary_id: @gallary.id).pluck(:artist_id)
-    @follower_artists = Artist.find(followers)
+    @follower_artists = Artist.where(id: followers).order(:name)
+    @follower_pages = @follower_artists.page(params[:page]).per(15)
   end
 
   def ensure_guest_gallary

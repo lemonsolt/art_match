@@ -18,7 +18,7 @@ $(function(){
 
 // ハンバーガーメニュー
 
-$(document).ready(function() {
+$(document).on('turbolinks:load',function() {
   $(".openbtn1").on('click',function() {
     $(this).toggleClass("active");
     $("#g-nav").toggleClass("panelactive");
@@ -29,3 +29,5 @@ $("#g-nav a").on('click',function () {//ナビゲーションのリンクがク�
     $(".openbtn1").removeClass('active');//ボタンの activeクラスを除去し
     $("#g-nav").removeClass('panelactive');//ナビゲーションのpanelactiveクラスも除去
 });
+
+

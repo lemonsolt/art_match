@@ -6,13 +6,16 @@
           <div class="message-body">
             <%= dm_message.message %>
           </div>
+          <div class="text-right">
+            <%= dm_message.created_at.strftime("%H:%M") %>
+          </div>
         </div>
       <% else %>
         <div class="message other">
-          <div class="message-sender"><%= dm_message.gallary.name %></div>
           <div class="message-body">
             <%= dm_message.message %>
           </div>
+          <div class="message-sender"><%= dm_message.gallary.name %> <%= dm_message.created_at.strftime("%H:%M") %></div>
         </div>
       <% end %>
     <% elsif gallary_signed_in? %>
@@ -21,15 +24,21 @@
           <div class="message-body">
             <%= dm_message.message %>
           </div>
+          <div class="text-right">
+            <%= dm_message.created_at.strftime("%H:%M") %>
+          </div>
         </div>
       <% else %>
         <div class="message other">
-          <div class="message-sender"><%= dm_message.artist.name %></div>
           <div class="message-body">
             <%= dm_message.message %>
           </div>
+          <div class="message-sender"><%= dm_message.artist.name %> <%= dm_message.created_at.strftime("%H:%M") %></div>
         </div>
       <% end %>
     <% end %>
   <% end %>
 </div>
+<script>
+  $("#dm-wrapper").scrollTop($("#dm-wrapper")[0].scrollHeight);
+</script>

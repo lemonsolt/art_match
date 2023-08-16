@@ -1,11 +1,11 @@
 <div class="container-fluid">
-  <div class="row ">
+  <div class="row">
     <div class="col-12 mt-5 text-center">
       <h2>登録情報編集</h2>
     </div>
   </div>
   <div class="row d-flex">
-    <div class="col-5 card mx-auto mt-4">
+    <div class="col-5 card mx-auto my-4">
       <%= form_with model: @gallary,url: gallary_path(@gallary),method: :patch, local: true,data:{"turbolinks" =>false} do |f| %>
 
         <div class="field mt-4 center-block">
@@ -53,6 +53,9 @@
           <%= f.submit "変更する",class: "btn btn-success" %>
         </div>
       <% end %>
+      <div class="row justify-content-center mb-4">
+        <%= link_to "アカウント削除",gallary_path(@gallary), method: :delete,data:{"turbolinks" =>false}, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+      </div>
     </div>
   </div>
 </div>

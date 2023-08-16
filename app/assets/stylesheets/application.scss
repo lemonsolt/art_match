@@ -226,6 +226,10 @@ header {
   max-width: 200px;
   max-height: 200px;
 }
+.portfolio_edit_image{
+  max-width: 300px;
+  max-height: 300px;
+}
 .index_image{
   max-width: 200px;
   max-height: 200px;
@@ -239,8 +243,8 @@ header {
   max-height: 80px;
 }
 .admin_image{
-  width: 255px;
-  height: 114px;
+  max-width: 559px;
+  max-height: 400px;
 }
 .index_box{
   width: 220px;
@@ -272,20 +276,31 @@ header {
   background-color: #a3d6cc;
 }
 
+
+/*========== DMの未読バッジデザイン ==========*/
+.unread_mark{
+  width: 25px;
+  height: 25px;
+  color: white;
+  text-align: center;
+  background-color: #e95464;
+  border-radius: 25px;
+}
+
 /*========== タイトル背景 ==========*/
 // .title{
 //   border-bottom: 4px double #192f60;
 // }
 
 /*========== ダイレクトメール（DM）レイアウト ==========*/
-
- .chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-}
+  
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
 
 .chat-topbar {
   display: flex;
@@ -297,9 +312,10 @@ header {
   padding: 0 20px;
 }
 
-.chat-messages {
+.dm_messages {
   flex: 1;
   overflow-y: scroll;
+  height: 400px;
   padding: 20px;
 }
 
@@ -364,6 +380,15 @@ header {
   background-color: #192f60;
   color: #fff;
   cursor: pointer;
+}
+#dm-wrapper{
+  height: 600px;
+}
+#dm_room_list{
+  overflow-y: scroll;
+  height: 750px;
+  background-color: #f4f4f4;
+  
 }
 
 /*========== タブレット縦置きサイズ（768px）以下 ==========*/
@@ -431,8 +456,13 @@ header {
   .follow h3{
     font-size: 25px;
   }
+  
+  #dm_room_list{
+    display: none;
+  }
 
 }
+
 
 
 /*========== スマートフォンサイズ（576px）以下 ==========*/
@@ -448,4 +478,11 @@ header {
   .search-title{
     font-size: 18px;
   }
+  .admin_image{
+    width: 80%;
+  }
+  .chat-topbar h4{
+    font-size: 20px;
+  }
+  
 }

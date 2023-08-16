@@ -20,7 +20,7 @@
         <div class="row w-100 pb-4 border-bottom search_area">
           <div class="col-12 d-flex mx-auto ">
             <p class="col-md-6 col-12 pr-3 pt-3 offset-md-2 offset-0 text-md-left text-center">
-              <%= link_to "アーティスト一覧はこちら", artists_path, class: "btn btn-success" %>
+              <%= link_to "アーティスト一覧はこちら", artists_path,data:{"turbolinks" =>false}, class: "btn btn-success" %>
             </p>
           </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="row w-100 pb-5 border-bottom search_area">
           <div class="col-12 d-flex mx-auto ">
             <p class="col-md-6 col-12 pr-3 pt-3 offset-md-2 offset-0 text-md-left text-center">
-              <%= link_to "投稿一覧はこちら", portfolios_path, class: "btn btn-success" %>
+              <%= link_to "投稿一覧はこちら", portfolios_path,data:{"turbolinks" =>false}, class: "btn btn-success" %>
             </p>
           </div>
         </div>
@@ -40,7 +40,7 @@
           <div class="col-8 offset-md-2 offset-0 pt-3 pb-5">
             <h4 class="pl-4  pt-4 pb-4 search-title">アーティスト名を<br>キーワードから探す</h4>
             <div class="search_form text-right">
-              <%= form_with url: result_searches_path, local: true, method: :get do |f| %>
+              <%= form_with url: result_searches_path, local: true, method: :get,data:{"turbolinks" =>false} do |f| %>
                 <%= f.text_field :keyword , class: "form-control" %>
                 <div class="mt-2"><%= f.submit "検索", class: "btn btn-primary" %></div>
               <% end %>
@@ -56,7 +56,7 @@
           <div class="col-12 d-flex mx-auto ">
             <p class="col-8 pr-3 pt-3 offset-md-2 offset-0">
               <% @genres.each do |genre| %>
-                <%= link_to genre_path(genre.id),class: "mx-3" do %>
+                <%= link_to genre_path(genre.id),data:{"turbolinks" =>false},class: "mx-3" do %>
                   <%= genre.name%>
                 <% end %>
               <% end %>

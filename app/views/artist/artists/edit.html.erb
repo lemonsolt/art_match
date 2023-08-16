@@ -35,6 +35,9 @@
           <%= f.submit "変更する" , class: "btn btn-info"%>
         </div>
       <% end %>
+      <div class="row justify-content-center mb-4">
+        <%= link_to "アカウント削除",artist_path(@artist), method: :delete,data:{"turbolinks" =>false}, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+      </div>
     </div>
   </div>
 </div>

@@ -3,12 +3,12 @@ class Artist::ArtistsController < ApplicationController
   before_action :ensure_guest_artist,only: [:edit]
 
   def index # 凍結されたアカウント以外を表示
-    @artists = Artist.where("is_cold == ?",false).order(:name).page(params[:page]).per(15)
+    @artists = Artist.where("is_cold == ?",false).order(:name).page(params[:page]).per(10)
   end
 
   def show
     @artist = Artist.find(params[:id])
-    @portfolios = @artist.portfolios.order(created_at: :DESC).page(params[:page]).per(20)
+    @portfolios = @artist.portfolios.order(created_at: :DESC).page(params[:page]).per(2)
   end
 
   def edit
@@ -27,20 +27,22 @@ class Artist::ArtistsController < ApplicationController
 
   def destroy
     @artist = Artist.find(params[:id])
-    @artist.delete
+    @artist.destroy
     redirect_to root_path, notice: "アカウントを削除しました。"
   end
 
   def follows
     @artist = current_artist
     follows = AtogFollow.where(artist_id: @artist.id).pluck(:gallary_id)
-    @follow_gallaries = Gallary.find(follows)
+    @follow_gallaries = Gallary.where(id: follows).order(:name)
+    @follow_pages = @follow_gallaries.page(params[:page]).per(15)
   end
 
   def followers
     @artist = current_artist
     followers = GtoaFollow.where(artist_id: @artist.id).pluck(:gallary_id)
-    @follower_gallaries = Gallary.find(followers)
+    @follower_gallaries = Gallary.where(id: followers).order(:name)
+    @follower_pages = @follower_gallaries.page(params[:page]).per(15)
   end
 
 

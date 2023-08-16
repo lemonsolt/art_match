@@ -1,16 +1,64 @@
-<div class="chat-container">
-  <div class="chat-topbar">
-    <h2><%= @user.name %> さんとのDM</h2>
-  </div>
-  <div class="message">
-    <%= render "artist/dms/messages", messages: @messages %>
-  </div>
-
-  <div class="chat-form">
-    <%= form_with model: @message,url: dms_path, data: {remote: true},data:{"turbolinks" =>false} do |f| %>
-      <%= f.text_field :message, placeholder: "メッセージを入力してください", autocomplete: "off" %>
-      <%= f.hidden_field :dm_room_id, value: @room.id %>
-      <%= f.submit "送信" %>
-    <% end %>
+<div class="chat-container d-flex">
+  <div class="row w-100 mx-0 px-0 justify-content-center">
+    <div id="dm_room_list" class="col-4">
+      <% if artist_signed_in? %>
+        <% @rooms.each do |room| %>
+          <div class="row w-100 border my-1 ml-1 py-2">
+            <%= link_to dm_path(room.gallary.id),data:{"turbolinks" =>false},class: "row w-100 d-flex flex-wrap text-secondary" do %>
+              <div class="col-lg-2 col-10 offset-sm-0 offset-2 my-auto mx-xl-3 mx-auto ">
+                <%= image_tag room.gallary.image_or_empty, class: "follow_image d-block mx-auto" %>
+              </div>
+              <div class="col-lg-7 col-12 my-auto d-flex justify-content-lg-start justify-content-center">
+                <h5>
+                  <%= room.gallary.name %>
+                </h5>
+                <% unread_messages_in_room = @unread_messages.select { |message| message.dm_room_id == room.id && message.to_user_opentime.nil? } %>
+                <% if unread_messages_in_room.count > 0 %>
+                  <div class="rounded-full ml-4 text-center unread_mark">
+                    <%= unread_messages_in_room.count %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% elsif gallary_signed_in? %>
+        <% @rooms.each do |room| %>
+          <div class="row w-100 border my-1 ml-1 py-2">
+            <%= link_to dm_path(room.gallary.id),data:{"turbolinks" =>false},class: "row w-100 d-flex flex-wrap text-secondary" do %>
+              <div class="col-lg-2 col-10 offset-sm-0 offset-2 my-auto mx-xl-3 mx-auto ">
+                <%= image_tag room.artist.artist_image_or_empty, class: "follow_image d-block mx-auto" %>
+              </div>
+              <div class="col-lg-7 col-12 my-auto d-flex justify-content-lg-start justify-content-center">
+                <h5>
+                  <%= room.artist.name %>
+                </h5>
+                <% unread_messages_in_room = @unread_messages.select { |message| message.dm_room_id == room.id && message.to_user_opentime.nil? } %>
+                <% if unread_messages_in_room.count > 0 %>
+                  <div class="rounded-full ml-4 text-center unread_mark">
+                    <%= unread_messages_in_room.count %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-md-7 col-12 mx-0 px-0">
+      <div class="chat-topbar">
+        <h4><%= @user.name %> さんとのDM</h4>
+      </div>
+      <div id="dm-wrapper" class="message">
+        <%= render "artist/dms/messages", messages: @messages %>
+      </div>
+      <div class="chat-form">
+        <%= form_with model: @message,url: dms_path,data:{"turbolinks" =>false},remote: true do |f| %>
+          <%= f.text_field :message, placeholder: "メッセージを入力してください", autocomplete: "off" %>
+          <%= f.hidden_field :dm_room_id, value: @room.id %>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

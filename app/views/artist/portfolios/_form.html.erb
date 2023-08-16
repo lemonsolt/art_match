@@ -1,10 +1,16 @@
 <%= form_with model: portfolio ,local: true,data:{"turbolinks" =>false} do |f| %>
   <div class="my-3">
 
-    <div class="field mt-4 mx-md-5 mx-0 center-block">
+    <% if controller.action_name == "new" %>
+      <div class="field mt-4 mx-md-5 mx-0 center-block">
       <p>作品画像</p>
-      <%= f.file_field :image, accept: "image/*" %>
-    </div>
+      <%= f.file_field :image, accept: "image/*"%>
+      </div>
+    <% elsif controller.action_name == "edit" %>
+      <div class="row justify-content-center">
+        <%= image_tag portfolio.image_or_empty,class: "portfolio_edit_image" %>
+      </div>
+    <% end %>
 
     <div class="field mt-4 mx-md-5 mx-0 center-block">
       <%= f.label :title, "タイトル" %><br>

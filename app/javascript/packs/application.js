@@ -22,6 +22,6 @@ import "script.js";
 import "messages.js";
 import 'swiper-init.js';
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();

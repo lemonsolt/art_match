@@ -26,7 +26,7 @@ rails_env = ENV['RAILS_ENV'] || :development
 set :environment, rails_env
 set :output, "#{Rails.root}/log/cron.log"
 # 30分ごとに削除
-every 3.minute do
+every 30.minute do
   begin
     runner "Guestuser::DataGuest.portfolio_reset"
     runner "Guestuser::DataGuest.event_reset"

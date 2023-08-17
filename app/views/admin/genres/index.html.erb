@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <h4 class="text-center mx-auto pt-3">ジャンル一覧</h4>
+  </div>
+  <div class="row w-100 py-3 my-4 mx-auto">
+    <ul class="row w-100 d-flex flex-wrap">
+      <% @genres.each do |genre| %>
+        <%= link_to admin_genre_path(genre), class: "d-flex flex-wrap text-secondary" do %>
+          <li class="mr-5 mt-4"><%= genre.name %></li>
+        <% end %>
+      <% end %>
+    </ul>
+    <div class="row justify-content-center">
+      <%= paginate @artists, outer_window: 3,data:{"turbolinks" =>false} %>
+    </div>
+  </div>
+</div>

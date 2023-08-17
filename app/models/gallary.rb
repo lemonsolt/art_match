@@ -29,7 +29,7 @@ class Gallary < ApplicationRecord
     find_or_create_by!(email: GUEST_USER_EMAIL) do |gallary|
       gallary.password = SecureRandom.urlsafe_base64
       gallary.password_confirmation = gallary.password
-      gallary.name = "ゲストギャラリー"
+      gallary.name = "ゲストギャラリー（お試し）"
       gallary.introduction = "ゲスト用アカウントです。
       このアカウントでは投稿、アーティストフォロー機能、作品のブックマーク機能が利用可能です。"
       gallary.post_code = "0000000"

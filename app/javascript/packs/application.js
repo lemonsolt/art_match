@@ -19,6 +19,7 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
 import "script.js";
+import "messages.js";
 import 'swiper-init.js';
 
 Rails.start()

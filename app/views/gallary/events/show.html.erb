@@ -39,7 +39,7 @@
       <div class="row　w-100">
         <div class="col-10 mx-auto">
           <h5 class="py-3">イベント詳細</h5>
-          <%= @event.introduction %>
+          <%= safe_join(@event.introduction.split("\n"),tag(:br)) %>
         </div>
       </div>
     </div>

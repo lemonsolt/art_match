@@ -8,7 +8,7 @@ class Artist::DmsController < ApplicationController
       # 未読バッジ設定
       room = DmRoom.find(params[:id])# 特定の相手とのルームを開くとそのルームの未読が既読に変わる
       unread_messages_in_room = DmMessage.where(to_user_opentime: nil, artist_id: nil, dm_room_id: room.id)
-      
+
       unread_messages_in_room.each do |unread_message|
         unread_message.to_user_opentime = Date.today.to_time
         unread_message.save
@@ -22,7 +22,7 @@ class Artist::DmsController < ApplicationController
       # DMの相手リストに必要な変数
       @rooms = current_artist.dm_rooms.includes(:gallary)
       @unread_messages = []
-      
+
       @rooms.each do |room|
         gallary = room.gallary
         unread_messages_in_artist = DmMessage.where(to_user_opentime: nil, gallary_id: gallary.id, artist_id: nil)
@@ -35,7 +35,7 @@ class Artist::DmsController < ApplicationController
       # 未読バッジ設定
       room = DmRoom.find(params[:id])# 特定の相手とのルームを開くとそのルームの未読が既読に変わる
       unread_messages_in_room = DmMessage.where(to_user_opentime: nil, gallary_id: nil, dm_room_id: room.id)
-      
+
       unread_messages_in_room.each do |unread_message|
         unread_message.to_user_opentime = Date.today.to_time
         unread_message.save
@@ -60,6 +60,7 @@ class Artist::DmsController < ApplicationController
   end
 
   def create
+    
     if artist_signed_in?
       @message = current_artist.dm_messages.new(message_params)
       @message.gallary_id = nil
@@ -73,11 +74,11 @@ class Artist::DmsController < ApplicationController
     if @message.save
       @room = @message.dm_room
       @messages = @room.dm_messages
-      redirect_back(fallback_location: root_path)
+      # redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "メッセージの送信に失敗しました。"
       puts @message.errors.full_messages
-      redirect_back(fallback_location: root_path)
+      # redirect_back(fallback_location: root_path)
     end
 
   end

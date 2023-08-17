@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="row">
+    <h4 class="text-center mx-auto pt-3">ギャラリー一覧</h4>
+  </div>
   <div class="row w-100 py-3 my-4">
     <% @gallaries.each do |gallary| %>
       <%= link_to admin_gallary_path(gallary), class: "row w-100 text-secondary" do %>
@@ -16,5 +19,8 @@
         </div>
       <% end %>
     <% end %>
+    <div class="row justify-content-center">
+      <%= paginate @artists, outer_window: 3,data:{"turbolinks" =>false} %>
+    </div>
   </div>
 </div>

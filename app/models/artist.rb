@@ -30,7 +30,7 @@ class Artist < ApplicationRecord
     find_or_create_by!(email: GUEST_USER_EMAIL) do |artist|
       artist.password = SecureRandom.urlsafe_base64
       artist.password_confirmation = artist.password
-      artist.name = "ゲストアーティスト"
+      artist.name = "ゲストアーティスト（お試し）"
       artist.introduction = "ゲスト用アカウントです。
         このアカウントでは投稿、ギャラリーフォロー機能、展示情報のブックマーク機能が利用可能です。"
     end

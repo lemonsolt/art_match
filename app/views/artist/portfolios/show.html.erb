@@ -35,7 +35,7 @@
               <% end %>
             </p>
             <p>詳細文<br>
-            <%= @portfolio.introduction %>
+            <%= safe_join(@portfolio.introduction.split("\n"),tag(:br)) %>
             </p>
 
 

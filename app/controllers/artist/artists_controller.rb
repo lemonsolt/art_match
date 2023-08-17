@@ -1,6 +1,6 @@
 class Artist::ArtistsController < ApplicationController
   before_action :authenticate_artist!,{only:[:edit, :follows, :followers]}
-  before_action :ensure_guest_artist,only: [:edit]
+  before_action :ensure_guest_artist,{only: [:edit]}
 
   def index # 凍結されたアカウント以外を表示
     @artists = Artist.where("is_cold == ?",false).order(:name).page(params[:page]).per(10)
@@ -8,7 +8,7 @@ class Artist::ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find(params[:id])
-    @portfolios = @artist.portfolios.order(created_at: :DESC).page(params[:page]).per(2)
+    @portfolios = @artist.portfolios.order(created_at: :DESC).page(params[:page]).per(12)
   end
 
   def edit

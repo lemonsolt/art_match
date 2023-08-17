@@ -48,7 +48,7 @@
           <p><%= @gallary.address %></p>
         </div>
         <div class="row">
-          <p><%= @gallary.introduction %></p>
+          <p><%= safe_join(@gallary.introduction.split("\n"),tag(:br)) %></p>
         </div>
       </div>
     </div>

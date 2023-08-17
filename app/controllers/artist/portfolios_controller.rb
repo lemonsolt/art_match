@@ -12,11 +12,17 @@ class Artist::PortfoliosController < ApplicationController
     @portfolio = Portfolio.new(portfolio_params)
     @portfolio.artist_id = current_artist.id
     genre_list=params[:portfolio][:name].split(',')
-
-    if @portfolio.save
-      @portfolio.save_genre(genre_list)
-      redirect_to portfolios_path,notice: '投稿完了しました'
-    else
+    # トランザクション文章
+    Portfolio.transaction do
+      if @portfolio.save
+        @portfolio.save_genre(genre_list)
+        redirect_to portfolios_path,notice: '投稿完了しました'
+      else
+        flash[:alert] = "データを保存できませんでした。"
+        render :new
+      end
+    # レスキュー処理文章
+    rescue ActiveRecord::RecordInvalid => exception
       flash[:alert] = "データを保存できませんでした。"
       render :new
     end

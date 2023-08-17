@@ -1,20 +1,53 @@
-<div class="col-3 mt-4">
+<% if request.fullpath.include? "/admin" %>
+  <div class="col-3 mt-4">
 
-</div>
-<div class="col-md-5 col-12 text-center">
-  <%= link_to admin_root_path,data:{"turbolinks" =>false} do %>
-    <%= image_tag 'logo.png',size: "255x114" %>
-  <% end %>
-</div>
-<div class="col-md-3 col-12 text-right mt-4 d-flex justify-content-end">
-  <%= link_to gallary_searches_path,data:{"turbolinks" =>false} do %>
-    <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #001e43;"></i>
-  <% end %>
-  <p class="ml-2">
-    <%= link_to "ログアウト",destroy_admin_session_path, method: :delete,data:{"turbolinks" =>false}, class: "btn btn-dark" %>
-  </p>
-</div>
-<div class="col-1">
+  </div>
+  <div class="col-md-5 col-12 text-center">
+    <%= link_to admin_root_path,data:{"turbolinks" =>false} do %>
+      <%= image_tag 'logo.png',size: "255x114" %>
+    <% end %>
+  </div>
+  <div class="col-md-3 col-12 text-right mt-4 d-flex justify-content-end">
+    <ul class="d-flex flex-wrap justify-content-end">
+      <li class="mt-3 mr-3" style="list-style: none;">
+        <%= link_to "一般画面",root_path,data:{"turbolinks" =>false}, class: "btn btn-dark" %>
+      </li>
+      <li class="mt-3" style="list-style: none;">
+        <%= link_to "ログアウト",destroy_admin_session_path, method: :delete,data:{"turbolinks" =>false}, class: "btn btn-dark" %>
+      </li>
+    </ul>
+  </div>
+  <div class="col-1">
 
-</div>
+  </div>
+<% else %>
+  <div class="col-sm-2 col-12 flex-fill">
+    <%= link_to root_path,data:{"turbolinks" =>false} do %>
+      <%= image_tag 'logo.png',size: "191x85" %>
+    <% end %>
+  </div>
+  <div class="col-sm-9 col-12">
+    <ul class="d-flex flex-wrap justify-content-end">
+      <li class="mt-3" style="list-style: none;"><%= link_to "管理者画面",admin_root_path,data:{"turbolinks" =>false}, class: "btn btn-dark" %></li>
+    </ul>
+  </div>
+  <div class="openbtn1"><span></span><span></span><span></span></div>
+    <nav id="g-nav" >
+      <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
+        <ul>
+          <li class="category"><%= link_to "TOP",root_path,data:{"turbolinks" =>false}%></li>
+          <li class="category">ギャラリー</li>
+          <li><%= link_to "一覧", gallaries_path,data:{"turbolinks" =>false} %></li>
+          <li><%= link_to "展示一覧",gallary_events_path,data:{"turbolinks" =>false} %></li>
+          <li class="category">アーティスト</li>
+          <li><%= link_to "一覧", artists_path,data:{"turbolinks" =>false} %></li>
+          <li><%= link_to "投稿一覧", portfolios_path,data:{"turbolinks" =>false} %></li>
+          <li class="category"><%= link_to "さがす",searches_path,data:{"turbolinks" =>false}%></li>
+          <li class="category"><%= link_to "ログアウト",destroy_admin_session_path, method: :delete,data:{"turbolinks" =>false} %></li>
+          <li></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+<% end %>
 

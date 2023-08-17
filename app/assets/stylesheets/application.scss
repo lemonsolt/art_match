@@ -54,13 +54,13 @@ footer {
   background-color: #192f60;
 }
 header {
-  background-image: asset-url("header.jpg");
+  background-image: image-url("header.jpg");
 }
 
 // topの背景
 #top1{
   color: white;
-  background-image: asset-url("top1.jpg");
+  background-image: image-url("top1.jpg");
 }
 .toumei{
   background-color: rgba(0,0,0,0.5);

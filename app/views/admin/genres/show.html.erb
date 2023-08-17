@@ -1,0 +1,9 @@
+<div class="container py-4">
+  <div class="row pb-4">
+    <h4>
+      ジャンル『<%= @genre.name %>』の投稿一覧 
+      <%= link_to "ジャンルタグ削除",admin_genre_path(@genre), method: :delete,data:{"turbolinks" =>false}, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"%>
+    </h4>
+  </div>
+  <%= render 'artist/portfolios/index',portfolios: @genre_portfolios %>
+</div>

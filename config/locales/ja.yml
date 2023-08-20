@@ -1,8 +1,17 @@
 ja:
-  enums:
-    gallary:
-      area_name:
-        
+  activerecord:
+    attributes:
+      artist:
+        email: "メールアドレス"
+        password: "パスワード"
+        name: "作家名"
+        introduction: "自己紹介文"
+      gallary:
+        email: "メールアドレス"
+        password: "パスワード"
+        name: "ギャラリー名"
+        post_code: "郵便番号"
+        address: "住所"
   activerecord:
     errors:
       messages:

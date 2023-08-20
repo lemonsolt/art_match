@@ -20,8 +20,8 @@ class Gallary::GallariesController < ApplicationController
     if @gallary.update(gallary_params)
       redirect_to gallary_path(current_gallary.id), notice: "変更を保存しました。"
     else
-      render "edit"
       flash[:alert] = "項目を入力してください"
+      render "edit"
     end
   end
 

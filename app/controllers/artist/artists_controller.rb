@@ -3,7 +3,7 @@ class Artist::ArtistsController < ApplicationController
   before_action :ensure_guest_artist,{only: [:edit]}
 
   def index # 凍結されたアカウント以外を表示
-    @artists = Artist.where("is_cold == ?",false).order(:name).page(params[:page]).per(10)
+    @artists = Artist.where("is_cold = ?",false).order(:name).page(params[:page]).per(10)
   end
 
   def show

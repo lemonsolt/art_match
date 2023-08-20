@@ -3,7 +3,7 @@ class Gallary::GallariesController < ApplicationController
   before_action :ensure_guest_gallary,{only: [:edit]}
 
   def index
-    @gallaries = Gallary.where("is_cold == ?",false).order(created_at: :DESC).page(params[:page]).per(15)
+    @gallaries = Gallary.where("is_cold = ?",false).order(created_at: :DESC).page(params[:page]).per(15)
   end
 
   def show

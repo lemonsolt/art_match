@@ -1,10 +1,6 @@
 class Gallary::EventBookmarksController < ApplicationController
   before_action :authenticate_artist!,{only: [:show]}
   def show
-    artist = Artist.find(params[:id])
-    unless artist.id == current_artist.id
-      redirect_to root_path
-    end
     @artist = current_artist
     @bookmarks= EventBookmark.where(artist_id: @artist.id)
   end

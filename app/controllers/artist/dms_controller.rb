@@ -1,4 +1,7 @@
 class Artist::DmsController < ApplicationController
+  before_action :authenticate_gallary! || :authenticate_artist!,{only: [:show]}
+  before_action :ensure_guest_gallary,{only: [:show]}
+  before_action :ensure_guest_artist,{only: [:show]}
 
   def show
     if artist_signed_in?
@@ -98,5 +101,18 @@ class Artist::DmsController < ApplicationController
   end
   def message_params
     params.require(:dm_message).permit(:message, :dm_room_id, :artist_id, :gallary_id)
+  end
+  
+  def ensure_guest_gallary
+    @gallary = Gallary.find(params[:id])
+    if @gallary.email == "guest@example.com"
+      redirect_to gallary_path(current_gallary), alert: "ゲストギャラリーはDM画面へ遷移できません。"
+    end
+  end
+  def ensure_guest_artist
+    @artist = Artist.find(params[:id])
+    if @artist.email == "guest@example.com"
+      redirect_to gallary_path(current_artist), alert: "ゲストアーティストはDM画面へ遷移できません。"
+    end
   end
 end

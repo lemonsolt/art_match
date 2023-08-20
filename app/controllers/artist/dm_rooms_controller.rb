@@ -1,4 +1,8 @@
 class Artist::DmRoomsController < ApplicationController
+  before_action :authenticate_gallary! || :authenticate_artist!,{only: [:index]}
+  before_action :ensure_guest_gallary,{only: [:index]}
+  before_action :ensure_guest_artist,{only: [:index]}
+  
   def index
     if artist_signed_in?
       @rooms = current_artist.dm_rooms.includes(:gallary)
@@ -17,6 +21,21 @@ class Artist::DmRoomsController < ApplicationController
         unread_messages_in_gallary = DmMessage.where(to_user_opentime: nil, gallary_id: nil, artist_id: artist.id)
         @unread_messages.concat(unread_messages_in_gallary)
       end
+    end
+  end
+  
+  protected
+  
+  def ensure_guest_gallary
+    @gallary = Gallary.find(params[:id])
+    if @gallary.email == "guest@example.com"
+      redirect_to gallary_path(current_gallary), alert: "ゲストギャラリーはDM画面へ遷移できません。"
+    end
+  end
+  def ensure_guest_artist
+    @artist = Artist.find(params[:id])
+    if @artist.email == "guest@example.com"
+      redirect_to gallary_path(current_artist), alert: "ゲストアーティストはDM画面へ遷移できません。"
     end
   end
 end

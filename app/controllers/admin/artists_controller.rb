@@ -2,12 +2,12 @@ class Admin::ArtistsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @artists = Artist.order(create_at: :DESC).page(params[:page])
+    @artists = Artist.order(created_at: :DESC).page(params[:page])
   end
 
   def show
     @artist = Artist.find(params[:id])
-    @portfolios = @artist.portfolios.order(create_at: :DESC).page(params[:page]).per(10)
+    @portfolios = @artist.portfolios.order(created_at: :DESC).page(params[:page]).per(10)
   end
 
   def edit

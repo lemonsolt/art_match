@@ -19,12 +19,12 @@ class Artist::PortfoliosController < ApplicationController
         redirect_to portfolios_path,notice: '投稿完了しました'
       else
         flash[:alert] = "データを保存できませんでした。"
-        render :new
+        redirect_to portfolios_path
       end
     # レスキュー処理文章
-    rescue ActiveRecord::RecordInvalid => _exception
+    rescue ActiveRecord::RecordInvalid => exception
       flash[:alert] = "データを保存できませんでした。"
-      render :new
+      redirect_to portfolios_path
     end
   end
 

@@ -1,4 +1,5 @@
 class Artist::PortfolioBookmarksController < ApplicationController
+  before_action :authenticate_gallary!,{only: [:show]}
 
   def show
     @gallary = current_gallary

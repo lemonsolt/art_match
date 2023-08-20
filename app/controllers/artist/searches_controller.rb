@@ -7,7 +7,7 @@ class Artist::SearchesController < ApplicationController
     @artists = Artist.where("is_cold = ?",false).order(:name).page(params[:page]).per(15)
     @keyword = search_params[:keyword]
 
-    @search_artists = Artist.search(search_params[:keyword])
+    @search_artists = Artist.where("is_cold = ?",false).search(search_params[:keyword])
     @search_artist_all = @search_artists.all
     @search_artist = @search_artists.order(:name).page(params[:page]).per(15)
 

@@ -293,7 +293,7 @@ header {
 // }
 
 /*========== ダイレクトメール（DM）レイアウト ==========*/
-  
+
   .chat-container {
     display: flex;
     flex-direction: column;
@@ -388,7 +388,7 @@ header {
   overflow-y: scroll;
   height: 750px;
   background-color: #f4f4f4;
-  
+
 }
 
 /*========== タブレット縦置きサイズ（768px）以下 ==========*/
@@ -456,7 +456,7 @@ header {
   .follow h3{
     font-size: 25px;
   }
-  
+
   #dm_room_list{
     display: none;
   }
@@ -484,5 +484,5 @@ header {
   .chat-topbar h4{
     font-size: 20px;
   }
-  
+
 }

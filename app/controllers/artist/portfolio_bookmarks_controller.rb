@@ -2,10 +2,6 @@ class Artist::PortfolioBookmarksController < ApplicationController
   before_action :authenticate_gallary!,{only: [:show]}
 
   def show
-    gallary = Gallary.find(params[:id])
-    unless gallary.id == current_gallary.id
-      redirect_to root_path
-    end
     @gallary = current_gallary
     @bookmarks= PortfolioBookmark.where(gallary_id: @gallary.id).page(params[:page]).per(15)
   end

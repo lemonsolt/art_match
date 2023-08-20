@@ -2,7 +2,7 @@ class Admin::GallariesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @gallaries = Gallary.order(create_at: :DESC).page(params[:page])
+    @gallaries = Gallary.order(created_at: :DESC).page(params[:page])
   end
 
   def show

@@ -18,7 +18,9 @@
       </div>
       <div class="col-lg-8 col-md-7 offset-1">
         <div class="row w-100 d-flex mx-auto">
-          <% if @gallary.is_lock == true %>
+          <% if @gallary.is_lock == true &&  @gallary.id == current_gallary.id %>
+            <p class="col-md-10 col-12 text-md-right mt-md-0 mt-1 text-center offset-md-2 offset-0"><%= link_to "編集する", information_edit_gallary_path ,class: "btn btn-success" %></p>
+          <% elsif @gallary.is_lock == true &&  @gallary.id != current_gallary.id %>
             <div id="atog_follow_buttons_<%= @gallary.id %>" class="col-lg-4 col-md-5 col-12 offset-md-5 offset-md-2 mt-md-0 mt-2 text-center">
               <%= render 'gallary/atog_follows/button', gallary: @gallary%>
             </div>

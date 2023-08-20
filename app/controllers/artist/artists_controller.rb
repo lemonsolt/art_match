@@ -12,6 +12,10 @@ class Artist::ArtistsController < ApplicationController
   end
 
   def edit
+    artist = Artist.find(params[:id])
+    unless artist.id == current_artist.id
+      redirect_to root_path
+    end
     @artist = current_artist
   end
 
@@ -32,6 +36,10 @@ class Artist::ArtistsController < ApplicationController
   end
 
   def follows
+    artist = Artist.find(params[:id])
+    unless artist.id == current_artist.id
+      redirect_to root_path
+    end
     @artist = current_artist
     follows = AtogFollow.where(artist_id: @artist.id).pluck(:gallary_id)
     @follow_gallaries = Gallary.where(id: follows).order(:name)
@@ -39,6 +47,10 @@ class Artist::ArtistsController < ApplicationController
   end
 
   def followers
+    artist = Artist.find(params[:id])
+    unless artist.id == current_artist.id
+      redirect_to root_path
+    end
     @artist = current_artist
     followers = GtoaFollow.where(artist_id: @artist.id).pluck(:gallary_id)
     @follower_gallaries = Gallary.where(id: followers).order(:name)
@@ -59,8 +71,8 @@ class Artist::ArtistsController < ApplicationController
       redirect_to artist_path(current_artist), alert: "ゲストアーティストはプロフィール編集画面へ遷移できません。"
     end
   end
-  
-  
+
+
 
 
 end

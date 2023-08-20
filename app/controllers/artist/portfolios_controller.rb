@@ -35,11 +35,19 @@ class Artist::PortfoliosController < ApplicationController
 
   def edit
     @portfolio = Portfolio.find(params[:id])
+    artist = @portfolio.artist_id
+    unless artist == current_artist.id
+      redirect_to root_path
+    end
     @genre_list = @portfolio.genres.pluck(:name).join(', ')
   end
 
   def update
     @portfolio = Portfolio.find(params[:id])
+    artist = @portfolio.artist_id
+    unless artist == current_artist.id
+      redirect_to root_path
+    end
     genre_list=params[:portfolio][:name].split(',')
     if  @portfolio.update(portfolio_params)
       @old_relations=PortfolioGenre.where(portfolio_id: @portfolio.id)

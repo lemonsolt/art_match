@@ -12,6 +12,10 @@ class Gallary::GallariesController < ApplicationController
   end
 
   def edit
+    gallary = Gallary.find(params[:id])
+    unless gallary.id == current_gallary.id
+      redirect_to root_path
+    end
     @gallary = current_gallary
   end
 
@@ -32,6 +36,10 @@ class Gallary::GallariesController < ApplicationController
   end
 
   def follows
+    gallary = Gallary.find(params[:id])
+    unless gallary.id == current_gallary.id
+      redirect_to root_path
+    end
     @gallary = current_gallary
     follows = GtoaFollow.where(gallary_id: @gallary.id).pluck(:artist_id)
     @follow_artists = Artist.where(id: follows).order(:name)
@@ -39,6 +47,10 @@ class Gallary::GallariesController < ApplicationController
   end
 
   def followers
+    gallary = Gallary.find(params[:id])
+    unless gallary.id == current_gallary.id
+      redirect_to root_path
+    end
     @gallary = current_gallary
     followers = AtogFollow.where(gallary_id: @gallary.id).pluck(:artist_id)
     @follower_artists = Artist.where(id: followers).order(:name)

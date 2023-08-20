@@ -27,10 +27,18 @@ class Gallary::EventsController < ApplicationController
 
   def edit
     @event = GallaryEvent.find(params[:id])
+    gallary = @event.gallary_id
+    unless gallary == current_gallary.id
+      redirect_to root_path
+    end
   end
 
   def update
     @event = GallaryEvent.find(params[:id])
+    gallary = @event.gallary_id
+    unless gallary == current_gallary.id
+      redirect_to root_path
+    end
     @event.update(event_params)
     redirect_to gallary_event_path(@event.id)
   end

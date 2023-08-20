@@ -18,9 +18,9 @@
       </div>
       <div class="col-lg-8 col-md-7 col-10 offset-md-1 offset-1">
         <div class="row w-100 d-flex mx-auto">
-          <% if @artist.is_lock == true &&  @artist.id == current_artist.id %>
+          <% if @artist.is_lock == true && artist_signed_in? && @artist.id == current_artist.id %>
             <p class="col-md-10 col-12 text-md-right mt-md-0 mt-1 text-center offset-md-2 offset-0"><%= link_to "マイページ編集", information_edit_artist_path,class: "btn btn-success" %></p>
-          <% elsif @artist.is_lock == true &&  @artist.id != current_artist.id %>
+          <% elsif @artist.is_lock == true && gallary_signed_in? && current_gallary.email == "guest@example.com" %>
             <div id="gtoa_follow_buttons_<%= @artist.id %>" class="col-lg-4 col-md-5 col-12 offset-md-5 offset-md-2 mt-md-0 mt-2 text-center">
               <%= render 'artist/gtoa_follows/button',artist: @artist %>
             </div>

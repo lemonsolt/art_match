@@ -3,7 +3,7 @@ class Gallary::SearchesController < ApplicationController
   end
 
   def result
-    @gallaries = Gallary.where("is_cold == ?",false).order(:name).page(params[:page]).per(15)
+    @gallaries = Gallary.where("is_cold = ?",false).order(:name).page(params[:page]).per(15)
     @keyword = search_params[:keyword]
     @range = params[:range]
 

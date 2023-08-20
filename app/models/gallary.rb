@@ -23,6 +23,11 @@ class Gallary < ApplicationRecord
   validates :address, presence: true
   validates :is_cold, inclusion: {in: [true, false]}
 
+  # 凍結アカウントはログイン不可に
+  def active_for_authentication?
+    super && (is_cold == false)
+  end
+
   # ゲストログイン関連
   GUEST_USER_EMAIL = "guest@example.com"
   def self.guest

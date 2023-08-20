@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Artist::SessionsController < Devise::SessionsController
+  before_action :reject_artist, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   def guest_sign_in
@@ -23,9 +24,21 @@ class Artist::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-  
 
-  # protected
+
+  protected
+
+  def reject_artist
+    @artist= Artist.find_by(email: params[:artist][:email])
+    if @artist
+      if @artist.valid_password?(params[:artist][:password]) && (@artist.is_cold == true)
+        flash[:alert] = "このアカウントは凍結されています。"
+        redirect_to new_artist_session_path
+      else
+
+      end
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

@@ -12,8 +12,12 @@ class Gallary::EventsController < ApplicationController
   def create
     @event = GallaryEvent.new(event_params)
     @event.gallary_id = current_gallary.id
-    @event.save
-    redirect_to gallary_events_path
+    if @event.save
+      redirect_to gallary_events_path
+    else
+      flash[:alert] = "投稿できませんでした"
+      redirect_to gallary_events_path
+    end
   end
 
   def show

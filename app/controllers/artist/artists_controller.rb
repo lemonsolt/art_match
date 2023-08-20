@@ -59,6 +59,8 @@ class Artist::ArtistsController < ApplicationController
       redirect_to artist_path(current_artist), alert: "ゲストアーティストはプロフィール編集画面へ遷移できません。"
     end
   end
+  
+  
 
 
 end

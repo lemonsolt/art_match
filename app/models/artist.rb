@@ -35,6 +35,10 @@ class Artist < ApplicationRecord
         このアカウントでは投稿、ギャラリーフォロー機能、展示情報のブックマーク機能が利用可能です。"
     end
   end
+# 凍結アカウントはログイン不可に
+  def active_for_authentication?
+    super && (is_cold == false)
+  end
 # 画像の有無で違う表示に
   def artist_image_or_empty
     if self.image.attached? == false

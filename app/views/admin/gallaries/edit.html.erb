@@ -13,7 +13,7 @@
         公開状態：<%= @gallary.is_lock ? "非公開" : "公開中" %>,
         アカウント状態：<%= @gallary.is_cold ? "凍結中" : "正常" %>
         <%= form_with model: @gallary,url: admin_gallary_path(@gallary),class: "pt-4" do |f| %>
-          <p>【会員ステータス】</p>
+          <p>【アカウント状態】</p>
           <%= f.select :is_cold, [['正常',0],['凍結する',1]], { include_blank: true, selected: 0 } %>
           <%= f.submit "変更する"%>
         <% end %>

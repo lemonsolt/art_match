@@ -13,7 +13,7 @@
         公開状態：<%= @artist.is_lock ? "非公開" : "公開中" %>,
         アカウント状態：<%= @artist.is_cold ? "凍結中" : "正常" %>
         <%= form_with model: @artist,url: admin_artist_path(@artist),class: "pt-4" do |f| %>
-          <p>【会員ステータス】</p>
+          <p>【アカウント状態】</p>
           <%= f.select :is_cold, [['正常',0],['凍結する',1]], { include_blank: true, selected: 0 } %>
           <%= f.submit "変更する"%>
         <% end %>

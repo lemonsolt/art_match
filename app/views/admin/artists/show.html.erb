@@ -11,7 +11,7 @@
       </div>
       <div class="col-9">
         <%= @artist.name %><br>
-        <%= @artist.introduction %><br>
+        <%= safe_join(@artist.introduction.split("\n"),tag(:br)) %><br>
         公開状態：<%= @artist.is_lock ? "非公開" : "公開中" %>,
         アカウント状態：<%= @artist.is_cold ? "凍結中" : "正常" %>
       </div>

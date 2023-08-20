@@ -22,7 +22,7 @@ class Artist::PortfoliosController < ApplicationController
         render :new
       end
     # レスキュー処理文章
-    rescue ActiveRecord::RecordInvalid => exception
+    rescue ActiveRecord::RecordInvalid => _exception
       flash[:alert] = "データを保存できませんでした。"
       render :new
     end

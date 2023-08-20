@@ -4,6 +4,9 @@ class Portfolio < ApplicationRecord
   has_many :genres,through: :portfolio_genres
   has_many :portfolio_bookmarks,dependent: :destroy
   has_one_attached :image
+  
+  validates :title, presence: true
+  validates :introduction, presence: true
 
 
   def image_or_empty

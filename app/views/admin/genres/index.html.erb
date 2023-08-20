@@ -6,7 +6,7 @@
     <ul class="row w-100 d-flex flex-wrap">
       <% @genres.each do |genre| %>
         <%= link_to admin_genre_path(genre), class: "d-flex flex-wrap text-secondary" do %>
-          <li class="mr-5 mt-4"><%= genre.name %></li>
+          <li class="mr-5 mt-4"><%= genre.name %>(<%= genre.portfolios.count %>)</li>
         <% end %>
       <% end %>
     </ul>

@@ -57,7 +57,7 @@
             <p class="col-8 pr-3 pt-3 offset-md-2 offset-0">
               <% @genres.each do |genre| %>
                 <%= link_to genre_path(genre.id),data:{"turbolinks" =>false},class: "mx-3" do %>
-                  <%= genre.name%>
+                  <span><%= genre.name%>(<%= genre.portfolios.count %>)</span>
                 <% end %>
               <% end %>
             </p>

@@ -35,7 +35,14 @@
   - どの様な展示がどこで行われているか知りたい時。
 
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
+
+##### ER図
+![er](https://github.com/lemonsolt/art_match/assets/135306445/243debe7-72a4-4597-87b9-2af060dcc170)
+
+##### テーブル定義書
+https://docs.google.com/spreadsheets/d/1qmeJo-QXVXAY0wth9RrQCUsAhQ2qrsAhK3fIP-ycxr8/edit?usp=sharing
+
+#####
 ​
 ## 開発環境
 - OS：Linux(CentOS)

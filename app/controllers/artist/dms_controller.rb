@@ -1,5 +1,5 @@
 class Artist::DmsController < ApplicationController
-  before_action :authenticate_gallary! || :authenticate_artist!,{only: [:show]}
+  before_action :sign_in_user,{only: [:show]}
   before_action :ensure_guest_gallary,{only: [:show]}
   before_action :ensure_guest_artist,{only: [:show]}
 
@@ -111,6 +111,11 @@ class Artist::DmsController < ApplicationController
   def ensure_guest_artist
     if artist_signed_in? && current_artist.email == "guest@example.com"
       redirect_to gallary_path(current_artist), alert: "ゲストアーティストはDM画面へ遷移できません。"
+    end
+  end
+  def sign_in_user
+    unless artist_signed_in? || gallary_signed_in?
+      redirect_to root_path, alert: "ログインしてください"
     end
   end
 end

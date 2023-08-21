@@ -7,7 +7,7 @@
       <%= link_to admin_artist_path(artist), class: "row w-100 text-secondary" do %>
         <div class="col-10 border d-flex mx-auto my-1 py-1">
           <div class="col-2">
-            <%= image_tag artist.artist_image_or_empty, size: "50x50"%>
+            <%= image_tag artist.artist_image_or_empty, class: "follow_image"%>
           </div>
           <div class="col-7">
             作家名：<%= artist.name %>

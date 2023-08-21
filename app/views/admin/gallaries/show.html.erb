@@ -28,7 +28,7 @@
             <%= link_to gallary_event_path(event.id),class: "text-secondary" do %>
               <div class="col-12 d-flex border p-3 my-3">
                 <div class="col-4">
-                  <%= image_tag event.image_or_empty, size: "200x200"%>
+                  <%= image_tag event.image_or_empty, class: "index_image" %>
                 </div>
                 <div class="col-7 my-auto">
                   <h4><%= event.title %></h4>

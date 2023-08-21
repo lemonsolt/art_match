@@ -15,7 +15,7 @@ class Artist::DmsController < ApplicationController
       else
         @room = DmRoom.create(gallary_id: @user.id, artist_id: current_artist.id)
       end
-      
+
       # DMの相手リストに必要な変数
       @rooms = current_artist.dm_rooms.includes(:gallary)
       @unread_messages = []
@@ -32,7 +32,7 @@ class Artist::DmsController < ApplicationController
           message.save
         end
       end
-      
+
     elsif gallary_signed_in?
       @user = Artist.find(params[:id])
       rooms = current_gallary.dm_rooms.pluck(:id)
@@ -43,7 +43,7 @@ class Artist::DmsController < ApplicationController
       else
         @room = DmRoom.create(gallary_id: current_gallary.id, artist_id: @user.id)
       end
-      
+
       # DMの相手リストに必要な変数
       @rooms = current_gallary.dm_rooms.includes(:artist)
       @unread_messages = []
@@ -59,7 +59,7 @@ class Artist::DmsController < ApplicationController
           message.save
         end
       end
-      
+
     end
     @messages = @room.dm_messages
     @message = DmMessage.new(dm_room_id: @room.id)
@@ -102,16 +102,14 @@ class Artist::DmsController < ApplicationController
   def message_params
     params.require(:dm_message).permit(:message, :dm_room_id, :artist_id, :gallary_id)
   end
-  
+
   def ensure_guest_gallary
-    @gallary = Gallary.find(params[:id])
-    if @gallary.email == "guest@example.com"
+    if gallary_signed_in? && current_gallary.email == "guest@example.com"
       redirect_to gallary_path(current_gallary), alert: "ゲストギャラリーはDM画面へ遷移できません。"
     end
   end
   def ensure_guest_artist
-    @artist = Artist.find(params[:id])
-    if @artist.email == "guest@example.com"
+    if artist_signed_in? && current_artist.email == "guest@example.com"
       redirect_to gallary_path(current_artist), alert: "ゲストアーティストはDM画面へ遷移できません。"
     end
   end

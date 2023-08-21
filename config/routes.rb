@@ -43,11 +43,12 @@ Rails.application.routes.draw do
     resources :searches, only: [ :index] do
       get "result" => "searches#result", on: :collection
     end
+    resources :a_comments, only: [:new, :create]
   end
 
 
   namespace :gallary do
-    resources :areas, only: [ :index, :show ]
+    resources :g_comments, only: [:new, :create]
     resources :searches, only: [ :index] do
       get "result" => "searches#result", on: :collection
     end
@@ -59,7 +60,6 @@ Rails.application.routes.draw do
         get :show, on: :member
       end
     end
-
   end
   # gallary/gallaried/~となるのでmoduleで
   scope module: :gallary do
@@ -76,6 +76,8 @@ Rails.application.routes.draw do
     resources :artists, only: [ :index, :show, :edit, :update]
     resources :gallaries, only: [ :index, :show, :edit, :update]
     resources :genres, only: [ :index, :show, :destroy]
+    resources :a_comments, only: [:index, :show, :destroy]
+    resources :g_comments, only: [:index, :show, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

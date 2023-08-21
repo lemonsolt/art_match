@@ -13,7 +13,7 @@ class Gallary::EventsController < ApplicationController
     @event = GallaryEvent.new(event_params)
     @event.gallary_id = current_gallary.id
     if @event.save
-      redirect_to gallary_events_path
+      redirect_to gallary_events_path,notice: '投稿完了しました'
     else
       flash[:alert] = "投稿できませんでした"
       redirect_to gallary_events_path

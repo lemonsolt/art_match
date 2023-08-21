@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center my-4"><h4>ご意見フォーム</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-8 col-11 mx-auto border mb-5">
+      <%= form_with model: @comment ,url: gallary_g_comments_path ,local: true,data:{"turbolinks" =>false} do |f| %>
+        <div class="my-3">
+
+          <div class="field mt-4 mx-md-5 mx-0 center-block">
+            <%= f.label :title, "タイトル" %><br>
+            <%= f.text_field :title,class: "form-control" %>
+          </div>
+
+          <div class="field mt-4 mx-md-5 mx-0 center-block">
+            <%= f.label :comment, "内容" %><br>
+            <%= f.text_area :comment,class: "form-control"  %>
+          </div>
+
+          <div class="form-group text-center my-3">
+            <%= f.submit "投函する", class: 'btn in_btn px-5' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

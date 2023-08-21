@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <h4 class="text-center mx-auto pt-3">ご意見一覧</h4>
+  </div>
+  <div class="row py-4">
+    <div class="col-10 mx-auto">
+      <div class="row w-100">
+        <%= link_to admin_a_comments_path,data:{"turbolinks" =>false}, class: "col-6 text-center text-dark follow" do %>
+          <div>
+            <h3>アーティストから</h3>
+          </div>
+        <% end %>
+        <div class="col-6 text-center rounded-top pt-2 follow" style= "background-color: #a4d5bd;">
+          <h3>ギャラリーから</h3>
+        </div>
+      </div>
+      <div class="row w-100" style= "background-color: #a4d5bd;">
+        <div class="col-lg-8  col-md-10 col-12 mx-auto">
+          <% @comments.each do |comment| %>
+            <%= link_to admin_g_comment_path(comment.id),data:{"turbolinks" =>false},class: "text-secondary" do %>
+              <div class="col-12 border d-flex flex-wrap my-2 py-2">
+                <div class="col-sm-9 col-9 offset-sm-1 offset-0 flex-fill pt-1">
+                  <h5>
+                    <%= comment.title %>
+                  </h5>
+                  <p ><%= comment.gallary.name %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

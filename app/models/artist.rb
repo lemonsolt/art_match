@@ -16,6 +16,7 @@ class Artist < ApplicationRecord
   has_many :dm_rooms, dependent: :destroy
   has_many :gallaries, through: :dm_rooms
   has_many :dm_messages, dependent: :destroy
+  has_many :a_comments
 
   validates :name, presence: true
   validates :introduction, length: {in: 1..500}

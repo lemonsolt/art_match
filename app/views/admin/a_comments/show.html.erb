@@ -1,0 +1,31 @@
+<div class="container p-3">
+  <div class="row my-4">
+    <h4>ご意見詳細</h4>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto border py-3 mb-4">
+      <div class="row w-100 mx-auto">
+        <div class="col-10 mx-auto mt-4">
+          <h4>タイトル：<%= @comment.title %></h4>
+        </div>
+        <div class="col-10 mx-auto text-right">
+          <p>
+            投稿者：
+            <%= image_tag @comment.artist.artist_image_or_empty, class: "comment_image" %>
+            <%= @comment.artist.name%>
+          </p>
+        </div>
+      </div>
+      <div class="row w-100 border my-2 mx-auto">
+        <div class="col-11 mx-auto py-4">
+          <p><%=  safe_join(@comment.comment.split("\n"),tag(:br)) %></p>
+        </div>
+      </div>
+      <div class="row w-100 mx-auto">
+        <p class="mx-auto">
+          <%= link_to "削除する", admin_a_comment_path(@comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"%>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

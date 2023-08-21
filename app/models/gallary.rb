@@ -16,6 +16,7 @@ class Gallary < ApplicationRecord
   has_many :dm_rooms, dependent: :destroy
   has_many :artists, through: :dm_rooms
   has_many :dm_messages, dependent: :destroy
+  has_many :g_comments
 
 
   validates :name, presence: true

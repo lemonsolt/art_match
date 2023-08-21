@@ -29,6 +29,7 @@
         <li><%= link_to "一覧", artists_path,data:{"turbolinks" =>false} %></li>
         <li><%= link_to "投稿一覧", portfolios_path,data:{"turbolinks" =>false} %></li>
         <li class="category"><%= link_to "さがす",gallary_searches_path,data:{"turbolinks" =>false}%></li>
+        <li class="category"><%= link_to "意見投函",new_a_comment_path,data:{"turbolinks" =>false}%></li>
         <li class="category"><%= link_to "ログアウト",destroy_artist_session_path, method: :delete,data:{"turbolinks" =>false} %></li>
         <li></li>
       </ul>

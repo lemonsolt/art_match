@@ -1,6 +1,11 @@
 <div class="dm_messages">
   <% messages.each do |dm_message| %>
     <% if artist_signed_in?%>
+      <% if dm_message.artist_id == nil && unread_messages.present? && dm_message == unread_messages.first %>
+        <div class="unread_line text-center mx-auto">
+          <p><strong>ここから未読です</strong></p>
+        </div>
+      <% end %>
       <% if dm_message.artist_id != nil %>
         <div class="message self">
           <div class="message-body">
@@ -19,6 +24,11 @@
         </div>
       <% end %>
     <% elsif gallary_signed_in? %>
+      <% if dm_message.gallary_id == nil && unread_messages.present? && dm_message == unread_messages.first %>
+        <div class="unread_line text-center mx-auto">
+          <p><strong>ここから未読です</strong></p>
+        </div>
+      <% end %>
       <% if dm_message.gallary_id != nil %>
         <div class="message self">
           <div class="message-body">

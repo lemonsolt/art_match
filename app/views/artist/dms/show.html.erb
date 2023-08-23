@@ -50,7 +50,7 @@
         <h4><%= @user.name %> さんとのDM</h4>
       </div>
       <div id="dm-wrapper" class="message">
-        <%= render "artist/dms/messages", messages: @messages %>
+        <%= render "artist/dms/messages", messages: @messages, unread_messages: @unread_messages %>
       </div>
       <div class="chat-form">
         <%= form_with model: @message,url: dms_path,local: false do |f| %>

@@ -1,3 +1,3 @@
-$('.message').html("<%= j(render 'artist/dms/messages', messages: @messages) %>");
+$('.message').html("<%= j(render 'artist/dms/messages', messages: @messages ,unread_messages: @unread_messages) %>");
 $('.dm_messages').scrollTop($('.dm_messages')[0].scrollHeight);
 $('input[type=text]').val("");

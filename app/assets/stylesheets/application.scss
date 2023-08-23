@@ -290,7 +290,15 @@ header {
   background-color: #e95464;
   border-radius: 25px;
 }
+// DMここから未読ですのライン
 
+.unread_line{
+  width: 90%;
+  height: 30px;
+  background-color: #d4d9dc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
 /*========== タイトル背景 ==========*/
 // .title{
 //   border-bottom: 4px double #192f60;

@@ -3,7 +3,7 @@ class Artist::PortfolioBookmarksController < ApplicationController
 
   def show
     @gallary = current_gallary
-    @bookmarks= PortfolioBookmark.where(gallary_id: @gallary.id).page(params[:page]).per(15)
+    @bookmarks= PortfolioBookmark.where(gallary_id: @gallary.id).order(created_at: :DESC).page(params[:page]).per(15)
   end
 
   def create

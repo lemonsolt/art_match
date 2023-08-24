@@ -9,7 +9,7 @@
       <% @search_artist.each do |artist| %>
         <%= link_to artist_path(artist.id),data:{"turbolinks" =>false},class: "text-secondary col-12 d-flex border py-3 my-1" do%>
           <div class="col-2">
-            <p><%= image_tag artist.artist_image_or_empty, size: '100x100' %></p>
+            <p><%= image_tag artist.artist_image_or_empty, class: "mini_image" %></p>
           </div>
           <div class="col-10">
             <p>

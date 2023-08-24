@@ -2,7 +2,7 @@ class Admin::GCommentsController < ApplicationController
   before_action :authenticate_admin!,{only:[:index, :show, :destroy]}
 
   def index
-    @comments = GComment.page(params[:page]).per(20)
+    @comments = GComment.order(created_at: :DESC).page(params[:page]).per(20)
   end
 
   def show

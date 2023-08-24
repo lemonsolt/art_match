@@ -2,7 +2,7 @@ class Gallary::EventBookmarksController < ApplicationController
   before_action :authenticate_artist!,{only: [:show]}
   def show
     @artist = current_artist
-    @bookmarks= EventBookmark.where(artist_id: @artist.id)
+    @bookmarks= EventBookmark.where(artist_id: @artist.id).order(created_at: :DESC).page(params[:page]).per(15)
   end
 
   def create

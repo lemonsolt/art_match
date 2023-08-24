@@ -14,7 +14,7 @@
         <% @gallaries_page.each do |gallary| %>
           <%= link_to gallary_path(gallary.id),data:{"turbolinks" =>false},class: "text-secondary my-1" do%>
             <div class="col-12">
-              <p><%= image_tag gallary.image_or_empty, size: '100x100' %></p>
+              <p><%= image_tag gallary.image_or_empty, class: "mini_image" %></p>
               <p>
                 <%= gallary.name %>
                 <% if gallary.is_lock %>

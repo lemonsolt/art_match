@@ -1,5 +1,8 @@
 ja:
   activerecord:
+    models:
+      artist: "アーティスト"
+      gallary: "ギャラリー"
     attributes:
       artist:
         email: "メールアドレス"
@@ -12,7 +15,6 @@ ja:
         name: "ギャラリー名"
         post_code: "郵便番号"
         address: "住所"
-  activerecord:
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

@@ -31,7 +31,7 @@
         <li class="category"><%= link_to "さがす",gallary_searches_path,data:{"turbolinks" =>false}%></li>
         <li class="category"><%= link_to "意見投函",new_a_comment_path,data:{"turbolinks" =>false}%></li>
         <li class="category"><%= link_to "ログアウト",destroy_artist_session_path, method: :delete,data:{"turbolinks" =>false} %></li>
-        <li></li>
+        <li class="category border"><%= link_to "掲示板",chat_thread_index_path,data:{"turbolinks" =>false}%></li>
       </ul>
     </div>
   </nav>

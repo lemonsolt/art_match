@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <%= link_to "一覧へ戻る" , chat_thread_index_path, data:{"turbolinks" =>false} ,class: "col-md-3 col-12 flex-fill text-left text-dark"%>
+  </div>
+  <div class="row">
+    <h4>
+      <%= @chat_thread.title %>
+    </h4>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @chat_comments, outer_window: 3 %>
+  </div>
+  <div class="row">
+    <% @chat_comments.each do |comment| %>
+      <div class= "border-bottom my-3 comment">
+        <% if artist_id != nil && gallary_id == nil %>
+          <h6><%= comment.id %> <%= comment.artist_name%></h6>
+        <% elsif gallary_id != nil && artist_id == nil%>
+          <h6><%= comment.id %> <%= comment.gallary_name%></h6>
+        <% end %>
+        <p>
+          <%= comment.created_at.strftime('%Y/%m/%d(%a) %H:%M:%S.%L') %>
+        </p>
+        <h5>
+          <%= safe_join(comment.comment.split("\n"),tag(:br)) %>
+        </h5>
+      </div>
+    <% end %>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @chat_comments, outer_window: 3 %>
+  </div>
+  <div class="row">
+    <%= form_with model: @chat_comment,url: comment_create_chat_thread_path(@chat_thread), local: true,data:{"turbolinks" =>false} do |f| %>
+      <div class="field mt-4 mx-md-5 mx-0 center-block">
+        <%= f.label :title, "タイトル" %><br>
+        <%= f.text_field :title, placeholder: "スレッドタイトル",class: "form-control" %>
+      </div>
+      
+      <div class="field mt-4 mx-md-5 mx-0 ">
+        <%= f.label :comment, "コメント" %>
+        <%= f.text_field :comment, placeholder: "ここにコメントを書いてください",class: "form-control" %>
+      </div>
+    <% end %>
+  </div>
+</div>

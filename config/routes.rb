@@ -44,6 +44,9 @@ Rails.application.routes.draw do
       get "result" => "searches#result", on: :collection
     end
     resources :a_comments, only: [:new, :create]
+    resources :chat_thread, only: [ :index, :show, :create, :destroy] do
+      post :comment_create, on: :member
+    end
   end
 
 

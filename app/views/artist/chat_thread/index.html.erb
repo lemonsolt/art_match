@@ -2,46 +2,42 @@
   <div class="row">
     <h4 class="text-center mx-auto pt-3">コミュニケーション広場</h4>
   </div>
-  <div class="row w-100">
-    <div class="row w-100 pb-5">
-      <div class="col-10 mx-auto text-center">
-        <h1 class="text-center">About</h1>
-      </div>
-    </div>
-    <div class="row w-100">
-      <div class="col-10 mx-auto text-center py-5">
-        <h5 class="text-center">
-          ここはアーティストとギャラリーが一期一会で雑談してゆく掲示板です<br>
-          ページ下部にあるフォームよりスレッドを建てご利用ください<br><br>
-          スレッド削除の際は意見投函より”削除申請”とタイトルに書き本文に削除したいスレッド名等を書き申請してください<br>
-          スレッド建築者が削除申請をするようにお願いします。<br>
-        </h5>
-      </div>
+  <div class="row w-100 mx-0">
+    <div class="col-11 mx-auto text-center py-5 mx-0" style="background-color: #e6e6fa;">
+      <h5 class="text-center">
+        ここはアーティストとギャラリーが一期一会で雑談してゆく掲示板です<br>
+        ページ下部にあるフォームよりスレッドを建てご利用ください<br><br>
+        スレッド削除の際は意見投函より”削除申請”とタイトルに書き<br>
+        本文に削除したいスレッド名等を書き申請してください<br>
+        スレッド建築者が削除申請をするようにお願いします。<br>
+      </h5>
     </div>
   </div>
   <div class="row">
     <% @chat_threads.each do |thread| %>
-      <%= link_to chat_thread_path(thread.id),data:{"turbolinks" =>false},class: "text-secondary mx-auto" do %>
+      <%= link_to chat_thread_path(thread.id),data:{"turbolinks" =>false},class: "col-10 text-secondary mx-auto" do %>
         <div class="col-12 d-flex flex-wrap border p-3 my-3">
-          <div class="col-sm-8 col-12">
-            <div class="row">
-              <h4>
+          <div class="col-sm-10 col-12">
+            <div class="row w-100">
+              <h4 style="color: red;">
                 <%= thread.title %>
               </h4>
             </div>
-            <div class="row">
+            <div class="row w-100">
               <h6>
-                <%= thread.chat_comment.first.id %>
-                <% if artist_id != nil && gallary_id == nil %>
-                  名前：<%= thread.chat_comment.first.artist_name %>
-                  <%= thread.chat_comment.first.created_at.strftime('%Y/%m/%d(%a) %H:%M:%S.%L') %>
-                <% elsif gallary_id != nil && artist_id == nil%>
-                  名前：<%= thread.chat_comment.first.gallary_name %>
-                  <%= thread.chat_comment.first.created_at.strftime('%Y/%m/%d(%a) %H:%M:%S.%L') %>
+                <% if thread.chat_comments.first.artist_id != nil && thread.chat_comments.first.gallary_id == nil %>
+                  0001 名前：<%= thread.chat_comments.first.artist.name %>
+                  <%= thread.chat_comments.first.created_at.strftime('%Y/%m/%d(%a) %H:%M:%S.%L') %>
+                <% elsif thread.chat_comments.first.gallary_id != nil && thread.chat_comments.first.artist_id == nil%>
+                  0001 名前：<%= thread.chat_comments.first.gallary.name %>
+                  <%= thread.chat_comments.first.created_at.strftime('%Y/%m/%d(%a) %H:%M:%S.%L') %>
+                <% else %>
                 <% end %>
               </h6>
+            </div>
+            <div class="row w-100">
               <h6>
-                <%= safe_join(thread.chat_comment.comment.first.split("\n"),tag(:br)) %>
+                <%= safe_join(thread.chat_comments.first.comment.split("\n"),tag(:br)) %>
               </h6>
             </div>
           </div>
@@ -53,7 +49,7 @@
     <%= paginate @chat_threads, outer_window: 3 %>
   </div>
   <div class="row">
-    <div class="col-10 mx-auto border">
+    <div class="col-10 mx-auto border mb-4">
       <h5>スレッド作成</h5>
       <%= form_with model: @new_chat_thread,url: chat_thread_index_path, local: true,data:{"turbolinks" =>false} do |f| %>
         <div class="field mt-3 mx-md-5 mx-0 center-block d-flex">
@@ -61,9 +57,13 @@
           <%= f.text_field :title, placeholder: "スレッドタイトル",class: "form-control" %>
         </div>
         
-        <div class="field my-3 mx-md-5 mx-0 d-flex">
-          <%= f.label :comment, "コメント：",class: "col-2" %>
-          <%= f.text_area :comment, value: @chat_comment, placeholder: "ここにコメントを書いてください", class: "form-control" %>
+        <div class="form-group text-center my-3">
+          <%= f.fields_for :chat_comments, @new_chat_thread.chat_comments.build do |c| %>
+            <%= c.hidden_field :artist_id, value: current_artist.id if artist_signed_in? %>
+            <%= c.hidden_field :gallary_id, value: current_gallary.id if gallary_signed_in? %>
+            <%= c.hidden_field :chat_thread_id, value: @new_chat_thread.id %>
+            <%= c.text_area :comment, placeholder: "ここにコメントを書いてください", class: "form-control" %>
+          <% end %>
         </div>
         <div class="form-group text-center my-3">
           <%= f.submit "スレッドを建てる", class: 'btn in_btn px-5' %>

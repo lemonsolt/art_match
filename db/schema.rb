@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2023_08_31_071625) do
   end
 
   create_table "chat_comments", force: :cascade do |t|
-    t.integer "thread_id"
+    t.integer "chat_thread_id"
     t.integer "artist_id"
     t.integer "gallary_id"
     t.text "comment"

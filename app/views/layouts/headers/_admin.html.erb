@@ -43,8 +43,8 @@
           <li><%= link_to "一覧", artists_path,data:{"turbolinks" =>false} %></li>
           <li><%= link_to "投稿一覧", portfolios_path,data:{"turbolinks" =>false} %></li>
           <li class="category"><%= link_to "さがす",searches_path,data:{"turbolinks" =>false}%></li>
-          <li class="category"><%= link_to "ログアウト",destroy_admin_session_path, method: :delete,data:{"turbolinks" =>false} %></li>
           <li class="category border"><%= link_to "掲示板",chat_thread_index_path,data:{"turbolinks" =>false}%></li>
+          <li class="category"><%= link_to "ログアウト",destroy_admin_session_path, method: :delete,data:{"turbolinks" =>false} %></li>
           <li></li>
         </ul>
       </div>

@@ -18,6 +18,9 @@ class Gallary < ApplicationRecord
   has_many :dm_messages, dependent: :destroy
   has_many :g_comments, dependent: :destroy
 
+  # 掲示板関連
+  has_many :chat_comments, dependent: :destroy
+
 
   validates :name, presence: true
   validates :post_code, presence: true

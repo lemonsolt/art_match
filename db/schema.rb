@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_21_043631) do
+ActiveRecord::Schema.define(version: 2023_08_31_071625) do
 
   create_table "a_comments", force: :cascade do |t|
     t.integer "artist_id"
@@ -79,6 +79,21 @@ ActiveRecord::Schema.define(version: 2023_08_21_043631) do
   create_table "atog_follows", force: :cascade do |t|
     t.integer "artist_id"
     t.integer "gallary_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "chat_comments", force: :cascade do |t|
+    t.integer "chat_thread_id"
+    t.integer "artist_id"
+    t.integer "gallary_id"
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "chat_threads", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

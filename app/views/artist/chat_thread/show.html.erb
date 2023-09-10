@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <%= link_to "<<一覧へ戻る" , chat_thread_index_path, data:{"turbolinks" =>false} ,class: "col-md-3 col-12 flex-fill text-left text-dark"%>
+  </div>
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h4 style="color: red;">
+        『<%= @chat_thread.title %>』
+        
+      </h4>
+    </div>
+  </div>
+  <div class="row">
+    <% if admin_signed_in? %>
+      <div class="col-10 offset-1">
+        <%= link_to "削除する", chat_thread_path(@chat_thread.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"%>
+      </div>
+    <% end %>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @chat_comments, outer_window: 3 %>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <% counter = 0 %>
+      <% @chat_comments.each do |comment| %>
+        <div class= "border-bottom my-3 comment">
+          <% if comment.artist_id != nil && comment.gallary_id == nil %>
+            <% counter += 1 %>
+            <h6><%= sprintf('%04d',counter) %> 名前：<%= comment.artist.name%> <%= comment.created_at.strftime('%Y/%m/%d(%a) %H:%M:%S.%L') %></h6>
+          <% elsif comment.gallary_id != nil && comment.artist_id == nil%>
+            <% counter += 1 %>
+            <h6><%= sprintf('%04d',counter) %> 名前：<%= comment.gallary.name%> <%= comment.created_at.strftime('%Y/%m/%d(%a) %H:%M:%S.%L') %></h6>
+          <% end %>
+          <h5>
+            <%= safe_join(comment.comment.split("\n"),tag(:br)) %>
+          </h5>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @chat_comments, outer_window: 3 %>
+  </div>
+  <div class="row w-100">
+    <div class="col-10 mx-auto">
+      <%= form_with model: @chat_comment,url: comment_create_chat_thread_path(@chat_thread), local: true,data:{"turbolinks" =>false} do |f| %>
+      
+      <div class="field mt-4 mx-md-5 mx-0 ">
+        <%= f.label :comment, "コメント" %>
+        <%= f.hidden_field :artist_id, value: current_artist.id if artist_signed_in? %>
+        <%= f.hidden_field :gallary_id, value: current_gallary.id if gallary_signed_in? %>
+        <%= f.text_area :comment, placeholder: "ここにコメントを書いてください",class: "form-control" %>
+      </div>
+      <div class="form-group text-center my-3">
+        <%= f.submit "コメントする", class: 'btn in_btn px-2' %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

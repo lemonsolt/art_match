@@ -25,13 +25,10 @@
         <li><%= link_to "展示一覧",gallary_events_path,data:{"turbolinks" =>false} %></li>
         <li><%= link_to "今後開催の展示",before_index_gallary_events_path,data:{"turbolinks" =>false} %></li>
         <li><%= link_to "開催中の展示",now_index_gallary_events_path,data:{"turbolinks" =>false} %></li>
-        <li class="category">アーティスト</li>
-        <li><%= link_to "一覧", artists_path,data:{"turbolinks" =>false} %></li>
-        <li><%= link_to "投稿一覧", portfolios_path,data:{"turbolinks" =>false} %></li>
         <li class="category"><%= link_to "さがす",gallary_searches_path,data:{"turbolinks" =>false}%></li>
         <li class="category"><%= link_to "意見投函",new_a_comment_path,data:{"turbolinks" =>false}%></li>
+        <li class="category border"><%= link_to "掲示板",chat_thread_index_path,data:{"turbolinks" =>false}%></li>
         <li class="category"><%= link_to "ログアウト",destroy_artist_session_path, method: :delete,data:{"turbolinks" =>false} %></li>
-        <li></li>
       </ul>
     </div>
   </nav>

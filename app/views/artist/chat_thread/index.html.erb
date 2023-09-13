@@ -52,11 +52,11 @@
     <div class="col-10 mx-auto border mb-4">
       <h5>スレッド作成</h5>
       <%= form_with model: @new_chat_thread,url: chat_thread_index_path, local: true,data:{"turbolinks" =>false} do |f| %>
-        <div class="field mt-3 mx-md-5 mx-0 center-block d-flex">
-          <%= f.label :title, "タイトル：" ,class: "col-2" %>
-          <%= f.text_field :title, placeholder: "スレッドタイトル",class: "form-control" %>
+        <div class="field mt-3 mx-md-5 mx-0 center-block d-flex flex-wrap">
+          <%= f.label :title, "タイトル：" ,class: "col-lg-2 col-sm-4 col-12" %>
+          <%= f.text_field :title, placeholder: "スレッドタイトル",class: "form-control col-lg-10 col-12" %>
         </div>
-        
+
         <div class="form-group text-center my-3">
           <%= f.fields_for :chat_comments, @new_chat_thread.chat_comments.build do |c| %>
             <%= c.hidden_field :artist_id, value: current_artist.id if artist_signed_in? %>

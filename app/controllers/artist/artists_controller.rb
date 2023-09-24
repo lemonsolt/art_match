@@ -1,6 +1,7 @@
 class Artist::ArtistsController < ApplicationController
   before_action :authenticate_artist!,{only:[:edit, :follows, :followers]}
-  before_action :ensure_guest_artist,{only: [:edit]}
+  before_action :ensure_guest_artist,{only: [:edit,:update,:destroy]}
+  before_action :ensure_current_artist,{only:[:edit,:update,:destroy]}
 
   def index # 凍結されたアカウント以外を表示
     @artists = Artist.where("is_cold = ?",false).order(:name).page(params[:page]).per(10)
@@ -12,10 +13,6 @@ class Artist::ArtistsController < ApplicationController
   end
 
   def edit
-    artist = Artist.find(params[:id])
-    unless artist.id == current_artist.id
-      redirect_to root_path
-    end
     @artist = current_artist
   end
 
@@ -58,13 +55,6 @@ class Artist::ArtistsController < ApplicationController
   end
 
 
-
-  protected
-
-  def artist_params
-    params.require(:artist).permit( :name, :introduction, :is_cold, :is_lock , :image)
-  end
-
   def ensure_guest_artist
     @artist = Artist.find(params[:id])
     if @artist.email == "guest@example.com"
@@ -72,7 +62,22 @@ class Artist::ArtistsController < ApplicationController
     end
   end
 
+  def ensure_current_artist
+    artist = Artist.find(params[:id])
+    if artist_signed_in?
+      current_artist = current_artist
+      
+      if current_artist && current_aritst == artist
+        redirect_to root_path, alert: "アカウントが違うため遷移できません。"
+      end
+    end
+  end
 
+  protected
+
+  def artist_params
+    params.require(:artist).permit( :name, :introduction, :is_cold, :is_lock , :image)
+  end
 
 
 end

@@ -1,6 +1,7 @@
 class Gallary::GallariesController < ApplicationController
   before_action :authenticate_gallary!,{only: [:edit, :follows, :followers]}
   before_action :ensure_guest_gallary,{only: [:edit]}
+  before_action :ensure_current_gallary,{only: [:edit,:update,:destroy]}
 
   def index
     @gallaries = Gallary.where("is_cold = ?",false).order(created_at: :DESC).page(params[:page]).per(15)
@@ -12,10 +13,6 @@ class Gallary::GallariesController < ApplicationController
   end
 
   def edit
-    gallary = Gallary.find(params[:id])
-    unless gallary.id == current_gallary.id
-      redirect_to root_path
-    end
     @gallary = current_gallary
   end
 
@@ -61,6 +58,17 @@ class Gallary::GallariesController < ApplicationController
     @gallary = Gallary.find(params[:id])
     if @gallary.email == "guest@example.com"
       redirect_to gallary_path(current_gallary), alert: "ゲストギャラリーはプロフィール編集画面へ遷移できません。"
+    end
+  end
+
+  def ensure_current_gallary
+    gallary = Gallary.find(params[:id])
+    if gallary_signed_in?
+      current_gallary = current_gallary
+
+      if current_gallary && current_gallary == gallary
+        redirect_to root_path, alert: "アカウントが違うため遷移できません。"
+      end
     end
   end
 

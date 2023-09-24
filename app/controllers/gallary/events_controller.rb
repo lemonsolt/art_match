@@ -1,5 +1,6 @@
 class Gallary::EventsController < ApplicationController
   before_action :authenticate_gallary!,{only: [:new, :create, :edit, :update, :destroy]}
+  before_action :ensure_current_gallary,{only: [:edit,:update,:destroy]}
 
   def index
     @events = GallaryEvent.joins(:gallary).where(gallaries: { is_cold: false, is_lock: false }).order(created_at: :DESC).page(params[:page]).per(15)
@@ -16,7 +17,7 @@ class Gallary::EventsController < ApplicationController
       redirect_to gallary_events_path,notice: '投稿完了しました'
     else
       flash[:alert] = "投稿できませんでした"
-      redirect_to gallary_events_path
+      render :new
     end
   end
 
@@ -27,20 +28,12 @@ class Gallary::EventsController < ApplicationController
 
   def edit
     @event = GallaryEvent.find(params[:id])
-    gallary = @event.gallary_id
-    unless gallary == current_gallary.id
-      redirect_to root_path
-    end
   end
 
   def update
     @event = GallaryEvent.find(params[:id])
-    gallary = @event.gallary_id
-    unless gallary == current_gallary.id
-      redirect_to root_path
-    end
     @event.update(event_params)
-    redirect_to gallary_event_path(@event.id)
+    redirect_to edit_gallary_event_path(@event.id)
   end
 
   def destroy
@@ -67,10 +60,24 @@ class Gallary::EventsController < ApplicationController
             .order(end_at: :DESC).page(params[:page]).per(15)
   end
 
+  # before_action定義
+  def ensure_current_gallary
+    event = GallaryEvent.find(params[:id])
+    gallary = event.gallary_id
+    if gallary_signed_in?
+      current_gallary = current_gallary
+
+      if current_gallary && current_gallary == gallary
+        redirect_to root_path, alert: "アカウントが違うため遷移できません。"
+      end
+    end
+  end
+
   private
 
   def event_params
     params.require(:gallary_event).permit( :gallary_id, :title,
     :introduction, :start_at, :end_at, :recruit, :image)
   end
+
 end

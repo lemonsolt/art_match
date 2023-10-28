@@ -16,7 +16,6 @@ class GallaryEvent < ApplicationRecord
   before_save :update_recruit_status_start_at
   before_save :update_recruit_status_end_at
   
-  private
 
   def image_or_empty
     if self.image.attached? == false

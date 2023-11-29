@@ -152,8 +152,8 @@ ActiveRecord::Schema.define(version: 2023_08_31_071625) do
   create_table "gallary_events", force: :cascade do |t|
     t.integer "gallary_id"
     t.string "title"
-    t.date "start_at"
-    t.date "end_at"
+    t.date "start_at", null: false
+    t.date "end_at", null: false
     t.text "introduction"
     t.integer "recruit", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false

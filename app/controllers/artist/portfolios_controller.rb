@@ -7,7 +7,7 @@ class Artist::PortfoliosController < ApplicationController
   end
 
   def new
-    @genre_list = Genre.all.pluck(:name).join(", ")
+    @genre_list = ""
     @portfolio = Portfolio.new
   end
 

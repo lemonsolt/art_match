@@ -33,7 +33,7 @@ class Gallary::EventsController < ApplicationController
   def update
     @event = GallaryEvent.find(params[:id])
     @event.update(event_params)
-    redirect_to edit_gallary_event_path(@event.id)
+    redirect_to gallary_event_path(@event.id)
   end
 
   def destroy
